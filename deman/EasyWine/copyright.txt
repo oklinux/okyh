@@ -1,0 +1,19 @@
+EasyWine 介绍:
+EasyWine并不是可以代替Wine的软件，而是帮助你安装配置
+Wine的软件。傻瓜式的配置方法，让使用Wine不再难。
+
+EasyWine 配置插件 plug.tar.bz2 下载地址：
+http://software.lupaworld.com/pub/deman/plug.tar.bz2
+
+EasyWine 开发测试人员:
+主程序制作：deman   程序优化：Subbo
+特别感谢 kanker 的意见和修正程序的bug
+发行包制作和测试人员（排名不分先后）：
+redcode、HeX、tanhitzq、阿邦, newbird, i659, quhw,
+ tianqi, binhe, wjfree, wakinfan, qfpkh, zq82511,skyerce ,
+gogoliu等。
+
+感谢你使用EasyWine，多谢论坛、QQ群上支持EasyWine的网友，
+特别感谢shuweich、fanxianbing、血色眼泪、hex、kyolsy、
+brave163、王临强、仇爱超、林威为论坛作出捐助。
+EasyWine项目开发网站 http://www.linuxgame.org

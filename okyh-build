@@ -1,0 +1,280 @@
+#!/bin/sh
+
+LIB="
+用户界面.efn
+#编码转换.efn
+工具.efn
+系统.efn
+#apr.efn
+#配置.efl"
+
+SRC="
+okyh
+okinst
+okclass
+okadsl
+okwine"
+
+cd "`dirname $0`"
+path=`pwd`
+ver=0.3PRE
+if [ -f "./.build" ]; then
+  . ./.build 
+else
+riqi=1000;fi
+if [ "ok$@" = "okupdate" ]; then
+  xbb=`expr $riqi + 1`
+  echo  "riqi=$xbb">.build
+   riqi=$xbb
+fi
+
+if [ `id -u` != 0 ];then
+  exit
+fi
+
+ rm -rf $path/src/*/*~ $path/*~  \
+  "$path/src/ef/调试版"
+for s in /usr/src/*/SOURCES ; do
+  if [ -d "$s" ] ;then
+    ymb="$s/OKYH-$ver.tar.bz2" 
+fi;done 
+cd "$path/"
+tar cjvf "$ymb" ../okyh/
+
+BUILDDIR=/tmp/okbuild
+mkdir -p $BUILDDIR/bin
+for src1 in $SRC ; do
+  if [ -f $path/src/shell/$src1.txt ]; then
+  sed -e  "s/OKYHVER\=VER/OKYHVER\=$ver.$riqi/g" "$path/src/shell/$src1.txt">$BUILDDIR/bin/$src1
+for src2 in  $path/src/data/*-$src1.txt ;do
+  if [ -x "$src2" -o  -f "$src2" ];then
+  cat $src2>>$BUILDDIR/bin/$src1
+fi;done
+    chmod +x $BUILDDIR/bin/$src1
+bash -e $BUILDDIR/bin/$src1 ceshi 2>&1
+if [ $? !=  0 ]; then
+exit ;fi
+  fi
+done
+
+for efsrc in  $path/src/ef/*.ef ;do
+  if [ -x "$efsrc" -o  -f "$efsrc" ];then
+sed -e  "s/OKYHVER/$ver.$riqi/g" "$efsrc">$BUILDDIR/`basename "$efsrc"`
+fi;done
+
+cd "$BUILDDIR"
+echo "#!/bin/sh
+mkdir -p \"\$HOME/.OKYH\"
+cd  \"\$HOME/.OKYH\"
+if [ ! -f /usr/share/okyh/.libokyh/OKYHGUI ];then
+mkdir -p /usr/share/okyh/.libokyh/
+">bin/gokyh
+for lib1 in $LIB ; do
+EFLIBPATH=`echo "$EF_LIB_PATHS"|sed -e 's/\:/\ /g'`
+for EFLIB in $EFLIBPATH ; do
+  if [ -x "$EFLIB/$lib1" ]; then
+echo "sed -e '1,/BinData-$lib1/d' \$0 |sed -e '1,/BinData-$lib1/d'|\
+ sed -n -e '1,/BinDataFiles/p' |sed -e '/BinDataFiles/d' >/usr/share/okyh/.libokyh/$lib1" >>bin/gokyh
+echo "BinData-$lib1">>gokyh
+  cat "$EFLIB/$lib1" >>gokyh
+  echo "
+BinDataFiles">>gokyh
+fi;done;done
+
+if [ -f "$EF_HOME/bin/efc" ]; then
+  "$EF_HOME/bin/efc" *.ef -efl_name="app" -main_class="启动类" -out="OKYHGUI"
+chmod +x OKYHGUI
+echo "sed -e '1,/BinData-OKYHGUI/d' \$0 |sed -e '1,/BinData-OKYHGUI/d'|\
+ sed -n -e '1,/BinDataFiles/p' |sed -e '/BinDataFiles/d' >/usr/share/okyh/.libokyh/OKYHGUI" >>bin/gokyh
+echo "BinData-OKYHGUI">>gokyh
+  cat "OKYHGUI" >>gokyh
+  echo "
+BinDataFiles">>gokyh
+else
+echo "not EF Compiler"
+exit 1;fi
+  cd "$BUILDDIR"
+echo "
+chmod -R 777 /usr/share/okyh/.libokyh
+fi
+if [ ! -f /usr/lib/libexpat.so.1 ]; then
+if [ -f /usr/lib/libexpat.so ]; then
+cp /usr/lib/libexpat.so /usr/lib/libexpat.so.1 
+fi;fi
+case \$LANG\$LC_ALL\$SUPPROTED in
+ *zh_CN.GB*)
+  for wjm in /usr/share/okyh/.libokyh/*.ef*;do
+   mv \"\$wjm\" \"\`echo \$wjm|iconv -f UTF8 -t GB18030\`\"
+  done;;
+esac
+chmod +x /usr/share/okyh/.libokyh/OKYHGUI
+OKYH_CANSHU=\"\$@\" EF_LIB_PATHS=\"/usr/share/okyh/.libokyh/\" /usr/share/okyh/.libokyh/OKYHGUI \$@
+
+exit
+OKYHBIN">>bin/gokyh
+cat gokyh >>bin/gokyh
+chmod +x bin/gokyh
+
+cd "$path"
+if [ -d deman ]; then
+    mkdir -p $BUILDDIR/usr/share/okyh
+    cp -rf deman/* $BUILDDIR/usr/share/okyh 
+    cp -rf readme rizhi.txt $BUILDDIR/usr/share/okyh 
+fi
+
+
+
+cd //
+ok_ins()
+{
+cat  <<okyhins
+#!/bin/sh
+
+okyh_zdck()
+{
+GUESS_XTERMS="konsole rxvt xterm dtterm eterm Eterm kvt aterm"
+for a in \$GUESS_XTERMS; do
+  if type \$a >/dev/null 2>&1; then
+    XTERM=\$a;break;fi;done
+chmod a+x "\$1"
+if test `echo "$0" | cut -c1` = "/"; then 
+    \$XTERM -title "$label" -e "\$1" --xwin ""
+else
+    \$XTERM -title "$label" -e "\$1" --xwin ""
+fi
+}
+if [ -f /tmp/okyh.ins ]; then
+exit 1;fi
+if [ "OK\$DISPLAY" != "OK" ]; then
+ case "\$0\$1" in
+    *WIN|*-e) break ;;
+   /*) 
+tee    <<shellokyh>/dev/shm/sh-$$.sh
+#!/bin/sh
+if [ \`id -u\` != 0 ];then
+echo "
+qing shu ru ROOT mi ma
+"
+echo "\$0 WIN">\\\$0.\\\$$
+chmod  7777 \\\$0.\\\$$
+su root  -c "\\\$0.\\\$$"
+exit
+else
+"\$0" "WIN"
+fi
+read dengdai
+sleep 0
+exit
+shellokyh
+chmod  7777 /dev/shm/sh-$$.sh
+okyh_zdck  /dev/shm/sh-$$.sh
+exit 0;;
+ esac
+fi
+
+if [ "\`whoami\`" = "root" ]; then
+   rm -rf /usr/share/apps/konqueror/servicemenus/OKYH*.desktop \
+/usr/share/applnk/System/okyh*.desktop \
+/usr/share/applications/okyh*.desktop \
+/usr/share/autostart/srf.desktop \
+/usr/share/okyh /usr/share/okyh/.libokyh/\
+/bin/gokyh /bin/ok*
+  if [ "set\$@"  = "set-e" ]; then
+    echo Uninstall Done
+    exit
+  fi
+   sed -e '1,/OKYHBIN/d' "\$0" |sed -e '1,/OKYHBIN/d' > /tmp/okyh.ins
+  cd /
+  tar xjvf /tmp/okyh.ins>tmp/ok
+  rm -rf /tmp/ok*
+  gokyh tb
+  echo "
+===============================================
+///////////////////////////////////////////////
+
+           Oukian OKYH System Set Tools
+             $ver (Build: $riqi)
+                wan cheng an zhang
+
+
+                         http://www.oukan.cn.vc
+                        http://www.easywine.org
+
+///////////////////////////////////////////////
+===============================================
+"
+  exit
+fi 
+
+exit
+#OKYHBIN
+okyhins
+}
+ok_ins>/okyh.ins
+rm -rf /bin/ok*~
+cd "$BUILDDIR/"
+tar cjvf /okyh.ins2 usr/share/okyh bin/ok* bin/gokyh
+cat /okyh.ins /okyh.ins2>"$path/../OKYH-$ver.$riqi-linux.sh"
+rm -rf /okyh.ins*
+
+cat <<RPMSPEC>>//okyh.spec
+Summary:Oukan OKYH System Set Tools
+Name:OKYH
+version:$ver.$riqi
+Release:OukanOnline
+Vendor:sjchenkan<chenkan577@sohu.com>
+URL:http://www.oukan.cn.vc
+License:GPL
+Group:Applications
+Source:OKYH-$ver.tar.bz2
+BuildRoot:$BUILDDIR/
+Autoreq:no
+%description
+Oukan OKYH System Set Tools for Linux
+OKYH By sjchenkan <http://www.oukan.cn.vc>
+EasyWine By deman <http://www.easywine.org>
+
+
+%Prep
+# prep  start
+
+%build
+# build start
+
+%install
+#start install
+
+
+%postun
+rm /usr/share/autostart/srf.desktop
+
+
+
+%post
+#post start
+
+%files
+%doc
+%config 
+
+
+ 
+#/usr/share/apps/konqueror/servicemenus/OKYH*.desktop
+#/usr/share/applnk/*/okyh*.desktop
+/usr/share/okyh
+/bin/ok*
+/bin/gokyh
+
+RPMSPEC
+
+rpmbuild -ba /okyh.spec  
+rm -rf /okyh.spec \
+$BUILDDIR
+
+
+for bao in /usr/src/*/*/OKYH-* \
+  /usr/src/*/RPMS/*/OKYH*.rpm ;do
+  if [ -f "$bao" ]; then
+  mv -f "$bao" "$path/../" 
+fi;done
+

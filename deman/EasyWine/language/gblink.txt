@@ -1,0 +1,15 @@
+我的电脑
+程序管理
+控制面版
+反安装程序
+WINE配置面版
+任务管理器
+记事本
+注册表编辑器
+扫雷
+我的电脑.desktop
+腾讯TM.desktop
+QQ游戏.desktop
+腾讯QQ.desktop
+腾讯TT.desktop
+QQ音乐.desktop

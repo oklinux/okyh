@@ -1,0 +1,30 @@
+8
+
+dir
+0
+http://okyh.googlecode.com/svn/trunk/deman/EasyWine/iebatch
+http://okyh.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+iebatch_wmp6.txt
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+

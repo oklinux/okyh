@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ef-project version="1.0">
+    <information>
+        <name>okyh</name>
+        <version>1.0</version>
+        <author />
+        <description />
+        <remark />
+    </information>
+    <setting>
+        <type>runable</type>
+        <out>okyh</out>
+        <efl-name>okyh</efl-name>
+        <main-class>启动类</main-class>
+    </setting>
+    <depends />
+    <source-files>
+        <source-file file="okyh.ef" />
+        <source-file file="httpclass.ef" />
+        <source-file file="GH-STOCK.ef" />
+        <source-file file="sz-eth.ef" />
+        <source-file file="sz-ppp.ef" />
+        <source-file file="sz-srf.ef" />
+        <source-file file="sz-inittab.ef" />
+        <source-file file="lib-okyh.ef" />
+        <source-file file="sz-zddl.ef" breakpoints="25" />
+        <source-file file="gj-rpms.ef" />
+        <source-file file="sh-yh.ef" breakpoints="" />
+        <source-file file="gj-ISO.ef" breakpoints="20" />
+        <source-file file="sh-BEIFEN.ef" />
+        <source-file file="sh-CAIDAN.ef" />
+        <source-file file="sh-XINPUT.ef" />
+        <source-file file="gj-pjs.ef" />
+        <source-file file="sh-hsclass.ef" />
+        <source-file file="sh-network.ef" />
+    </source-files>
+</ef-project>

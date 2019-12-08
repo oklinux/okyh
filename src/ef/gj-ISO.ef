@@ -1,0 +1,137 @@
+引入 用户界面,工具;
+
+/*
+####################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+"#          www.oukan,1m.cn
+#####################################
+*/
+
+class GJ_ISO
+{
+	public static CJISO(文本 YUAN,string MUBIAO<可为空>,文本 QDML)
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+="cleanup() {\n";
+		SHELL+="[ ${LOOP:=/tmp/loop} = \"/\" ] && echo \"LOOP mount point = \\/, dying!\" && exit\n";
+		SHELL+="[ -d $LOOP ] && rm -rf $LOOP \n";
+		SHELL+="[ ${DVD:=~/mkdvd} = \"/\" ] && echo \"DVD data location is \\/, dying!\" && exit\n";
+		SHELL+="[ -d $DVD ] && rm -rf $DVD \n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_cjiso()\n";
+		SHELL+="{\n";
+		SHELL+="cd \"$DVD\"\n";
+		SHELL+="if [ -f isolinux/isolinux.bin ]; then\n";
+		SHELL+="cp -rf \"$0\" read.tmp 2>&1 2>/dev/null\n";
+
+		SHELL+="if [ \"$?\" != \"0\" ]; then\n";
+		SHELL+="rm -rf \"$HOME/mdvd\"\n";
+		SHELL+="mkdir  -p \"$HOME/mdvd\"\n";
+		SHELL+="cp -rfv ./* \"$HOME/mdvd\"\n";
+		SHELL+="cd \"$HOME/mdvd\"\n";
+		SHELL+="mkisofs -J -R -v -T -o $DVDISO -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \".\"\n";
+		SHELL+="else\n";
+		SHELL+="rm  rf  read.tmp\n";
+		SHELL+="mkisofs -J -R -v -T -o $DVDISO -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \".\"\n";
+		SHELL+="fi\n";
+		
+		SHELL+="if [ -f /usr/lib/anaconda-runtime/implantisomd5 ]; then\n";
+		SHELL+="/uĶsr/lib/anaconda-runtime/implantisomd5 --force $DVDISO\n";
+		SHELL+="fi\n";
+		
+		SHELL+="elif [ -f boot/isolinux.bin ]; then\n";
+		SHELL+="cp -rf \"$0\" read.tmp 2>&1 2>/dev/null\n";
+
+		SHELL+="if [ \"$?\" != \"0\" ]; then\n";
+		SHELL+="rm -rf \"$HOME/mdvd\"\n";
+		SHELL+="mkdir  -p \"$HOME/mdvd\"\n";
+		SHELL+="cp --rfv ./* \"$HOME/mdvd\"\n";
+		SHELL+="cd \"$HOME/mdvd\"\n";
+		SHELL+="mkisofs -J -R -v -T -o $DVDISO -b boot/isolinux.bin -c boot/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \".\"\n";
+		SHELL+="else\n";
+		SHELL+="rm  rf  read.tmp\n";
+		SHELL+="mkisofs -J -R -v -T -o $DVDISO -b boot/isolinux.bin -c boot/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table \".\"\n";
+		SHELL+="fi\n";
+
+		SHELL+="if [ -f /usr/lib/anaconda-runtime/implantisomd5 ]; then\n";
+		SHELL+="/usr/lib/anaconda-runtime/implantisomd5 --force $DVDISO\n";
+		SHELL+="fi\n";
+
+		SHELL+="else\n";
+
+		SHELL+="mkisofs -J -R -v -T -o $DVDISO \".\"\n";
+		
+		SHELL+="if [ -f /usr/lib/anaconda-runtime/implantisomd5 ]; then\n";
+		SHELL+="/usr/lib/anaconda-runtime/implantisomd5 --force $DVDISO\n";
+		SHELL+="fi\n";
+
+		SHELL+="fi\n";
+		SHELL+="}\n";
+
+		SHELL+="cdd"+QDML+"\n";
+		SHELL+="if [ \"ok\" = \"oK"+MUBIAO+"\"  ]; then\n";
+		SHELL+=" DVDISO=\"`pwd`/`basename  \""+YUAN+"\"|tr -d \"1\"`-DVD.iso\" \n";
+		SHELL+="else\n";
+		SHELL+="case \""+MUBIAO+"\" in\n";
+		SHELL+=" \\/*) DVDISO=\""+MUBIAO+"\" ;;\n";
+		SHELL+=" *) DVDISO=\""+QDML+MUBIAO+";;\n";
+		SHELL+="esac\n";
+		SHELL+="fi\n";
+
+		SHELL+="if  [ ! -f /usr/bin/mkisofs  ]; then\n";
+		SHELL+=" echo mei you mkisofs\n";
+		SHELL+=" exit 1\n";
+		SHELL+="fi\n";
+		SHELL+="cleanup\n";
+		SHELL+="mkdir -p $LOOP\n";
+		SHELL+="mkdir -p $DVD\n";
+
+		SHELL+="if [ -f "+YUAN+" ]; then\n";
+		SHELL+="sfgly\n";
+		SHELL+=" echo \"cha zhao ISO CD jing xing...\"\n";
+		SHELL+=" CDS=`expr 0`\n";
+		SHELL+=" DISKS="+YUAN+"\n";
+		SHELL+=" cdwj=\"`basename "+YUAN+"|sed -e 's/1/\\*/g'`\"\n";
+		SHELL+=" cd \"`dirname "+YUAN+"`\"\n";
+		SHELL+=" for f in $cdwj ; do\n";
+		SHELL+="  mount -o loop $f $LOOP\n";
+		SHELL+="  cp -av $LOOP/* $DVD\n";
+		SHELL+="  if [ -f $LOOP/.discinfo ]; then\n";
+		SHELL+="   cp -av $LOOP/.discinfo $DVD\n";
+		SHELL+="   CDS=`expr $CDS + 1`\n";
+		SHELL+="    if [ $CDS != 1 ] ; then\n";
+		SHELL+="      DISKS=`echo ${DISKS},${CDS}`\n";
+		SHELL+="    fi\n";
+		SHELL+="  fi\n";		
+		SHELL+="  umount $LOOP\n";
+		SHELL+=" done\n";
+		SHELL+=" if [ -e $DVD/.discinfo ]; then\n";
+		SHELL+="  awk '{ if ( NR == 4 ) { print disks } else { print ; } }' disks=\"$DISKS\" $DVD/.discinfo > $DVD/.discinfo.new\n";
+		SHELL+="  mv $DVD/.discinfo.new $DVD/.discinfo\n";
+		SHELL+=" fi\n";
+		SHELL+="rm -rf $DVD/isolinux/boot.cat\n";
+		SHELL+="find $DVD -name TRANS.TBL | xargs rm -f\n";
+		SHELL+="okyh_cjiso\n";
+		SHELL+="cleanup\n";
+		SHELL+="\n";
+
+		SHELL+="elif [ -d "+YUAN+" ]; then\n";
+		SHELL+="DVD="+YUAN+"\n";
+		SHELL+="if [ \"ok\" = \"ok"+MUBIAO+"  ]; then\n";
+		SHELL+="DVDISO=\"$HOME/CD-DVD.iso\"\n";
+		SHELL+="fi\n";
+	
+		SHELL+="okyh_cjiso\n";
+		SHELL+="rm -rf  \"$HOME/mkdvd\"\n";
+		SHELL+="else\n";
+		SHELL+="echo \"mei you yuan\"\n";
+		SHELL+="exit 1\n";
+		SHELL+="fi\n";
+
+		OKBasicLib.SHELL(SHELL);
+
+	}
+}

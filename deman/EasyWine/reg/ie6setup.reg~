@@ -1,0 +1,57 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\\Wine]
+"Version"="win98"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\acmsetup.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\acmsetup.exe\DllOverrides]
+"*"="builtin, native"
+"*advapi32"="builtin"
+"*comctl32"="builtin, native"
+"*commctrl"="builtin, native"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\grpconv.exe]
+"Version"="nt40"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\ie6setup.exe\DllOverrides]
+"*"="builtin, native"
+"setupapi"="native, builtin"
+"setupx"="native, builtin"
+"wininet"="native, builtin"
+"shdocvw"="native, builtin"
+"initpki"="native, builtin"
+"cryptdlg"="native, builtin"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\ie6batch.exe\DllOverrides]
+"*comctl32"="builtin"
+
+;OpenJane_IE sppedup hack
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Jane2ch.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Jane2ch.exe\DllOverrides]
+"mlang"="builtin, native"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\rundll32.exe\DllOverrides]
+"atl"="native, builtin"
+"crypt32"="native, builtin"
+"mcianim.drv"="native, builtin"
+"mciavi.drv"="native, builtin"
+"mshtml"="native"
+"msi"="native, builtin"
+"msiexec.exe"="native, builtin"
+"msvcrt"="native, builtin"
+"ole32"="native, builtin"
+"oleaut32"="native, builtin"
+"olepro32"="native, builtin"
+"quartz"="native, builtin"
+"rpcrt4"="native, builtin"
+"shdocvw"="native, builtin"
+"shlwapi"="native, builtin"
+"wininet"="native, builtin"
+"wintrust"="native, builtin"

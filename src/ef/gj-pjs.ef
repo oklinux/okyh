@@ -1,0 +1,41 @@
+引入 用户界面,工具;
+
+/*
+####################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+"#          www.oukan,1m.cn
+#####################################
+*/
+
+class GJ_YPJS
+{
+	public static YPJS(string CS,string  HD)
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+="dma=72\n";
+		SHELL+="case "+CS+" in\n";
+		SHELL+="  6*) dma=\"-X"+CS+" -c3 -m16\" ;;\n";
+		SHELL+="  7*) dma=\"-X"+CS+" -c3 -m16\" ;;\n";
+		SHELL+="  0)  dma=0 ;;\n";
+		SHELL+="  *)  dma=\"\" ;;\n";
+		SHELL+="esac  \n";
+		SHELL+="if [ $HOME = \"/root\" ]; then\n";
+		SHELL+="  okrc=/etc/rc.d/rc.local.okb\n";
+		SHELL+="  if [ ! -f $okrc ]; then\n";
+		SHELL+="     cp /etc/rc.d/rc.local $okrc\n";
+		SHELL+="  fi\n";
+		SHELL+="  cat /etc/rc.d/rc.local |";
+		SHELL+="  sed -e '/hdparm/d' $okrc>/etc/rc.d/rc.local\n";
+		SHELL+="  if [ \"0\" != \"$dma\" ]; then\n";
+		SHELL+="    echo \"/sbin/hdparm -d1 $dma /dev/"+HD+" &\">>/etc/rc.d/rc.local\n";
+		SHELL+="  fi\n";
+		SHELL+="fi\n";
+
+		OKBasicLib.SHELL(SHELL);
+
+	}
+
+
+}

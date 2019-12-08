@@ -1,0 +1,427 @@
+引入 用户界面,工具;
+
+/*
+####################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+"#          www.oukan,1m.cn
+#####################################
+*/
+
+class SH_CAIDAN
+{
+
+	public static CDCJ()
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+="mkdir -p $HOME/Desktop\n";
+		SHELL+="if [ -f /usr/bin/konqueror ]; then\n";
+		SHELL+="echo \"[Desktop Entry]\n";
+		SHELL+="Exec=konqueror\n";
+		SHELL+="Icon=konqueror\n";
+		SHELL+="Name[zh_CN]=Konqueror 浏览器\n";
+		SHELL+="Terminal=0\n";
+		SHELL+="Type=Application\">$HOME/Desktop/konqueror.desktop\n";
+		SHELL+="fi\n";
+		SHELL+="if [ -f /usr/bin/opera ]; then\n";
+		SHELL+="echo \"[Desktop Entry]\n";
+		SHELL+="Exec=opera\n";
+		SHELL+="Icon=opera.xpm\n";
+		SHELL+="Name[zh_CN]=Opera 浏览器\n";
+		SHELL+="Terminal=0\n";
+		SHELL+="Type=Application\">$HOME/Desktop/opera.desktop\n";
+		SHELL+="fi\n";
+
+		if(OKBasicLib.SFGLY() == true)
+		{
+			SHELL+="mkdir -p /tmp/okcd\n";
+			SHELL+="mkdir -p /tmp/okcd/Utilities\n";
+			SHELL+="mkdir -p /tmp/okcd/Settings\n";
+			SHELL+="mkdir -p /tmp/okcd/Development\n";
+			SHELL+="mkdir -p /tmp/okcd/Utilities\n";
+			SHELL+="mkdir -p /tmp/okcd/System\n";
+			SHELL+="mkdir -p /tmp/okcd/Game\n";
+			SHELL+="mkdir -p /tmp/okcd/Multimedia\n";
+			SHELL+="mkdir -p /tmp/okcd/Internet\n";
+			SHELL+="mkdir -p /tmp/okcd/Office\n";
+
+			SHELL+="if [ ! -e $xtcd ]; then\n";
+			SHELL+="	mkdir -p $xtcd\n";
+			SHELL+="fi\n";
+			SHELL+="if [ ! -e $xtcd/OKYH ]; then\n";
+			SHELL+="	mkdir $xtcd/OKYH\n";
+			SHELL+="else\n";
+			SHELL+="	rm -rf $xtcd/OKYH/*\n";
+			SHELL+="fi\n";
+
+			SHELL+="if [ -f /usr/local/eio/EIOffice.bin ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/eio/EIOffice.bin\n";
+			SHELL+="Icon=/usr/share/eiofileicon/ese.ico\n";
+			SHELL+="Name[zh_CN]=永中Office\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="MimeType=application/x-eio;application/msword;application/vnd.ms-excel;application/vnd.ms-powerpoint;application/eit;application/ees;application/eiw;application/uof;\n";
+			SHELL+="Type=Application\">/tmp/okcd/Office/eioffice.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/local/RealPlayer/realplay ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/RealPlayer/realplay\n";
+			SHELL+="Icon=realplay.png\n";
+			SHELL+="Name[zh_CN]=RealPlayer\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="MimeType=application/x-ogg;application/ogg;audio/mp3;audio/x-mp3;audio/mpeg;audio/mpg;audio/x-mpeg;audio/x-mpg;audio/mpegurl;audio/x-mpegurl;audio/wav;audio/x-wav;audio/x-pn-wav;audio/x-pn-windows-acm;audio/x-pn-windows-pcm;text/vnd.rn-realtext;application/vnd.rn-realmedia-secure;application/vnd.rn-realaudio-secure;audio/x-realaudio-secure;video/vnd.rn-realvideo-secure;audio/vnd.rn-realaudio;audio/x-realaudio;application/vnd.rn-realmedia;application/vnd.rn-realmedia-vbr;image/vnd.rn-realpix;audio/x-pn-realaudio;video/vnd.rn-realvideo;application/vnd.rn-realsystem-rmj;application/vnd.rn-realsystem-rmx;audio/aac;audio/x-aac;audio/m4a;audio/x-m4a;audio/mp2;audio/x-mp2;audio/mp1;audio/x-mp1;audio/rn-mpeg;audio/scpls;audio/x-scpls;application/smil;application/x-smil;application/streamingmedia;application/x-streamingmedia;application/sdp;audio/basic;audio/x-pn-au;audio/aiff;audio/x-aiff;audio/x-pn-aiff;video/3gpp;video/3gpp-encrypted;audio/3gpp;audio/3gpp-encrypted;audio/amr;audio/amr-encrypted;audio/amr-wb;audio/amr-wb-encrypted;audio/x-rn-3gpp-amr;audio/x-rn-3gpp-amr-encrypted;audio/x-rn-3gpp-amr-wb;audio/x-rn-3gpp-amr-wb-encrypted;video/3gpp2;audio/x-3gpp2\n";
+			SHELL+="Type=Application\">/tmp/okcd/Multimedia/realplay.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/local/HelixPlayer/hxplay ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/HelixPlayer/hxplay\n";
+			SHELL+="Icon=hxplay.png\n";
+			SHELL+="Name[zh_CN]=HelixPlayer\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">/tmp/okcd/Multimedia/hxplay.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/local/mozilla/mozilla ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/mozilla/mozilla\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=Mozilla 浏览器\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="MimeType=text/html\n";
+			SHELL+="Type=Application\">/tmp/okcd/Internet/mozilla.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/local/mozilla/mozilla ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/mozilla/mozilla -mail\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=Mozilla Mail\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">/tmp/okcd/Internet/mozilla-mail.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/local/netscape/netscape ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/netscaape/netscape\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=Netscape 浏览器\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="MimeType=text/html\n";
+			SHELL+="Type=Application\">/tmp/okcd/Internet/netscape.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/local/netscape/netscape ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/usr/local/netscaape/netscape -mail\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=Netscape Mail\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">/tmp/okcd/Internet/netscape-mail.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/bin/gxine ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=gxine\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=Gxine Media Player\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="MimeType=application/x-ogg;application/ogg;audio/mp3;audio/x-mp3;audio/mpeg;audio/mpg;audio/x-mpeg;audio/x-mpg;audio/mpegurl;audio/x-mpegurl;audio/wav;audio/x-wav;audio/x-pn-wav;audio/x-pn-windows-acm;audio/x-pn-windows-pcm;text/vnd.rn-realtext;application/vnd.rn-realmedia-secure;application/vnd.rn-realaudio-secure;audio/x-realaudio-secure;video/vnd.rn-realvideo-secure;audio/vnd.rn-realaudio;audio/x-realaudio;application/vnd.rn-realmedia;application/vnd.rn-realmedia-vbr;image/vnd.rn-realpix;audio/x-pn-realaudio;video/vnd.rn-realvideo;application/vnd.rn-realsystem-rmj;application/vnd.rn-realsystem-rmx;audio/aac;audio/x-aac;audio/m4a;audio/x-m4a;audio/mp2;audio/x-mp2;audio/mp1;audio/x-mp1;audio/rn-mpeg;audio/scpls;audio/x-scpls;application/smil;application/x-smil;application/streamingmedia;application/x-streamingmedia;application/sdp;audio/basic;audio/x-pn-au;audio/aiff;audio/x-aiff;audio/x-pn-aiff;video/3gpp;video/3gpp-encrypted;audio/3gpp;audio/3gpp-encrypted;audio/amr;audio/amr-encrypted;audio/amr-wb;audio/amr-wb-encrypted;audio/x-rn-3gpp-amr;audio/x-rn-3gpp-amr-encrypted;audio/x-rn-3gpp-amr-wb;audio/x-rn-3gpp-amr-wb-encrypted;video/3gpp2;audio/x-3gpp2\n";
+			SHELL+="Type=Application\">/tmp/okcd/Multimedia/gxine.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/bin/vmware ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=vmware\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=VMWare\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">/tmp/okcd/Utilities/vmware.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/bin/gmplayer ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=gmplayer\n";
+			SHELL+="Icon=mplayer.xpm\n";
+			SHELL+="Name[zh_CN]=MPlayer\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="MimeType=application/x-ogg;application/ogg;audio/mp3;audio/x-mp3;audio/mpeg;audio/mpg;audio/x-mpeg;audio/x-mpg;audio/mpegurl;audio/x-mpegurl;audio/wav;audio/x-wav;audio/x-pn-wav;audio/x-pn-windows-acm;audio/x-pn-windows-pcm;text/vnd.rn-realtext;application/vnd.rn-realmedia-secure;application/vnd.rn-realaudio-secure;audio/x-realaudio-secure;video/vnd.rn-realvideo-secure;audio/vnd.rn-realaudio;audio/x-realaudio;application/vnd.rn-realmedia;application/vnd.rn-realmedia-vbr;image/vnd.rn-realpix;audio/x-pn-realaudio;video/vnd.rn-realvideo;application/vnd.rn-realsystem-rmj;application/vnd.rn-realsystem-rmx;audio/aac;audio/x-aac;audio/m4a;audio/x-m4a;audio/mp2;audio/x-mp2;audio/mp1;audio/x-mp1;audio/rn-mpeg;audio/scpls;audio/x-scpls;application/smil;application/x-smil;application/streamingmedia;application/x-streamingmedia;application/sdp;audio/basic;audio/x-pn-au;audio/aiff;audio/x-aiff;audio/x-pn-aiff;video/3gpp;video/3gpp-encrypted;audio/3gpp;audio/3gpp-encrypted;audio/amr;audio/amr-encrypted;audio/amr-wb;audio/amr-wb-encrypted;audio/x-rn-3gpp-amr;audio/x-rn-3gpp-amr-encrypted;audio/x-rn-3gpp-amr-wb;audio/x-rn-3gpp-amr-wb-encrypted;video/3gpp2;audio/x-3gpp2\n";
+			SHELL+="Type=Application\">/tmp/okcd/Multimedia/mplayer.desktop\n";
+			SHELL+="fi\n";
+
+			SHELL+="if [ -f /bin/gokyh ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=kmix ;mount -a\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=kmix\n";
+			SHELL+="Type=Application\">/usr/share/autostart/kmix.desktop\n";
+			SHELL+="fi\n";
+
+			SHELL+="if [ -f /bin/gokyh ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/bin/gokyh \n";
+			SHELL+="Icon=\n";
+			SHELL+="Name=Oukan OKYH\n";
+			SHELL+="Name[zh_CN]=欧侃OKYH\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Categories=GNOME;Application;System;\n";
+			SHELL+="Type=Application\">/usr/share/applnk/System/okyh.desktop\n";
+			SHELL+="fi\n";
+
+			SHELL+="if [ -f efi/bin/okyh ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=/bin/okadsl txgl\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=OKYH宽带拨号\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Categories=GNOME;Application;System;\n";
+			SHELL+="Type=Application\">/usr/share/applications/okyhadsl.desktop\n";
+			SHELL+="fi\n";
+
+			SHELL+="if [ -f fei/bin/okyh ]; then\n";
+			SHELL+="mkdir -p /usr/share/apps/konqueror/servicemenus\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="ServiceTypes=all/all\n";
+			SHELL+="Actions=okyh\n";
+			SHELL+="Terminal=0\n\n";
+
+			SHELL+="[Desktop Action okyh]\n";
+			SHELL+="Name=OKYH Installer\n";
+			SHELL+="Nane[zh CN]=用OKYH安装软件\n";
+			SHELL+="Exec=/bin/okinst txaz %f\n";
+			SHELL+="Icon=tar.png\">/usr/share/apps/konqueror/servicemenus/OKYH_installer.desktop\n";
+			SHELL+="mkdir -p /root/.kde/share/applnk/.hidden\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=okinst txaz\n";
+			SHELL+="MimeType=application/x-tar;application/x-tbz;application/x-tgz\n";
+			SHELL+="Name=okinst\">/root/.kde/share/applnk/.hidden/okinst.desktop\n";
+			SHELL+="mkdir -p /usr/share/applnk/.hidden\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=okinst txaz\n";
+			SHELL+="MimeType=application/x-tar;application/x-tbz;application/x-tgz\n";
+			SHELL+="Name=OKYH Installer\">/usr/share/applnk/.hidden/okyhinstall.desktop\n";
+			SHELL+="mkdir -p /usr/share/application-registry\n";
+			SHELL+="echo \"\n";
+			SHELL+="OKYHIINSTALLER\n";
+			SHELL+="	command=okinst dkcl\n";
+			SHELL+="	name=OKYH Installer\n";
+			SHELL+="	can_open_multiple_files=true\n";
+			SHELL+="	expects_uris=false\n";
+			SHELL+="	requires_terminal=false\n";
+			SHELL+="	mime_types=application/x-bzip,application/x-bzip-compressed-tar,application/x-arj,application/x-compress,application/x-compressed-tar,application/x-gtar,application/x-gzip,application/x-lha,application/x-lhz,application/x-tar,application/zip,application/x-rar-compressed,application/x-rar\n";
+			SHELL+="\">/usr/share/application-registry/okyh-installer.applications\n";
+			SHELL+="fi\n";
+			/*
+			#################################
+			以下是Subbo兄添加的部分
+
+			首先是开始菜单的附件部分
+			#################################
+			*/
+			// 添加个人提醒工具
+			SHELL+="if [ -f /usr/bin/kalarm ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Name=KAlarm\n";
+			SHELL+="Name[zh_CN]=个人提醒工具\n";
+			SHELL+="Comment[zh_CN]=个人日程提醒程序，以系统托盘图标启动。\n";
+			SHELL+="Exec=kalarm --tray\n";
+			SHELL+="Icon=kalarm\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">$menu/kalarm.desktop\n";
+			SHELL+="fi\n";
+
+			// 添加Kate
+			SHELL+="if [ -f /usr/bin/kate ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Name=Kate\n";
+			SHELL+="Name[zh_CN]=高级文本编辑器\n";
+			SHELL+="Comment=Kate\n";
+			SHELL+="Comment[zh_CN]=支持代码高亮等功能的高级文本编辑器\n";
+			SHELL+="Exec=kate\n";
+			SHELL+="Icon=kate\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">$menu/kate.desktop\n";
+			SHELL+="fi\n";
+
+			// 添加直接出现在系统托盘里的剪贴板
+			SHELL+="if [ -f /usr/bin/klipper ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Name=Klipper\n";
+			SHELL+="Name[zh_CN]=剪贴板查看器\n";
+			SHELL+="Exec=klipper\n";
+			SHELL+="Icon=klipper\n";
+			SHELL+="Terminal=0\n";
+			SHELL+="Type=Application\">$menu/klipper-1.desktop\n";
+			SHELL+="fi\n";
+
+			// 接下来是给面板菜单添加桌面选择
+			SHELL+="if [ ! -e /usr/share/apps/kicker/applets/minipagerapplet.desktop ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Name=Pager\n";
+			SHELL+="Name[zh_CN]=切换桌面\n";
+			SHELL+="Comment=A basic desktop switching panel applet\n";
+			SHELL+="Comment[zh_CN]=在多个桌面中选择工作桌面\n";
+			SHELL+="Icon=kpager \n";
+			SHELL+="X-KDE-Library=minipager_panelapplet\n";
+			SHELL+="X-KDE-UniqueApplet=false\">/usr/share/apps/kicker/applets/minipagerapplet.desktop\n";
+			SHELL+="fi\n";
+
+			/*
+			SHELL+="if [ -f /usr/bin ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=\n";
+			SHELL+="Type=Application\">/tmp/okcd/.desktop\n";
+			SHELL+="fi\n";
+			SHELL+="if [ -f /usr/bin ]; then\n";
+			SHELL+="echo \"[Desktop Entry]\n";
+			SHELL+="Exec=\n";
+			SHELL+="Icon=\n";
+			SHELL+="Name[zh_CN]=\n";
+			SHELL+="Type=Application\">/tmp/okcd/.desktop\n";
+			SHELL+="fi\n";
+			*/
+
+		}
+
+ 		OKBasicLib.SHELL(SHELL);
+
+	}
+
+	public static CDZH(string XX,int CS)
+	{
+		string SHELL=SH_OKYH.BL();
+
+
+		if(OKBasicLib.SFGLY() == true)
+		{
+			SHELL+="if [ ! -f /usr/share/stassrtmenu.okb ]; then\n";
+			SHELL+="   cd  /\n";
+			SHELL+="   tar czvf /usr/share/stassrtmenu.okb $okcd $gnome $gnome1 >/dev/unll\n";
+			SHELL+="fi\n";
+			if(CS==1)
+			{
+				SHELL+="   cd /\n";
+				SHELL+="   tar xzvf /usr/share/stassrtmenu.okb >/dev/unll\n";
+				SHELL+="  exit\n";
+			}
+			else
+			{
+				SHELL+="if [ -f /usr/bin/xdg-desktop ]; then\n";
+				SHELL+="exit 0;fi\n";
+
+				SHELL+="if [ -d $okcd ]; then\n";
+				SHELL+="  cp -rf $okcd/* /tmp/okcd\n";
+				SHELL+="  for i in $okcd/App* ; do\n";
+				SHELL+="    if [ -f \"$i/.directory\" ]; then\n";
+				SHELL+="      cp -rf $okcd/App*/* /tmp/okcd/\n";
+				SHELL+="      okcd=$i\n";
+				SHELL+="      break\n";
+				SHELL+="    else\n";
+				SHELL+="      cp -rf $okcd/App*/* /tmp/okcd/\n";
+				SHELL+="      rm -rf $i\n";
+				SHELL+="    fi\n";
+				SHELL+="  done\n";
+				SHELL+="else\n";
+				SHELL+="  mkdir -p $okcd\n";
+				SHELL+="fi\n";
+
+				SHELL+="for gcd in $gnome1/* \\\n";
+				SHELL+="   $gnome/App*/* $gnome/*; do\n";
+				SHELL+="   if [ -d $gcd ]; then\n";
+				SHELL+="     cp -rf  $gcd /tmp/okcd/\n";
+				SHELL+="   fi\n";
+				SHELL+="done\n";
+
+				SHELL+="line=0\n";
+				SHELL+="for i in /root/.kde/share/applnk/KingStorm*/*.desktop \\\n";
+				SHELL+="     /root/.kde/share/applnk/*Office*/*.desktop ;do\n";
+				SHELL+="	if [ -f \"$i\" ]; then\n";
+				SHELL+="		cp \"$i\" /tmp/okcd/Office/oo-office$line.desktop\n";
+				SHELL+="		line=`expr 1 + $line`\n";
+				SHELL+="	fi\n";
+				SHELL+="done\n";
+
+				SHELL+="rm -rf /tmp/okcd/System\n";
+				SHELL+="rm -rf /tmp/okcd/kde\n";
+				SHELL+="rm -rf /tmp/okcd/*.desktop\n";
+				SHELL+="rm -rf /tmp/okcd/App*\n";
+				SHELL+="for ii in /usr/share/applnk/* ;do\n";
+				SHELL+=" case $ii  in\n";
+				SHELL+="   *desktop) ;;\n";
+				SHELL+="   *System*) ;;\n";
+				SHELL+="    *.hidden*) ;;\n";
+				SHELL+="    *)  rm -rf  \"$ii\" ;;\n";
+				SHELL+="  esac\n";
+				SHELL+="done\n";
+
+
+				SHELL+="case \""+XX+"\" in\n";
+				SHELL+=" kde) mkdir  -p \"$okcd\"\n";
+				SHELL+="if [ -d $gnome ]; then\n";
+				SHELL+=" for gcd in  $gnome/*.desktop ; do\n";
+				SHELL+="    kjfs=`cat \"$gcd\"`\n";
+				SHELL+="    case \"$kjfs\" in\n";
+				SHELL+="       *\\;System*) cp $gcd /tmp/okcd/System/ ;;\n";
+				SHELL+="       *\\;Settings*) cp $gcd /tmp/okcd/Settings ;;\n";
+				SHELL+="       *\\;Office*) cp $gcd /tmp/okcd/Office ;;\n";
+				SHELL+="       *\\;Video*) cp $gcd /tmp/okcd/Multimedia ;;\n";
+				SHELL+="       *\\;Development*) cp $gcd /tmp/okcd/Development ;;\n";
+				SHELL+="       *\\;Game*) cp $gcd /tmp/okcd/Game/ ;;\n";
+				SHELL+="       *\\;Network*) cp $gcd /tmp/okcd/Internet/ ;;\n";
+				SHELL+="       *\\;Player*) cp $gcd /tmp/okcd/Multimedia/ ;;\n";
+				SHELL+="       *\\;Audio*) cp $gcd /tmp/okcd/Muitlmedia/ ;;\n";
+				SHELL+="       *\\;Utilitiy*) cp $gcd /tmp/okcd/Utilities/ ;; \n";
+				SHELL+="      *\\;Audio*) cp $gcd /tmp/okcd/Muitlmedia/ ;;\n";
+				SHELL+="    *\\;Graphics*) cp $gcd /tmp/okcd/Graphics/ ;;\n";
+				SHELL+="    esac\n";
+				SHELL+=" done\n";
+				SHELL+="else\n";
+				SHELL+="  mkdir -p $gnome\n";
+				SHELL+="fi\n";
+				SHELL+="for tb1 in /tmp/okcd/*/*.desktop ; do\n";
+				SHELL+="   mv $tb1 \"$tb1.lnk\"\n";
+				SHELL+="   tb2=`cat \"$tb1.lnk\"`\n";
+				SHELL+="   tb4=\"\"\n";
+				SHELL+="   for tb3 in $tb2 ; do\n";
+				SHELL+="      case $tb3 in\n";
+				SHELL+="        [Desktop*) echo [Desktop Entry]>\"$tb1\" ;;\n";
+				SHELL+="        Entry]) ;;\n";
+				SHELL+="        Categories*) ;;\n";
+				SHELL+="        *=*) echo \"$tb4\">>\"$tb1\" ;tb4=\"$tb3\";;\n";
+				SHELL+="        *) tb4=\"$tb4 $tb3\" ;;\n";
+				SHELL+="      esac\n";
+				SHELL+="   done\n";
+				SHELL+="   echo \"$tb4\">>\"$tb1\"\n";
+				SHELL+="   rm -rf \"$tb1.lnk\"\n";
+				SHELL+="done\n";
+				SHELL+="cp -rf /tmp/okcd/* $okcd/\n";
+				SHELL+="rm -rf /usr/share/applications/*.desktop ;;\n";
+				SHELL+="  gnome)\n";
+				
+				SHELL+="for a in /tmp/okcd/*/*.desktop";
+				SHELL+="  /usr/share/applnk/System/*.desktop ; do\n";
+				SHELL+="  if [ -f \"$a\" ]; then\n";
+				SHELL+="    case $a in\n";
+				SHELL+="      */Office/*) echo \"Categories=GNOME;Application;Office;\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="     *//Multimedia/*) echo \"Categories=GNOME;Application;Player;AudioVideo;Video;Audio;\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="     */Internet/*) echo \"Categories=GNOME;Application;Network;\">>$a\n";
+				SHELL+="  		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="     */Development/*) echo \"Categories=GNOME;Application;Development;\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="   */Setttings/*) echo \"Categories=GNOME;Application;Settings;\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="   */Game/*) echo \"Categories=GNOME;Application;Game\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="   */Utilities/*) echo \"Categories=GNOME;Application;Utility;\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="   */Graphics/*) echo \"Categories=GNOME;Application;Graphics;\">>$a\n";
+				SHELL+="		cp \"$a\" /usr/share/applications/ ;;\n";
+				SHELL+="   esac\n";
+				SHELL+="	fi\n";
+				SHELL+="done ;;\n";
+				SHELL+="esac\n";
+				SHELL+="rm -rf /tmp/ok*\n";
+			}
+	 		OKBasicLib.SHELL(SHELL);
+		}
+	}
+
+
+}

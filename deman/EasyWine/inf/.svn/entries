@@ -1,0 +1,72 @@
+8
+
+dir
+0
+http://okyh.googlecode.com/svn/trunk/deman/EasyWine/inf
+http://okyh.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+w32codecs.inf
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+wcs.inf
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+wcscn.inf
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+wine.inf
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+

@@ -1,0 +1,202 @@
+﻿引入 用户界面, 工具;
+/*################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+#          www.oukan,1m.cn
+################################
+依赖：
+lib-okyh.ef
+*/
+
+
+类 SZ_SRFGL<基类型 = 对话框> 
+{
+	初始化(){}
+	//从这行开始输入法选择器的界面，使用了用户界面、工具等两个EF本地库。
+
+	面板 HDMB2;
+	编辑框 TSXX;
+	列表框 LB_SRF;
+	文本 SJ_SRF="rfinput chinput fcitx yong skim scim ami skkinput xwnmo xcim hanIM 3jj kinput kinput2 ibus";
+
+	公开 初始化(容器控件 父窗口<可为空> = 空)
+	{
+		本对象.创建窗口(父窗口);
+	}
+
+	私有 创建窗口(容器控件 父窗口<可为空> = 空)//调用本对话框时必须带参数，例如：“创建 SZ_ADSL(本对象 )”。
+	{
+		整数 风格 = 0;
+		风格 |= 窗口风格.显示关闭按钮;
+		风格 |= 窗口风格.显示标题栏;
+		基类.创建(父窗口, "输入法切换器", 50, 50, 320, 260, 风格,"SZ_ADSL");
+		居中(方位.双向);
+		显示(真);
+	}
+
+	私有 逻辑 创建窗口控件()
+	{
+		本对象.宽度 = 本对象.取尺寸().宽度 - 本对象.取客户区尺寸().宽度 + 220;
+		本对象.高度 = 本对象.取尺寸().高度 - 本对象.取客户区尺寸().高度 + 250;
+		HDMB2 = 创建 用户界面.面板();
+		HDMB2.创建(本对象);
+
+
+		标签 SM_SRF = 创建 标签();
+		SM_SRF.创建(HDMB2, -1, "请双击要使用的输入法：", 8, 3, 200, 22, 0, "");
+		文本[] DQ_LB_SRF = 系统.文本类.分割(SRF_DQ(),"-",真);
+		LB_SRF = 创建 列表框();
+		LB_SRF.创建(HDMB2, -1,  8, 30, 200, 210, DQ_LB_SRF, 32, 空, "LB_SRF");
+		字体 ZT_SRF = LB_SRF.字体();
+		ZT_SRF.尺寸(16);
+		LB_SRF.字体(ZT_SRF);
+		LB_SRF.设置焦点();
+
+		返回(真);
+	}
+
+	public 文本 SRF_DQ()
+	{
+		文本[] DQ_SRF = 系统.文本类.分割(SJ_SRF," ",真);
+		文本 FH_SRF;
+		for(int shuzu=1;shuzu<14;shuzu++)
+		{
+			文本 LS_SRF=DQ_SRF[DQ_SRF.长度()-shuzu];
+			if(用户界面.辅助类.文件是否存在("/usr/bin/"+LS_SRF) == 真)
+				FH_SRF+=LS_SRF+"-";
+			又如(用户界面.辅助类.文件是否存在("/usr/local/bin/"+LS_SRF) == 真)
+				FH_SRF+=LS_SRF+"-";
+			又如(用户界面.辅助类.文件是否存在("/usr/X11R6/bin/"+LS_SRF) == 真)
+				FH_SRF+=LS_SRF+"-";
+		}
+		返回(FH_SRF);
+	}
+
+	public static XR_SRF(string YXSRF,int XX)
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="tee <<SHURUFA-KDE>$HOME/.OKYH/SRF\n";
+		SHELL+="#!/bin/sh\n";
+		SHELL+="sleep 16\n";
+		SHELL+="srf=\"$srf rfdock\"\n";
+		SHELL+="for srf1 in \\$srf  ; do\n";
+		SHELL+="pkill \\$srf1\n";
+		SHELL+="done\n";
+		SHELL+="SHURUFA-KDE\n";
+
+		SHELL+="mkdir -p $HOME/.kde/Autostart/\n";
+		SHELL+="mkdir -p $HOME/.config/autostart\n";
+		SHELL+="chmod 7777 $HOME/.OKYH/SRF\n";
+		
+		SHELL+="echo \"[Desktop Entry]\n";
+		SHELL+="Exec=\\$HOME/.OKYH/SRF &\n";
+		SHELL+="Icon=\n";
+		SHELL+="Name=system input\n";
+		SHELL+="Type=Application\n";
+		SHELL+="#OKYHSRF\">$HOME/.kde/Autostart/srf.desktop\n";
+		SHELL+="cp -rf $HOME/.kde/Autostart/srf.desktop ";
+		SHELL+="$HOME/.config/autostart\n";
+
+		SHELL+="kdesrf=\""+YXSRF+"\"\n";
+		SHELL+="if [ "+YXSRF+" = \"rfinput\" ]; then\n";
+		SHELL+="	echo \"rfinput;rfdock\">>$HOME/.OKYH/SRF\n";
+		SHELL+="	kdesrf=\"rfinput;rfdock\"\n";
+		SHELL+="	 echo \""+YXSRF+"\">$HOME/.ime\n";
+		SHELL+="	sftg=s\n";
+		SHELL+="elif [ -x /usr/bin/"+YXSRF+" ]; then\n";
+		SHELL+="	echo \"/usr/bin/"+YXSRF+"\">>$HOME/.OKYH/SRF\n";
+		SHELL+="	 echo \""+YXSRF+"\">$HOME/.ime\n";
+		SHELL+="	sftg=s\n";
+		SHELL+="elif [ -x /usr/X11R6/bin/"+YXSRF+" ]; then\n";
+		SHELL+="	echo \"/usr/X11R6/bin/"+YXSRF+"\">>$HOME/.OKYH/SRF\n";
+		SHELL+="	 echo \""+YXSRF+"\">$HOME/.ime\n";
+		SHELL+="	sftg=s\n";
+		SHELL+="elif [ -x /usr/local/bin/"+YXSRF+" ]; then\n";
+		SHELL+="	echo \"/usr/local/bin/"+YXSRF+"\">>$HOME/.OKYH/SRF\n";
+		SHELL+="	 echo \""+YXSRF+"\">$HOME/.ime\n";
+		SHELL+="	sftg=s\n";
+		SHELL+="else\n";
+		SHELL+="	rm $HOME/.OKYH/SRF -rf\n";
+		SHELL+="	echo  mei zhao dao zhi ding de shu ru fa "+YXSRF+"\n";
+		SHELL+="	sftg=f\n";
+		SHELL+="fi\n";
+
+		SHELL+="if [ -x $HOME/.OKYH/SRF ]; then\n";
+		SHELL+="      	if [ \"`whoami`\" = \"root\" ] ; then\n";
+		SHELL+="		if [ ! -f  /etc/X11/xinit/xinitrc.d/xinput.okb ]; then\n";
+		SHELL+="			if [ -f /etc/X11/xinit/xinitrc.d/xinput ]; then\n";
+		SHELL+="				tar cvf /etc/X11/xinit/xinitrc.d/xinput.okb /etc/X11/xinit/xinitrc.d/xinput\n";
+		SHELL+="			fi\n";
+		SHELL+="		fi\n";
+		if(XX == 0)
+		{
+			OKBasicLib.XWB("/etc/X11/xinit/xinitrc.d/xinput",SH_INI.XINPUT());
+			SHELL+="	chmod 7777 /etc/X11/xinit/xinitrc.d/xinput\n";
+		}
+		else if(XX == 1)
+			SHELL+="	rm -rf /etc/X11/xinit/xinitrc.d/xinput\n";
+		else
+			SHELL+="	tar xvf /etc/X11/xinit/xinitrc.d/xinput.okb -C / 2>/dev/null\n";
+		SHELL+="	fi\n";
+		SHELL+="fi\n";
+
+	OKBasicLib.SHELL(SHELL);
+
+	}
+
+	public static AUTO()
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="for a in $srf rfdock SRF ; do\n";
+		SHELL+="   pkill $a\n";
+		SHELL+="done\n";
+
+		SHELL+="if [ -f $HOME/.OKYH/SRF ]; then\n";
+		SHELL+="	$HOME/.OKYH/SRF &\n";
+		SHELL+="elif [ -f /usr/bin/rfinput ]; then\n";
+		SHELL+="	rfinput;rfdock &\n";
+		SHELL+="	$0 srf rfinput\n";
+		SHELL+="else\n";
+		SHELL+="	for i in $srf ; do\n";
+		SHELL+="		if [ -x /usr/bin/$i ]; then\n";
+		SHELL+="			$i &\n";
+		SHELL+="			$0 srf $i\n";
+		SHELL+="			break\n";
+		SHELL+="		elif [ -x /usr/X11R6/bin/$i ]; then\n";
+		SHELL+="			$i &\n";
+		SHELL+="			$0 srf $i\n";
+		SHELL+="			break\n";
+		SHELL+="		elif [ -x /usr/local/bin/$i ]; then\n";
+		SHELL+="			$i &\n";
+		SHELL+="			$0 srf  $i\n";
+		SHELL+="			break\n";
+		SHELL+="		fi\n";
+		SHELL+="	done\n";
+		SHELL+="fi\n";
+
+		OKBasicLib.SHELL(SHELL);
+
+	}
+
+	public 事件处理 逻辑 创建完毕(创建完毕事件 事件)
+	{
+		创建窗口控件();
+
+		返回(真);
+	}
+	公开 事件处理 逻辑 LB_SRF_鼠标左键被双击(鼠标左键被双击  事件)
+	{
+		文本 SR_SRF=LB_SRF.取项目文本(LB_SRF.取选择项目());
+		XR_SRF(SR_SRF,0);
+		界面程序.信息框("已启用"+SR_SRF+"输入法",,);
+		AUTO();
+		本对象.关闭(真);
+
+		返回(真);
+	}
+	公开 事件处理 逻辑 窗口被关闭(关闭事件 事件)
+	{
+		返回(真);
+	}
+
+}

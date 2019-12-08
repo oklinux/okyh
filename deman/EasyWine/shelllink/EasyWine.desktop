@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=EasyWine
+GenericName=wine assistant
+GenericName[zh_CN]=wine 使用向导
+Exec=/usr/bin/EasyWine
+Icon=/usr/share/EasyWine/xpm/icon.xpm 
+

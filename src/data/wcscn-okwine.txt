@@ -1,0 +1,16 @@
+#OKYH--INF-WCSCN-WINE20050726
+
+
+[version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+UpdateInis=WinIni
+
+[WinIni]
+win.ini, Desktop,,"MenuFontSize=12"
+win.ini, Desktop,,"MessageFontSize=12"
+win.ini, Desktop,,"StatusFontSize=12"
+win.ini, Desktop,,"IconTitleSize=12"
+
+#OKYH-INF-END

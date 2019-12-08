@@ -1,0 +1,694 @@
+ 
+#OKYH-WINE-USER-REG
+WINE REGISTRY Version 2
+;; All keys relative to \\User\\S-1-5-4
+
+[Control Panel\\Colors] 
+"ActiveBorder"="240 238 200"
+"ActiveTitle"="10 36 106"
+"AppWorkspace"="128 128 128"
+"Background"="58 110 165"
+"ButtonDkShadow"="64 64 64"
+"ButtonFace"="240 238 200"
+"ButtonHilight"="255 255 255"
+"ButtonLight"="240 238 230"
+"ButtonShadow"="128 128 128"
+"ButtonText"="0 0 0"
+"GradientActiveTitle"="166 202 240"
+"GradientInactiveTitle"="192 192 192"
+"GrayText"="128 128 128"
+"Hilight"="10 36 106"
+"InactiveTitle"="128 128 128"
+"InactiveTitleText"="240 238 200"
+"InfoText"="0 0 0"
+"InfoWindow"="255 255 225"
+"Menu"="240 238 200"
+"Scrollbar"="200 238 230"
+"TitleText"="255 255 255"
+"Window"="255 255 255"
+"WindowFrame"="0 0 0"
+"WindowText"="0 0 0"
+
+[Control Panel\\Desktop] 
+"DragFullWindows"="0"
+"FontSmoothing"="0"
+"LowPowerActive"="0"
+"SmoothScroll"=hex:00,00,00,00
+"UserPreferencemask"=hex:00,00,00,00
+
+[Control Panel\\Desktop\\WindowMetrics] 
+"BorderWidth"="1"
+"CaptionHeight"="18"
+"CaptionWidth"="18"
+"MenuHeight"="18"
+"MenuWidth"="18"
+"ScrollHeight"="16"
+"ScrollWidth"="16"
+"Shell Icon Size"="32"
+"SmCaptionHeight"="15"
+"SmCaptionWidth"="13"
+
+[Control Panel\\International] 1146664527
+"iCalendarType"="1"
+"iCountry"="86"
+"iCurrDigits"="2"
+"iCurrency"="0"
+"iDate"="2"
+"iDigits"="2"
+"iLDate"="2"
+"iLZero"="0"
+"iMeasure"="0"
+"iNegCurr"="2"
+"iTime"="1"
+"iTimePrefix"="1"
+"iTLZero"="0"
+"Locale"="00000804"
+"Numshape"="1"
+"s1159"="\x4e0a\x5348"
+"s2359"="\x4e0b\x5348"
+"sCountry"="People's Republic of China"
+"sCurrency"="\xffe5"
+"sDate"="-"
+"sDecimal"="."
+"sLanguage"="Chinese (PRC)"
+"sList"=","
+"sLongDate"="yyyy'\x5e74'M'\x6708'd'\x65e5'"
+"sNativeDigits"="0123456789"
+"sShortDate"="yyyy-M-d"
+"sThousand"=","
+"sTime"=":"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders] 
+"AppData"="c:\\windows\\profiles\\ck\\Application Data"
+"Cache"="c:\\windows\\profiles\\ck\\Local Settings\\Temporary Internet Files"
+"Cookies"="c:\\windows\\.Cookies"
+"Desktop"="e:\\.wine/\\desktop"
+"Favorites"="c:\\windows\\profiles\\ck\\Favorites"
+"History"="c:\\windows\\profiles\\ck\\Local Settings\\History"
+"Local AppData"="c:\\windows\\profiles\\ck\\Local Settings\\Application Data"
+"My Music"="e:\\Desktop\\mydocument"
+"My Pictures"="e:\\Desktop\\mydocument"
+"My Video"="e:\\Desktop\\mydocument"
+"NetHood"="c:\\windows\\profiles\\ck\\NetHood"
+"Personal"="e:\\Desktop\\mydocument"
+"PrintHood"="c:\\windows\\profiles\\ck\\PrintHood"
+"Programs"="c:\\windows\\profiles\\ck\\Start Menu\\Programs"
+"Recent"="c:\\windows\\profiles\\ck\\Recent"
+"SendTo"="c:\\windows\\profiles\\ck\\SendTo"
+"Start Menu"="c:\\windows\\profiles\\ck\\Start Menu"
+"StartUp"="c:\\windows\\profiles\\ck\\Start Menu\\Programs\\StartUp"
+"Templates"="c:\\windows\\profiles\\ck\\Templates"
+
+[Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders] 
+"AppData"="%USERPROFILE%\\Application Data"
+"Cache"="%USERPROFILE%\\Local Settings\\Temporary Internet Files"
+"Cookies"="%USERPROFILE%\\Cookies"
+"Desktop"="e:\\.winet\\Desktop"
+"Favorites"="%USERPROFILE%\\Favorites"
+"History"="%USERPROFILE%\\Local Settings\\History"
+"Local AppData"="%USERPROFILE%\\Local Settings\\Application Data"
+"My Music"="e:\\Desktop\\mydocument"
+"My Pictures"="e:\\Desktop\\mydocument"
+"My Video"="e:\\Desktop\\mydocument"
+"NetHood"="%USERPROFILE%\\NetHood"
+"Personal"="e:\\Desktop\\mydocument"
+"PrintHood"="%USERPROFILE%\\PrintHood"
+"Programs"="%USERPROFILE%\\Start Menu\\Programs"
+"Recent"="%USERPROFILE%\\Recent"
+"SendTo"="%USERPROFILE%\\SendTo"
+"Start Menu"="%USERPROFILE%\\Start Menu"
+"StartUp"="%USERPROFILE%\\Start Menu\\Programs\\StartUp"
+"Templates"="%USERPROFILE%\\Templates"
+
+
+
+[Software\\Wine]
+"Version"="wine-bb"
+
+[Software\\Wine\\Fonts] 
+"Locale"="00000804"
+
+[Software\\Wine\\Fonts\\External Fonts]
+"AR PL KaitiM GB (TrueType)"="gkai00mp.ttf"
+"AR PL SungtiL GB (TrueType)"="gbsn00lp.ttf"
+"FZFangSong-Z02 (TrueType)"="fzfs.ttf"
+"FZHei-B01 (TrueType)"="fzht.ttf"
+"FZKai-Z03 (TrueType)"="fzkt.ttf"
+"Luxi Mono (TrueType)"="luximr.ttf"
+"Luxi Mono Bold (TrueType)"="luximb.ttf"
+"Luxi Mono Bold Oblique (TrueType)"="luximbi.ttf"
+"Luxi Mono Oblique (TrueType)"="luximri.ttf"
+"Luxi Sans (TrueType)"="luxisr.ttf"
+"Luxi Sans Bold (TrueType)"="luxisb.ttf"
+"Luxi Sans Bold Oblique (TrueType)"="luxisbi.ttf"
+"Luxi Sans Oblique (TrueType)"="luxisri.ttf"
+"Luxi Serif (TrueType)"="luxirr.ttf"
+"Luxi Serif Bold (TrueType)"="luxirb.ttf"
+"Luxi Serif Bold Oblique (TrueType)"="luxirbi.ttf"
+"Luxi Serif Oblique (TrueType)"="luxirri.ttf"
+
+[Software\\Wine\\Fonts\\Replacements]
+@="AR PL ShanHeiSun Uni"
+"Arial"="AR PL ShanHeiSun Uni"
+"Fixedsys"="AR PL ShanHeiSun Uni"
+"Microsoft Sans Serif"="AR PL ShanHeiSun Uni"
+"MingLiU"="AR PL ShanHeiSun Uni"
+"MS UI Gothic"="AR PL ShanHeiSun Uni"
+"PMingLiU"="AR PL ShanHeiSun Uni"
+"System"="AR PL ShanHeiSun Uni"
+"Tahoma"="AR PL ShanHeiSun Uni"
+"Terminal"="AR PL ShanHeiSun Uni"
+
+[Software\\Wine\\shdocvw] 
+"MozillaUrl"="http:/oukn.1m.cn"
+
+[SSoftware\\Wine\\InputMethod]
+"UseXIM" = "N"
+"InputStyle" = "overthespot"
+"XIMFontSet" = "-misc-fixed-medium-r-normal--14-*-*-*-*-*"
+
+[Software\\Wine\\WineBrowser] 
+"Browsers"="konqueror"
+
+[Software\\Wine\\WineDbg] 
+
+[Software\\Wine\\Fonts\\Replacements]
+"Wingdings"="Winedings"
+"Tahoma"="Arial"
+"Arial"="Bitstream Vera Sans"
+
+[Software\\Wine\\Debug]
+"RelayExclude"="RtlEnterCriticalSection;RtlLeaveCriticalSection;kernel32.94;kernel32.95;kernel32.96;kernel32.97;kernel32.98;WIN_GetPtr;WIN_SetStyle;USER_Unlock;GDI_GetObjPtr;GDI_ReleaseObj"
+"RelayFromExclude" = "winex11.drv;user32;gdi32;advapi32;kernel32"
+
+[Software\\Wine\\Drivers]
+"Graphics" = "x11"
+"Audio" = "oss"
+
+[Software\\Wine\\Printing\\Spooler]
+"FILE:" = "tmp.ps"
+"LPT1:" = "|lpr"
+"LPT2:" = "|gs -sDEVICE=bj200 -sOutputFile=/tmp/fred -q -"
+"LPT3:" = "/dev/lp3"
+"KDE:" = "|kprinter --stdin"
+
+[Software\\Wine\\WineMenuBuilder]
+"IconsDir" = "c:\\Windows\\Temp"
+
+[Software\\Wine\\X11 Driver]
+"AllocSystemColors" = "100"
+"PrivateColorMap" = "N"
+"Managed" = "Y"
+"UseDGA" = "N"
+"UseXVidMode" = "Y"
+"DXGrab" = "N"
+"DesktopDoubleBuffered" = "N"
+"X11FontPattern"="*-iso10646-1"
+"ForceAltRelease"="N"
+
+[Software\\Wine\\X11 Driver\\Fonts]
+"Alias0" = "Tahoma, -adobe-helvetica-"
+
+
+
+[Software\\Wine\\AppDefaults\\setup.exe\\X11 Driver]
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS0166._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS0432._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS432._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS0433._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS0466._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS0576._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS576._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS5501._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS5567._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS5176._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS5576._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\_INS5577._MP\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+
+[Software\\Wine\\AppDefaults\\wcmd.exe\\X11 Driver]
+"Desktop"="N"
+
+[Software\\Wine\\AppDefaults\\reboot.exe\\X11 Driver]
+"Desktop"="N"
+
+[Software\\Wine\\AppDefaults\\assocscan.exe\\X11 Driver]
+"Desktop"="N"
+
+[Software\\Wine\\AppDefaults\\pluginserver.exe\\X11 Driver]
+"Desktop"="N"
+
+[Software\\Wine\\AppDefaults\\enumfonts.exe\\X11 Driver]
+"Desktop"="N"
+
+[Software\\Wine\\AppDefaults\\cxwget.exe\\DllOverrides]
+"wininet" = "builtin"
+
+
+[Software\\Wine\\AppDefaults\\steam.exe\\DllOverrides]
+"oleacc" = "builtin"
+
+[Software\\Wine\\AppDefaults\\steamtmp.exe\\DllOverrides]
+"oleacc" = "builtin"
+
+[Software\\Wine\\AppDefaults\\arstu32.exe\\X11 Driver]
+"ClientSideAntiAliasWithRender" = "N"
+"ClientSideAntiAliasWithCore" = "N"
+ 
+[Software\\Wine\\AppDefaults\\armgmt32.exe\\X11 Driver]
+"ClientSideAntiAliasWithRender" = "N"
+"ClientSideAntiAliasWithCore" = "N"
+  
+[Software\\Wine\\AppDefaults\\ardatadr.exe\\X11 Driver]
+"ClientSideAntiAliasWithRender" = "N"
+"ClientSideAntiAliasWithCore" = "N"
+
+
+[Software\\Wine\\AppDefaults\\IpxSet32.exe\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\QuickTimeInstaller.exe\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\QuickTimeInstaller(1).exe\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+
+
+[Software\\Wine\\AppDefaults\\demo32.exe\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\ikernel.exe\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\iDriver.exe\\X11 Driver]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[Software\\Wine\\AppDefaults\\rundll32.exe\\DllOverrides]
+"ddraw" = "builtin"
+
+[Software\\Wine\\AppDefaults\\acmsetup.exe\\DllOverrides]
+"*comctl32"="builtin"
+
+[Software\\Wine\\AppDefaults\\grpconv.exe\\DllOverrides] 
+"*comctl32"="builtin"
+
+[Software\\Wine\\AppDefaults\\iebatch.exe\\DllOverrides] 
+"*comctl32"="builtin"
+
+[Software\\Wine\\AppDefaults\\setup_wm.exe] 
+"Version"="winme"
+
+[Software\\Wine\\AppDefaults\\setup_wm.exe\\DllOverrides] 
+"msvcrt"="builtin"
+
+[Software\\Wine\\AppDefaults\\updcrl.exe\\DllOverrides] 
+"*comctl32"="builtin"
+
+[Software\\Wine\\AppDefaults\\iDriver.exe\\DllOverrides]
+"msi"="builtin"
+
+[Software\\Wine\\AppDefaults\\iDriver.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\iexplore.exe\\DllOverrides]
+"*advapi32"="builtin"
+"advpack"="native,builtin"
+"crypt32"="native,builtin"
+"ddraw"="builtin"
+"digest"="native"
+"mshtml"="native,builtin"
+"ole32"="native,builtin"
+"oleaut32"="native,builtin"
+"regsvr32.exe"="native,builtin"
+"rpcrt4"="native,builtin"
+"rsaenh"="native,builtin"
+"shdocvw"="native,builtin"
+"shlwapi"="native"
+"urlmon"="native"
+"wininet"="native"
+"wintrust"="native,builtin"
+
+
+[Software\\Wine\\AppDefaults\\iTunesSetup.exe\\DllOverrides]
+"msi"="builtin"
+
+[Software\\Wine\\AppDefaults\\iTunesSetup.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\iTunes.exe\\DllOverrides]
+"wininet"="builtin"
+"ole32"="builtin"
+
+[Software\\Wine\\AppDefaults\\iTunes.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\iPodService.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\rundll32.exe\\DllOverrides]
+"ddraw"="builtin"
+
+[Software\\Wine\\AppDefaults\\cxwget.exe\\DllOverrides]
+"wininet"="builtin"
+
+[Software\\Wine\\AppDefaults\\steam.exe\\DllOverrides]
+"oleacc"="builtin"
+
+[Software\\Wine\\AppDefaults\\winamp.exe\\DllOverrides]
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\winnyp.exe\\DllOverrides]
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\Luna.exe\\DllOverrides]
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\mame2.exe\\DllOverrides]
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\Jane2ch.exe\\DllOverrides]
+"mlang"="builtin, native"
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\setup_wm.exe]
+"Version"="winme"
+[Software\\Wine\\AppDefaults\\setup_wm.exe\\DllOverrides]
+"msvcrt"="builtin"
+
+[Software\\Wine\\AppDefaults\\sol.exe]
+"Version"="nt40"
+
+[Software\\Wine\\AppDefaults\\control.exe\\DllOverrides]
+"ole32"="builtin"
+"shlwapi"="builtin"
+"shell32"="builtin"
+"*"="builtin, native"
+
+[Software\\Wine\\AppDefaults\\QuickTimePlayer.exe\\DllOverrides]
+"ddraw"=""
+
+[Software\\Wine\\AppDefaults\\wmplayer2.exe\\DllOverrides]
+"ddraw"=""
+
+[Software\\Wine\\AppDefaults\\AcroRd32.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\realplay.exe\\DllOverrides]
+"ddraw"=""
+
+[Software\\Wine\\AppDefaults\\awasu.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\Bottler.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\DVD Shrink 3.2.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\DVD Shrink 3.2.exe\\DllOverrides]
+"*"="builtin, native"
+
+[Software\\Wine\\AppDefaults\\PowBallDX.exe\\DllOverrides]
+"ddraw"=""
+
+[Software\\Wine\\AppDefaults\\miranda32.exe]
+"Version"="winxp"
+
+[Software\\Wine\\AppDefaults\\PhotoFiltre.exe\\DllOverrides]
+"twain_32"=""
+
+[Software\\Wine\\AppDefaults\\Photoshop.exe\\DllOverrides]
+"twain_32"=""
+
+[Software\\Wine\\AppDefaults\\MailWasher.exe\\DllOverrides]
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\WeatherScope.exe\\DllOverrides]
+"comctl32"="native"
+
+[Software\\Wine\\AppDefaults\\iebatch.exe\\DllOverrides]
+"*comctl32"="builtin"
+
+[Software\\Wine\\AppDefaults\\setup_wm.exe]
+"Version"="winme"
+
+[Software\\Wine\\AppDefaults\\TMShell.exe\\DllOverrides]
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin"
+
+[Software\\Wine\\AppDefaults\\TBorwser.exe\\DllOverrides] 
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin" 
+"*"="native,buitin"
+
+[Software\\Wine\\AppDefaults\\TTraveler.exe\\DllOverrides]
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin"
+ 
+[Software\\Wine\\AppDefaults\\kssetup.exe\\DllOverrides]
+"ole32"="native"
+"oleaut32"="native"
+"rpcrt4"="native"
+"comctl32"="native"
+"shell"="native"
+"shell32"="native"
+"shfolder"="native"
+"*"="builtin,native"
+
+
+[Software\\Wine\\AppDefaults\\QQ2000.exe\\DllOverrides] 
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin" 
+
+[Software\\Wine\\AppDefaults\\QQ.exe\\DllOverrides]
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin" 
+  
+[Software\\Wine\\AppDefaults\\QQ20000b.exe\\DllOverrides] 
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin" 
+"*"="native,buitin"
+
+
+[Software\\Wine\\AppDefaults\\kssetup.exe\\DllOverrides]
+"ole32"="native"
+"oleaut32"="native"
+"rpcrt4"="native"
+"comctl32"="native"
+"shell"="native"
+"shell32"="native"
+"shfolder"="native"
+"*"="builtin,native"
+
+[Software\\Wine\\AppDefaults\\xdict.exe\\DllOverrides]
+"commdlg"="native"
+"ole32"="native" 
+
+[Software\\Wine\\AppDefaults\\xdict.exe] 
+"Version"="win2k"  
+
+[Software\\Wine\\AppDefaults\\NetTransport.exe\\DllOverrides] 
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin"
+
+[Software\\Wine\\AppDefaults\\firefox.exe\\DllOverrides]
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin"
+
+[Software\\Wine\\AppDefaults\\SS.exe\\DllOverrides] 
+"shell"="native,builtin"
+"shell32"="native,builtin"
+"shfolder"="native,builtin"
+"rpcrt4"="native,builtin"
+"commctrl"="native,builtin"
+"comctl32"="native,builtin"
+"*"="builtin,native"
+
+[Software\\Wine\\AppDefaults\\SS.exe]
+"Version"="win98"
+ 
+[Software\\Wine\\AppDefaults\\mplayer2.exe\\DirectSound]
+"HardwareAcceleration"="Emulation"
+
+[Software\\Wine\\AppDefaults\\iTunes.exe\\DllOverrides]
+"wininet" = "builtin"
+"ole32" = "builtin"
+[Software\\Wine\\AppDefaults\\smartread.exe\\DllOverrides]
+"msi"="buitin,native"
+
+[Software\\Wine\\AppDefaults\\iTunes.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\iPodService.exe]
+"Version"="win2k"
+
+[Software\\Wine\\AppDefaults\\DVD Shrink 3.2.exe]
+"Version"="win2k"
+
+[Software\\Wine\\DllOverrides]
+"regsvr32.exe" = "native"
+"msi"="buitin,native"
+"*advapi32" = "builtin"
+
+"url" = "native, builtin"
+
+"*comctl32" = "builtin"
+
+"*mapi" = "native, builtin"
+"*mapi32" = "native, builtin"
+
+"ole32" = "native, builtin"
+"olepro32" = "native, builtin"
+"rpcrt4" = "native, builtin"
+"oleaut32" = "native, builtin"
+"msxml3" = "native"
+"activeds" = "native"
+"msi" = "native"
+"*msiexec.exe" = "native"
+"msvcrt" = "native, builtin"
+"msvcrt40" = "native, builtin"
+"msvcrtd" = "native, builtin"
+"wininet" = "native, builtin"
+"cabinet" = "native, builtin"
+"hhctrl.ocx" = "native, builtin"
+"dciman32" = "native"
+"odbccp32" = "native"
+"oleacc" = "builtin, native"
+"mshtml" = "native, builtin"
+"msvcirt" = "native, builtin"
+"mlang" = "native, builtin"
+"itss" = "native, builtin"
+"atl" = "native, builtin"
+"riched20" = "native, builtin"
+"riched32" = "native, builtin"
+"advpack" = "native, builtin"
+"*userenv" = ""
+"usp10" = "native, builtin"
+"iernonce" = "native, builtin"
+
+"*setupapi" = "builtin"
+"devenum" = "native, builtin"
+"quartz" = "native, builtin"
+"urlmon" = "native, builtin"
+"shdocvw" = "native, builtin"
+"jscript" = "native, builtin"
+"wintrust" = "native, builtin"
+"shlwapi" = "native, builtin"
+"secur32" = "native, builtin"
+"crypt32" = "native, builtin"
+"rsabase" = "native, builtin"
+"rsaenh" = "native, builtin"
+"ddraw" = "builtin"
+"ddrawex" = "builtin"
+
+"hlink" = "native, builtin"
+
+"*twain_32" = "builtin"
+"*twain" = "builtin"
+
+"odbc32" = "native, builtin"
+
+"iPodService.exe"=""
+
+"*docbox.api" = ""
+
+"*user.exe" = "native,builtin"
+"*autorun.exe" = "native,builtin"
+"*qbdagent.exe" = ""
+"*ddhelp.exe" = "builtin"
+"*findfast.exe" = "builtin"
+"*mdm.exe" = "builtin"
+"*pstores.exe" = "builtin"
+"*mosearch.exe" = "builtin"
+"*maildoff.exe" = "builtin"
+"*ctfmon.exe" = "builtin"
+
+"*ICWCONN1.EXE" = "builtin"
+"*IEINFO5.OCX" = "builtin"
+
+"imejpknl"=""
+"imjp8k"=""
+
+
+"*qttask.exe" = "builtin"
+
+"*"="buitin,native"
+
+
+ 
+#WINE-USER-END

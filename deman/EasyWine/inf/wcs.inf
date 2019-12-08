@@ -1,0 +1,211 @@
+;; .INF script for the Sidenet-spicific Wine configuration
+;;
+;; This should be run through setupapi:
+;;   rundll32 setupapi.dll,InstallHinfSection DefaultInstall 128 wcs.inf
+;;
+;; Copyright (C) 2005 sidenet
+;;
+;; This library is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU Lesser General Public
+;; License as published by the Free Software Foundation; either
+;; version 2.1 of the License, or (at your option) any later version.
+;;
+;; This library is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; Lesser General Public License for more details.
+;;
+;; You should have received a copy of the GNU Lesser General Public
+;; License along with this library; if not, write to the Free Software
+;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+;;
+
+[version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+AddReg=Classes,CurrentVersion,Fonts,Misc,DllOverrides,AppDefaults,x11drv,Drivers,Direct3D,DirectSound
+UpdateInis=SystemIni
+
+[Strings]
+ShellFolders="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+CurrentVersion="Software\Microsoft\Windows\CurrentVersion"
+Wine="Software\Wine"
+FontRepStr="Software\Wine\Wine\FontReplacements"
+FontRepStr2="Software\Wine\Fonts\Replacements"
+DllOverrides="Software\Wine\DllOverrides"
+AppDefaults="Software\Wine\AppDefaults"
+x11drv="Software\Wine\X11 Driver"
+drivers="Software\Wine\Drivers"
+direct3d="Software\Wine\Direct3D"
+directsound="Software\Wine\DirectSound"
+
+[Classes]
+HKCR,folder\shell\open\ddeexec,,,"[ViewFolder("%l", %I, %S)]"
+HKCR,folder\shell\open\ddeexec,"NoActivateHandler",,""
+HKCR,folder\shell\open\ddeexec\application,,,"Folders"
+HKCR,folder\shell\explore\ddeexec,,,"[ViewFolder("%l", %I, %S)]"
+HKCR,folder\shell\explore\ddeexec,"NoActivateHandler",,""
+HKCR,folder\shell\explore\ddeexec\application,,,"Folders"
+HKCR,Interface\{0000000e-0000-0000-C000-000000000046}\ProxyStubClsid32,,,"{00000320-0000-0000-C000-000000000046}"
+
+[DllOverrides]
+HKCU,%Wine%,"Version",,"win98"
+HKCU,%DllOverrides%,"*",,"native, builtin"
+HKCU,%DllOverrides%,"acroiehelper",,""
+HKCU,%DllOverrides%,"advapi32",,"builtin"
+HKCU,%DllOverrides%,"advpack",,"native"
+HKCU,%DllOverrides%,"avicap32",,"builtin"
+HKCU,%DllOverrides%,"capi2032",,"builtin"
+HKCU,%DllOverrides%,"comctl32",,"builtin"
+HKCU,%DllOverrides%,"crtdll",,"builtin"
+HKCU,%DllOverrides%,"ctl3d32",,"builtin"
+HKCU,%DllOverrides%,"d3d8",,"builtin"
+HKCU,%DllOverrides%,"d3d9",,"builtin"
+HKCU,%DllOverrides%,"dbghelp",,"builtin"
+HKCU,%DllOverrides%,"ddeml",,"builtin"
+HKCU,%DllOverrides%,"ddraw",,"builtin"
+HKCU,%DllOverrides%,"ddrawex",,"builtin"
+HKCU,%DllOverrides%,"dinput",,"builtin"
+HKCU,%DllOverrides%,"dinput8",,"builtin"
+HKCU,%DllOverrides%,"dispdib",,"builtin"
+HKCU,%DllOverrides%,"display.drv",,"builtin"
+HKCU,%DllOverrides%,"dmusic32",,"builtin"
+HKCU,%DllOverrides%,"dplay",,"builtin"
+HKCU,%DllOverrides%,"dplayx",,"builtin"
+HKCU,%DllOverrides%,"dpnet",,"builtin"
+HKCU,%DllOverrides%,"dsound",,"builtin"
+HKCU,%DllOverrides%,"dswave",,"builtin"
+HKCU,%DllOverrides%,"dxdiagn",,"builtin"
+HKCU,%DllOverrides%,"gdi.exe",,"builtin"
+HKCU,%DllOverrides%,"gdi32",,"builtin"
+HKCU,%DllOverrides%,"glu32",,"builtin"
+HKCU,%DllOverrides%,"grpconv.exe",,"builtin"
+HKCU,%DllOverrides%,"icmp",,"builtin"
+HKCU,%DllOverrides%,"icwconn1.exe",,""
+HKCU,%DllOverrides%,"ifsmgr.vxd",,"builtin"
+HKCU,%DllOverrides%,"imaadp32.acm",,"builtin"
+HKCU,%DllOverrides%,"imm",,"builtin"
+HKCU,%DllOverrides%,"imm32",,"builtin"
+HKCU,%DllOverrides%,"iphlpapi",,"builtin"
+HKCU,%DllOverrides%,"joystick.drv",,"builtin"
+HKCU,%DllOverrides%,"kernel32",,"builtin"
+HKCU,%DllOverrides%,"keyboard.drv",,"builtin"
+HKCU,%DllOverrides%,"krnl386.exe",,"builtin"
+HKCU,%DllOverrides%,"lz32",,"builtin"
+HKCU,%DllOverrides%,"lzexpand",,"builtin"
+HKCU,%DllOverrides%,"mcianim.drv",,"builtin"
+HKCU,%DllOverrides%,"mciavi.drv",,"builtin"
+HKCU,%DllOverrides%,"mcicda.drv",,"builtin"
+HKCU,%DllOverrides%,"mciseq.drv",,"builtin"
+HKCU,%DllOverrides%,"mciwave.drv",,"builtin"
+HKCU,%DllOverrides%,"midimap.drv",,"builtin"
+HKCU,%DllOverrides%,"mmsystem",,"builtin"
+HKCU,%DllOverrides%,"mouse.drv",,"builtin"
+HKCU,%DllOverrides%,"mpr",,"builtin"
+HKCU,%DllOverrides%,"msacm.drv",,"builtin"
+HKCU,%DllOverrides%,"msacm32",,"builtin"
+HKCU,%DllOverrides%,"msadp32.acm",,"builtin"
+HKCU,%DllOverrides%,"msi",,"native"
+HKCU,%DllOverrides%,"msvfw32",,"builtin"
+HKCU,%DllOverrides%,"msvidc32",,"builtin"
+HKCU,%DllOverrides%,"mswsock",,"builtin"
+HKCU,%DllOverrides%,"newdev",,"builtin"
+HKCU,%DllOverrides%,"ntdll",,"builtin"
+HKCU,%DllOverrides%,"opengl32",,"builtin"
+HKCU,%DllOverrides%,"psapi",,"builtin"
+HKCU,%DllOverrides%,"rasapi16",,"builtin"
+HKCU,%DllOverrides%,"rasapi32",,"builtin"
+HKCU,%DllOverrides%,"setupapi",,"builtin"
+HKCU,%DllOverrides%,"serialui",,"builtin"
+HKCU,%DllOverrides%,"shell",,"builtin"
+HKCU,%DllOverrides%,"shell32",,"builtin"
+HKCU,%DllOverrides%,"snmpapi",,"builtin"
+HKCU,%DllOverrides%,"sound",,"builtin"
+HKCU,%DllOverrides%,"sti",,"builtin"
+HKCU,%DllOverrides%,"system.drv",,"builtin"
+HKCU,%DllOverrides%,"tapi32",,"builtin"
+HKCU,%DllOverrides%,"toolhelp",,"builtin"
+HKCU,%DllOverrides%,"twain",,"builtin"
+HKCU,%DllOverrides%,"twain_32",,"builtin"
+HKCU,%DllOverrides%,"user.exe",,"builtin"
+HKCU,%DllOverrides%,"ver",,"builtin"
+HKCU,%DllOverrides%,"version",,"builtin"
+HKCU,%DllOverrides%,"vnbt.vxd",,"builtin"
+HKCU,%DllOverrides%,"vtapi.vxd",,"builtin"
+HKCU,%DllOverrides%,"vwin32.vxd",,"builtin"
+HKCU,%DllOverrides%,"w32skrnl",,"builtin"
+HKCU,%DllOverrides%,"w32sys",,"builtin"
+HKCU,%DllOverrides%,"win32s16",,"builtin"
+HKCU,%DllOverrides%,"win87em",,"builtin"
+HKCU,%DllOverrides%,"winaspi",,"builtin"
+HKCU,%DllOverrides%,"wing",,"builtin"
+HKCU,%DllOverrides%,"winmm",,"builtin"
+HKCU,%DllOverrides%,"winnls32",,"builtin"
+HKCU,%DllOverrides%,"winsock",,"builtin"
+HKCU,%DllOverrides%,"wintab",,"builtin"
+HKCU,%DllOverrides%,"wintab32",,"builtin"
+HKCU,%DllOverrides%,"wnaspi32",,"builtin"
+HKCU,%DllOverrides%,"wow32",,"builtin"
+HKCU,%DllOverrides%,"ws2_32",,"builtin"
+HKCU,%DllOverrides%,"wsock32",,"builtin"
+
+[AppDefaults]
+HKCU,%AppDefaults%\acmsetup.exe\DllOverrides,"*comctl32",,"builtin"
+HKCU,%AppDefaults%\grpconv.exe\DllOverrides,"*comctl32",,"builtin"
+HKCU,%AppDefaults%\iebatch.exe\DllOverrides,"*comctl32",,"builtin"
+HKCU,%AppDefaults%\updcrl.exe\DllOverrides,"*comctl32",,"builtin"
+HKCU,%AppDefaults%\setup_wm.exe,"Version",,"winme"
+HKCU,%AppDefaults%\setup_wm.exe\DllOverrides,"msvcrt",,"builtin"
+
+[CurrentVersion]
+HKLM,%CurrentVersion%,"RegisteredOrganization",," "
+HKLM,%CurrentVersion%,"RegisteredOwner",,"Wine user"
+
+[Shell]
+HKCU,%ShellFolders%,"Favorites",,"%25%\Favorites"
+HKCU,%ShellFolders%,"StartUp",,"%25%\Start Menu\Programs\Startup"
+HKCU,%ShellFolders%,"Desktop",,"%25%\Desktop"
+HKCU,%ShellFolders%,"Programs",,"%25%\Start Menu\Programs"
+HKCU,%ShellFolders%,"Fonts",,"%25%\Fonts"
+HKCU,%ShellFolders%,"SendTo",,"%25%\SendTo"
+HKCU,%ShellFolders%,"Start Menu",,"%25%\Start Menu"
+HKCU,%ShellFolders%,"Templates",,"%25%\ShellNew"
+HKCU,%ShellFolders%,"Recent",,"%25%\Recent"
+HKCU,%ShellFolders%,"NetHood",,"%25%\NetHood"
+HKCU,%ShellFolders%,"Personal",,"c:\My Documents"
+
+HKU,.Default\%ShellFolders%,"Favorites",,"%25%\Favorites"
+HKU,.Default\%ShellFolders%,"StartUp",,"%25%\Start Menu\Programs\Startup"
+HKU,.Default\%ShellFolders%,"Desktop",,"%25%\Desktop"
+HKU,.Default\%ShellFolders%,"Programs",,"%25%\Start Menu\Programs"
+HKU,.Default\%ShellFolders%,"Fonts",,"%25%\Fonts"
+HKU,.Default\%ShellFolders%,"SendTo",,"%25%\SendTo"
+HKU,.Default\%ShellFolders%,"Start Menu",,"%25%\Start Menu"
+HKU,.Default\%ShellFolders%,"Templates",,"%25%\ShellNew"
+HKU,.Default\%ShellFolders%,"Recent",,"%25%\Recent"
+HKU,.Default\%ShellFolders%,"NetHood",,"%25%\NetHood"
+HKU,.Default\%ShellFolders%,"Personal",,"c:\My Documents"
+
+[Misc]
+HKCU,Software\Microsoft\Internet Connection Wizard,"Completed",1,01,00,00,00
+
+[x11drv]
+HKCU,%x11drv%,"UseXVidMode",,"Y"
+HKCU,%x11drv%,"UseXRandR",,"N"
+HKCU,%x11drv%,"ClientSideAntiAliasWithRender",,"N"
+
+[Drivers]
+HKCU,%drivers%,"Audio",,"oss"
+
+[Direct3D]
+HKCU,%direct3d%,"PixelShaderMode",,"enabled"
+HKCU,%direct3d%,"VertexShaderMode",,"hardware"
+
+[DirectSound]
+HKCU,%directsound%,"EmulDriver",,"N"
+HKCU,%directsound%,"HardwareAcceleration",,"Emulation"
+
+[SystemIni]
+system.ini, boot,,"shell=true.exe"
+

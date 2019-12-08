@@ -1,0 +1,973 @@
+引入 工具 ,用户界面;
+/*
+#################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2007
+"#          www.oukan,1m.cn
+"################################
+*/
+
+
+class SH_NETWORK
+{
+	public static 文本 BL()
+	{
+		string SHELL="#!/bin/bash\n";
+
+
+		SHELL+="PATH=\"/sbin;/bin/usr/bin;$PATH\"\n";
+		SHELL+="IFCONFIG=/sbin/ifconfig\n";
+		SHELL+="PPPD=/usr/sbin/pppd\n";
+		SHELL+="PPPOE=/sbin/pppoe\n";
+		SHELL+="ECHO=/bin/echo\n";
+		SHELL+="okw=/dev/shm/okyh-temp\n";
+		SHELL+="prefix=/usr\n";
+		SHELL+="exec_prefix=/usr\n";
+		SHELL+="CONNECT=/sbin/adsl-connect\n";
+		SHELL+="IFCONFIG=/sbin/ifconfig\n";
+		SHELL+="LS=/bin/ls\n";
+		SHELL+="ID=/usr/bin/id\n";
+		SHELL+="CONFIG=/etc/sysconfig/network-scripts/ifcfg-ppp0\n";
+		SHELL+="NETWORKDIR=/etc/sysconfig/network-scripts\n";
+		SHELL+="DNS3=202.101.6.2\n";
+		SHELL+="rcwj=/etc/rc.d/rc.local\n";
+		SHELL+="PAPFILE=/etc/ppp/chap-secrets\n";
+		SHELL+="CHAPFILE=/etc/ppp/pap-secrets\n";
+		SHELL+="RESOLVFILE=/etc/resolv.conf\n";
+		SHELL+="MRWKIP=192.168.0.22\n";
+		SHELL+="GATEWAY=192.168.0.1\n";
+		SHELL+="DNS1=server\n";
+
+		SHELL+="dnsbz=\"DNS\n";
+		SHELL+="上海\n";
+		SHELL+="202.101.6.2\n";
+		SHELL+="202.96.209.133\n";
+		SHELL+="61.152.82.18\n";
+		SHELL+="202.96.209.5\n";
+		SHELL+="网通\n";
+		SHELL+="202.106.0.20\n";
+		SHELL+=" \"\n";
+
+		SHELL+="sfgly()\n";
+		SHELL+="{\n";
+		SHELL+="if [ \"`whoami`\" != \"root\" ]; then\n";
+		SHELL+="   cho mei you  ROOT quan xian\n";
+		SHELL+="fi\n";
+		SHELL+="}\n";
+
+		SHELL+="txwk()\n";
+		SHELL+="{\n";
+		SHELL+="case $SFTX in\n";
+		SHELL+="  Y)   ;;\n";
+		SHELL+="esac\n";
+		SHELL+="}\n";
+
+		SHELL+="xxts()\n";
+		SHELL+="{\n";
+		SHELL+="case $SFTX$2 in\n";
+		SHELL+="  Y) echo \"$1\">\"$HOME/.OKYH/TISHI.LS\";;\n";
+		SHELL+="  N|N1|N255) exit ;;\n";
+		SHELL+="esac\n";
+		SHELL+="ok=$?\n";
+		SHELL+="}\n";
+
+		返回 (SHELL);
+	}
+	公开 静态 ADSL(文本 CS)
+	{
+		文本 SHELL=BL();
+		
+		SHELL+="okyh_kdxx()\n";
+		SHELL+="{\n";
+		SHELL+=" kdxx=`/sbin/ifconfig $i |\\\n";
+		SHELL+="sed -e 's/:/=/g' |\\\n";
+		SHELL+="sed -e 's/X b/Xb/g' |\\\n";
+		SHELL+="sed -e 's/P-t-P/ISPIP/g'`\n";
+		SHELL+=" for a  in $kdxx ;do\n";
+		SHELL+=" case $a in\n";
+		SHELL+="  *=*) export $a 2>/dev/null ;;\n";
+		SHELL+="esac\n";
+		SHELL+="done\n";
+		SHELL+="tee<<pppxx>$HOME/.OKYH/ppplj.txt\n";
+		SHELL+="本机外网IP：$addr\n";
+		SHELL+="ISP服务器IP：$ISPIP\n";
+		SHELL+="已接收量：$RXbytes\n";
+		SHELL+="已发送量：$TXbytes\n";
+		SHELL+="pppxx\n";
+		SHELL+="}\n";
+
+		SHELL+="okadsl_zdlj()\n";
+		SHELL+="{\n";
+		SHELL+="sfgly\n";
+		SHELL+="okyh_gbzdlj\n";
+		SHELL+="for  CONFIG in $NETWORKDIR/ifcfg-ppp* ; do\n";
+		SHELL+="  if [ -f $CONFIG  ]; then\n";
+		SHELL+=". $CONFIG\n";
+		SHELL+="if [ -f  \"$NETWORKDIR/ifcfg-$ETH\"  ];then\n";
+		SHELL+=" . $NETWORKDIR/ifcfg-$ETH\n";
+		SHELL+="  okyh_eth $ETH $IPADDR\n";
+		SHELL+=" /sbin/ifconfig $ETH >/dev/null\n";
+		SHELL+="break\n";
+		SHELL+="else\n";
+		SHELL+="okyh_eth $ETH 172.168.5.1\n";
+		SHELL+=" /sbin/ifconfig $ETH >/dev/null\n";
+		SHELL+="fi\n";
+		SHELL+="exit 2\n";
+		SHELL+="fi;done\n";
+
+		SHELL+="tee <<GONGX>/etc/rc.d/init.d/oklink\n";
+		SHELL+="#!/bin/sh\n";
+		SHELL+="okstart()\n";
+		SHELL+="{\n";
+		SHELL+="/sbin/servce network start 2>/dev/null\n";
+		SHELL+="\n";
+		SHELL+="while [ true ]; do\n";
+		SHELL+=" if [ -f \"$0\" ];then\n";
+		SHELL+=" /sbin/ifconfig $ETH >/dev/null\n";
+		SHELL+="/sbin/adsl-start 2>/dev/null\n";
+		SHELL+=" \n";
+		SHELL+="sleep 110 ; fi\n";
+		SHELL+=" done\n";
+		SHELL+=" \n";
+		SHELL+="}\n";
+		SHELL+="case \\$@ in\n";
+		SHELL+=" start) okstart & ;;\n";
+		SHELL+="esac\n";
+		SHELL+="GONGX\n";
+		SHELL+="ln -sf /etc/rc.d/init.d/oklink\\\n";
+		SHELL+="  /etc/rc.d/rc5.d/S17oklink\n";
+		SHELL+=" chmod 7777  /etc/rc.d/init.d/oklink\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_eth()\n";
+		SHELL+="{\n";
+		SHELL+="sfgly\n";
+		SHELL+="case  \"$2\" in\n";
+		SHELL+="     1*|2*|3*|4*|5*|6*|7*|8*|8*|9*) \n";
+		SHELL+="      DIZHI=\"$2\";;\n";
+		SHELL+="      *)  DIZHI=\"\" ;;\n";
+		SHELL+="   esac\n";
+
+		SHELL+="case $1 in\n";
+		SHELL+="  eth*) if [ ok = \"ok$DIZHI\"  ];  then\n";
+		SHELL+="tee  <<WANGKA>\"$NETWORKDIR/ifcfg-$1\"\n";
+		SHELL+="DEVICE=\"$1\"\n";
+		SHELL+="BOOTPROTO=\"dhcp\"\n";
+		SHELL+="ONBOOT=\"no\"\n";
+		SHELL+="WANGKA\n";
+		SHELL+="/sbin/ifconfig  $1 >/dev/null\n";
+		SHELL+="else\n";
+		SHELL+="tee  <<WANGKA>\"$NETWORKDIR/ifcfg-$1\"\n";
+		SHELL+="DEVICE=\"$1\"\n";
+		SHELL+="ONBOOT=\"yes\"\n";
+		SHELL+="BOOTPROTO=\"static\"\n";
+		SHELL+="IPADDR=\"$DIZHI\"\n";
+		SHELL+="NETMASK=\"255.255.255.0\"\n";
+		SHELL+="$3\n";
+		SHELL+="WANGKA\n";
+		SHELL+="/sbin/ifconfig  $1 $2 >/dev/null\n";
+		SHELL+="if [ \"$3\"  != \"\" ]; then\n";
+		SHELL+="echo \"eth=$1\">$HOME/.OKYH/NETDEV ;fi\n";
+		SHELL+="fi ;;\n";
+		SHELL+="esac\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_gxpz()\n";
+		SHELL+="{\n";
+		SHELL+="sfgly\n";
+
+		SHELL+="FFWD=0.0.0.0\n";
+		SHELL+=" devices=\"\"\n";
+		SHELL+="device_count=0\n";
+		SHELL+="get_device\n";
+
+		SHELL+="if [ -f \"$HOME/.OKYH/NETDEV\" ] ; then\n";
+		SHELL+=".  $HOME/.OKYH/NETDEV\n";
+		SHELL+="pppdev=$eth\n";
+		SHELL+="elif [ $device_count -gt 0 ] ; then\n";
+		SHELL+="   for pppdev in $devices ; do\n";
+		SHELL+="	break\n";
+		SHELL+="    done\n";
+		SHELL+=" else \n";
+		SHELL+="    xxts 没发现设备 1\n";
+		SHELL+=" fi\n";
+
+		SHELL+="for  wk in $NETWORKDIR/ifcfg-eth* ; do\n";
+		SHELL+="  if [ -f $wk  ]; then\n";
+		SHELL+="   eth=${wk##*$NETWORKDIR/ifcfg-}\n";
+		SHELL+="   . $wk\n";
+		SHELL+="WD=`echo $IPADDR | awk --source 'BEGIN { FS=\".\" }' --source '{ print $1 }'`\n";
+		SHELL+="WD=$WD.`echo $IPADDR | awk --source 'BEGIN { FS=\".\" }' --source '{ print $2 }'`\n";
+		SHELL+="WD=$WD.`echo $IPADDR | awk --source 'BEGIN { FS=\".\" }' --source '{ print $3 }'`\n";
+		SHELL+="    case  \"$WD\" in\n";
+		SHELL+="     1*|2*|3*|4*|5*|6*|7*|8*|8*|9*) ;;\n";
+		SHELL+="      *)   okyh_eth eth0 172.16.0.1 \"DNS1=$DNS1\"\n";
+		SHELL+="  /sbin/ifconfig eth1 2>/dev/null 2>&1\n";
+		SHELL+="  if [ $? = 0 ];then \n";
+		SHELL+="       okyh_eth eth1 192.168.0.1 \"DNS1=$DNS1\" \n";
+		SHELL+="  else\n";
+		SHELL+="     okyh_eth eth0:1 192.168.0.1 \"DNS1=$DNS1\"\n";
+		SHELL+="     rm -rf $NETWORKDIR/ifcfg-eth1\n";
+		SHELL+="   fi;;\n";
+		SHELL+="   esac\n";
+		SHELL+="   if [  -z \"$GATEWAY\" ]; then\n";
+		SHELL+="      GATEWAY=\"$WD.1\"\n";
+		SHELL+="   fi\n";
+		SHELL+="    if [ \"$pppdev\" != \"$eth\" ] ;then\n";
+		SHELL+="      if [ \"$WDYCZ\" != \"$WD.0\" ]; then\n";
+		SHELL+="      WDYCZ=$WD.0\n";
+		SHELL+="      LUYOU=\"$LUYOU\n";
+		SHELL+="/sbin/iptables -t nat -A POSTROUTING -o $pppdev -s $WD.0/24 -j MASQUERADE\"\n";
+		SHELL+="     okyh_eth $eth $IPADDR  \"DNS1=$DNS1\" ; fi\n";
+		SHELL+="    else\n";
+		SHELL+="     FFWD=$WD.0\n";
+		SHELL+="     okyh_eth $eth $IPADDR  \"GATEWAY=$GATEWAY\n";
+		SHELL+="DNS1=$DNS1\"\n";
+		SHELL+="    fi\n";
+		SHELL+="   else\n";
+		SHELL+="   okyh_eth eth0 172.16.0.1 \"DNS1=$DNS1\"\n";
+		SHELL+="   /sbin/ifconfig eth1 2>/dev/null 2>&1\n";
+		SHELL+="  if [ $? = 0 ];then \n";
+		SHELL+="       okyh_eth eth1 192.168.0.1 \"DNS1=$DNS1\" \n";
+		SHELL+="  else\n";
+		SHELL+="     okyh_eth eth0:1 192.168.0.1 \"DNS1=$DNS1\"\n";
+		SHELL+="     rm -rf $NETWORKDIR/ifcfg-eth1\n";
+		SHELL+="   fi;fi\n";
+		SHELL+="  done\n";
+		SHELL+="\n";
+		SHELL+="case $pppdev in\n";
+		SHELL+="   ppp*) BOHAO=\"/sbin/adsl-start 2>/dev/null\" ;;\n";
+		SHELL+="    eth*) BOHAO=\"/sbin/route add default gw $WD.1 2>/dev/null\" ;;\n";
+		SHELL+="esac\n";
+
+		SHELL+="okyh_gbzdlj\n";
+		SHELL+="tee <<GONGX>/etc/rc.d/init.d/oklink\n";
+		SHELL+="#!/bin/sh\n";
+		SHELL+="oksart()\n";
+		SHELL+="{\n";
+		SHELL+="/sbin/servce network start 2>/dev/null\n";
+		SHELL+="\n";
+		SHELL+="while [ true ]; do\n";
+		SHELL+=" if [ -f \"$0\" ];then\n";
+		SHELL+="$BOHAO\n";
+		SHELL+=" \n";
+		SHELL+="echo 1 > /proc/sys/net/ipv4/ip_forward\n";
+		SHELL+="/sbin/iptables -t nat -F\n";
+		SHELL+="$LUYOU\n";
+		SHELL+="\n";
+		SHELL+=" sleep 100 ; fi\n";
+		SHELL+=" done\n";
+		SHELL+="}\n";
+		SHELL+="case \\$@ in\n";
+		SHELL+=" start) okstart & ;;\n";
+		SHELL+="esac\n";
+		SHELL+="GONGX\n";
+		SHELL+="ln -sf /etc/rc.d/init.d/oklink\\\n";
+		SHELL+="  /etc/rc.d/rc5.d/S17oklink\n";
+		SHELL+="chmod 7777  /etc/rc.d/init.d/oklink\n";
+		SHELL+="exit\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_gxpz_khd()\n";
+		SHELL+="{\n";
+		SHELL+="sfgly\n";
+		SHELL+="  for  wk in $NETWORKDIR/ifcfg-eth* ; do\n";
+		SHELL+="  if [ -f $wk  ]; then\n";
+		SHELL+="   eth=${wk##*$NETWORKDIR/ifcfg-}\n";
+		SHELL+="    . $wk\n";
+		SHELL+="   if [ \"$IPADDR\" = \"auto\" ]; then\n";
+		SHELL+="     IPADDR=$MRWKIP\n";
+		SHELL+="   elif [ \"IP$IPADDR\" = \"IP\" ]; then\n";
+		SHELL+="    IPADDR=$MRWKIP\n";
+		SHELL+="   fi\n";
+		SHELL+="   okyh_eth \"$eth\" \"$IPADDR\" \"GATEWAY=$GATEWAY\nDNS1=$DNS1\n";
+		SHELL+="NETMASK=$NETMASK\"\n";
+		SHELL+="   else\n";
+		SHELL+="   okyh_eth eth0 192.168.0.14 \"GATEWAY=192.168.0.1\n";
+		SHELL+="DNS1=$DNS1\"\n";
+		SHELL+="  fi\n";
+		SHELL+="  done\n";
+		SHELL+="  if [ -f \"$NETWORKDIR/ifcfg-$1\" ] ; then\n";
+		SHELL+="    eth=$1\n";
+		SHELL+="elif [ -f \"$HOME/.OKYH/NETDEV\" ] ; then\n";
+		SHELL+=".  $HOME/.OKYH/NETDEV \n";
+		SHELL+=" fi\n";
+
+		SHELL+="if [ -f \"$NETWORKDIR/ifcfg-$eth\" ] ; then\n";
+		SHELL+=". \"$NETWORKDIR/ifcfg-$eth\"\n";
+		SHELL+="fi\n";
+
+		SHELL+="okyh_gbzdlj\n";
+		SHELL+="tee <<GONGX>/etc/rc.d/init.d/oklink\n";
+		SHELL+="#!/bin/sh\n";
+		SHELL+="okstart()\n";
+		SHELL+="{\n";
+		SHELL+="/sbin/servce network start 2>/dev/null\n";
+		SHELL+="\n";
+		SHELL+="/sbin/ifconfig $eth >/dev/null\n";
+		SHELL+="/bin/echo 1 > /proc/sys/net/ipv4/ip_forward\n";
+		SHELL+="/sbin/route add -net $eth .2>/dev/null\n";
+		SHELL+="while [ ture ]; do\n";
+		SHELL+="/sbin/route add  -net $eth 2>/dev/null\n";
+		SHELL+="/sbin/route add default gw $GATEWAY 2>/dev/null\n";
+		SHELL+="sleep 900\n";
+		SHELL+="done\n";
+		SHELL+="\n";
+		SHELL+="}\n";
+		SHELL+="case \\$@ in\n";
+		SHELL+=" start) okstart & ;;\n";
+		SHELL+="esac\n";
+		SHELL+="\n";
+		SHELL+="GONGX\n";
+		SHELL+="chmod 7777  /etc/rc.d/init.d/oklink\n";
+		SHELL+=" ln -sf /etc/rc.d/init.d/oklink\\\n";
+		SHELL+="  /etc/rc.d/rc5.d/S17oklink\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_gbzdlj()\n";
+		SHELL+="{\n";
+		SHELL+="    pkill oklink\n";
+		SHELL+="    rm -rf /etc/rc.d/init.d/oklink\\\n";
+		SHELL+="    /etc/rc.d/rc5.d/S17oklink\n";
+		SHELL+="    cp -rf  $rcwj /dev/shm/okyh-temp\n";
+		SHELL+="    sleep 2\n";
+		SHELL+="}\n";
+
+		SHELL+="copy() {\n";
+		SHELL+="    cp $1 $2\n";
+		SHELL+="    if [ \"$?\" != 0 ] ; then\n";
+		SHELL+="	$ECHO \"*** fu zhi $1 dao $2 shi , fa sheng cuo wu\"\n";
+		SHELL+="	$ECHO \"*** tui chu.\"\n";
+		SHELL+="	exit \n";
+		SHELL+="    fi\n";
+		SHELL+="}\n";
+
+		SHELL+="get_device() {\n";
+		SHELL+="    if [ ! -d $NETWORKDIR ] ; then\n";
+		SHELL+="        $ECHO \"** $NETWORKDIR ge shi cuo wu\"\n";
+		SHELL+="        $ECHO \"** yi wai tui chu\"\n";
+		SHELL+="        exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="\n";
+		SHELL+="    cd $NETWORKDIR\n";
+		SHELL+="    interfaces=$($LS ifcfg-ppp* 2>/dev/null | egrep -v '(~|\\.bak)$' | \\\n";
+		SHELL+="                 egrep -v '(rpmsave|rpmorig|rpmnew)' | sed 's/^ifcfg-//g')\n";
+
+		SHELL+="    for i in $interfaces ; do\n";
+		SHELL+="        test -f ifcfg-$i && . ifcfg-$i 2>/dev/null\n";
+		SHELL+="        if [ \"$TYPE\" = \"xDSL\" ] ; then\n";
+		SHELL+="            device_count=$[$device_count+1]\n";
+		SHELL+="            devices=\"$devices $DEVICE\"\n";
+		SHELL+="        fi\n";
+		SHELL+="    done\n";
+		SHELL+="}\n";
+
+		SHELL+="clear_env() {\n";
+		SHELL+="    unset USERCTL BOOTPROTO NAME DEVICE TYPE ONBOOT FIREWALL PING \\\n";
+		SHELL+="          PPPOE_TIMEOUT LCP_FAILURE LCP_INTERVAL CLAMPMSS CONNECT_POLL \\\n";
+		SHELL+="	  CONNECT_TIMEOUT DEFROUTE SYNCHRONOUS ETH PROVIDER USER PEERDNS \\\n";
+		SHELL+="	  DNS1 DNS2\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_ljkd()\n";
+		SHELL+="{\n";
+		SHELL+="USER=\"\"\n";
+		SHELL+="ETH=\"\"\n";
+		SHELL+="ME=`basename $0`\n";
+
+		SHELL+="if [ \"`/usr/bin/id -u`\" != 0 ] ; then\n";
+		SHELL+="    [ \"$DEBUG\" = \"1\" ] && $ECHO \"$ME:xu yao root shen fen\" >& 2\n";
+		SHELL+="    exit 1\n";
+		SHELL+="fi\n";
+
+		SHELL+="/sbin/servce network start 2>/dev/null\n";
+
+		SHELL+="if [ \"$DEBUG\" = \"1\" ] ; then\n";
+		SHELL+="S    DEBUG=/tmp/pppoe-debug-$$\n";
+		SHELL+="    export DEBUG\n";
+		SHELL+="    mkdir $DEBUG\n";
+		SHELL+="    if [ \"$?\" != 0 ] ; then\n";
+		SHELL+="	$ECHO \"wu fa chuang jian $DEBUG... \"\n";
+		SHELL+="   echo \"cuo wu:\";exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="    DEBUG=$DEBUG/pppoe-debug.txt\n";
+
+		SHELL+="    $ECHO \"---------------------------------------------\" > $DEBUG\n";
+		SHELL+="    $ECHO \"* The following section contains information about your system\" >> $DEBUG\n";
+		SHELL+="    date >> $DEBUG\n";
+		SHELL+="    $ECHO \"Output of uname -a\" >> $DEBUG\n";
+		SHELL+="    uname -a >> $DEBUG\n";
+		SHELL+="    $ECHO \"---------------------------------------------\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* The following section contains information about your network\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* interfaces.  The one you chose for PPPoE should contain the words:\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* 'UP' and 'RUNNING'.  If it does not, you probably have an Ethernet\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* driver problem.\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"Output of ifconfig -a\" >> $DEBUG\n";
+		SHELL+="    $IFCONFIG -a >> $DEBUG\n";
+		SHELL+="    $ECHO \"---------------------------------------------\" >> $DEBUG\n";
+		SHELL+="    if [ \"`uname -s`\" = \"Linux\" ] ; then\n";
+		SHELL+="        $ECHO \"* The following section contains information about kernel modules\" >> $DEBUG\n";
+		SHELL+="	$ECHO \"* If the module for your Ethernet card is 'tulip', you might\" >> $DEBUG\n";
+		SHELL+="	$ECHO \"* want to look for an updated version at http://www.scyld.com\" >> $DEBUG\n";
+		SHELL+="	$ECHO \"Output of lsmod\" >> $DEBUG\n";
+		SHELL+="	lsmod >> $DEBUG\n";
+		SHELL+="	$ECHO \"---------------------------------------------\" >> $DEBUG\n";
+		SHELL+="    fi\n";
+		SHELL+="    $ECHO \"* The following section lists your routing table.\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* If you have an entry which starts with '0.0.0.0', you probably\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* have defined a default route and gateway, and pppd will\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* not create a default route using your ISP.  Try getting\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* rid of this route.\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"Output of netstat -n -r\" >> $DEBUG\n";
+		SHELL+="    netstat -n -r >> $DEBUG\n";
+		SHELL+="    $ECHO \"---------------------------------------------\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"Contents of /etc/resolv.conf\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* The following section lists DNS setup.\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* If you can browse by IP address, but not name, suspect\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* a DNS problem.\" >> $DEBUG\n";
+		SHELL+="    cat /etc/resolv.conf >> $DEBUG\n";
+		SHELL+="    $ECHO \"---------------------------------------------\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* The following section lists /etc/ppp/options.\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"* You should have NOTHING in that file.\" >> $DEBUG\n";
+		SHELL+="    $ECHO \"Contents of /etc/ppp/options\" >> $DEBUG\n";
+		SHELL+="    cat /etc/ppp/options >> $DEBUG 2>/dev/null\n";
+		SHELL+="    $ECHO \"---------------------------------------------\" >> $DEBUG\n";
+		SHELL+="    DEBUG=\"1\"\n";
+		SHELL+="fi\n";
+
+		SHELL+="case \"$1\" in\n";
+		SHELL+="   ppp*)  CONFIG=/etc/sysconfig/network-scripts/ifcfg-$1  ;;\n";
+		SHELL+="   *)     CONFIG=/etc/sysconfig/network-scripts/ifcfg-ppp0 ;;\n";
+		SHELL+="esac\n";
+		SHELL+="if [ -z \"$CONFIG\" ] ; then\n";
+		SHELL+="    get_device\n";
+		SHELL+="    [ -z \"$CONFIG\" ] && CONFIG=/etc/ppp/pppoe.conf\n";
+		SHELL+="fi\n";
+
+		SHELL+="if [ ! -f \"$CONFIG\" -o ! -r \"$CONFIG\" ] ; then\n";
+		SHELL+="   echo \"cuo wu:\";exit 1\n";
+		SHELL+="fi\n";
+
+		SHELL+=". $CONFIG\n";
+
+		SHELL+="if [ -f  \"$NETWORKDIR/ifcfg-$ETH\"  ];then\n";
+		SHELL+=" . $NETWORKDIR/ifcfg-$ETH\n";
+		SHELL+="  okyh_eth $ETH $IPADDR\n";
+		SHELL+=" /sbin/ifconfig $ETH >/dev/null\n";
+		SHELL+="else\n";
+		SHELL+="okyh_eth $ETH 172.168.5.1\n";
+		SHELL+=" /sbin/ifconfig $ETH >/dev/null\n";
+		SHELL+="fi\n";
+
+		SHELL+=". $CONFIG\n";
+		SHELL+="\n";
+		SHELL+="if [ -r \"$PIDFILE\" ] ; then\n";
+		SHELL+="    PID=`cat \"$PIDFILE\"`\n";
+		SHELL+="    kill -0 $PID > /dev/null 2>&1\n";
+		SHELL+="    if [ $? = 0 ] ; then\n";
+		SHELL+="	[ \"$DEBUG\" = \"1\" ] && $ECHO \"$ME: There already seems to be an ADSL connection up (PID $PID)\" >& 2\n";
+		SHELL+="        exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="    rm -f \"$PIDFILE\" \"$PIDFILE.pppd\" \"$PIDFILE.pppoe\" \"$PIDFILE.start\"\n";
+		SHELL+="fi\n";
+
+		SHELL+="echo $$ > $PIDFILE.start\n";
+
+		SHELL+="if [ \"$DEBUG\" = \"1\" ] ; then\n";
+		SHELL+="    $CONNECT \"$@\"\n";
+		SHELL+="    exit 0\n";
+		SHELL+="fi\n";
+		SHELL+="\n";
+		SHELL+="$CONNECT  \"$@\"> /dev/null 2>&1 &\n";
+		SHELL+="CONNECT_PID=$!\n";
+		SHELL+="\n";
+		SHELL+="if [ \"$CONNECT_TIMEOUT\" = \"\" -o \"$CONNECT_TIMEOUT\" = 0 ] ; then\n";
+		SHELL+="   echo \"cuo wu:\";exit 1\n";
+		SHELL+="fi\n";
+		SHELL+="\n";
+		SHELL+="if [ \"$DEMAND\" != \"\" -a \"$DEMAND\" != \"no\" ] ; then\n";
+		SHELL+="   echo \"cuo wu:\";exit 1\n";
+		SHELL+="fi\n";
+
+		SHELL+="TIME=0\n";
+		SHELL+="while [ true ] ; do\n";
+		SHELL+="    /sbin/adsl-status $CONFIG > /dev/null 2>&1\n";
+
+		SHELL+="    if [ $? = 0 ] ; then\n";
+		SHELL+="	[ \"$DEBUG\" = \"1\" ] && tty -s && $ECHO \" Connected!\"\n";
+		SHELL+="        echo  yi lian tong ;exit 0\n";
+		SHELL+="    fi\n";
+
+		SHELL+="    if test -n \"$FORCEPING\" ; then\n";
+		SHELL+="	[ \"$DEBUG\" = \"1\" ] && $ECHO -n \"$FORCEPING\"\n";
+		SHELL+="    else\n";
+		SHELL+="	[ \"$DEBUG\" = \"1\" ] && tty -s && $ECHO -n \"$PING\"\n";
+		SHELL+="    fi\n";
+		SHELL+="    sleep 5\n";
+		SHELL+="    TIME=`expr $TIME + 10`\n";
+		SHELL+="    if [ $TIME -gt $CONNECT_TIMEOUT ] ; then\n";
+		SHELL+="	break\n";
+		SHELL+="    fi\n";
+		SHELL+="done\n";
+
+		SHELL+="[ \"$DEBUG\" = \"1\" ] && $ECHO \"TIMED OUT\" >& 2\n";
+		SHELL+="kill $CONNECT_PID > /dev/null 2>&1\n";
+
+		SHELL+="rm -f \"$PIDFILE\" \"$PIDFILE.pppd\" \"$PIDFILE.pppoe\" \"$PIDFILE.start\"\n";
+
+		SHELL+="echo wu fa lian jie xDSL\n";
+		SHELL+="exit 2\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_gblj()\n";
+		SHELL+="{\n";
+		SHELL+="ME=\"`basename $0`\"\n";
+		SHELL+="LOGGER=\"/usr/bin/logger -t $ME\"\n";
+		SHELL+="\n";
+		SHELL+="\n";
+		SHELL+="case \"$1\" in\n";
+		SHELL+="   ppp*)  CONFIG=/etc/sysconfig/network-scripts/ifcfg-$1 \n";
+		SHELL+="     SUEBEI=$1 ;;\n";
+		SHELL+="   *)     CONFIG=/etc/sysconfig/network-scripts/ifcfg-ppp0\n";
+		SHELL+="     SUEBEI=ppp0 ;;\n";
+		SHELL+="esac\n";
+
+		SHELL+="if [ -z \"$CONFIG\" ] ; then\n";
+		SHELL+="    get_device\n";
+		SHELL+="    [ -z \"$CONFIG\" ] && CONFIG=/etc/ppp/pppoe.conf\n";
+		SHELL+="fi\n";
+		SHELL+="\n";
+		SHELL+="if [ ! -f \"$CONFIG\" -o ! -r \"$CONFIG\" ] ; then\n";
+		SHELL+="     echo mei ou pei zhi\n";
+		SHELL+="    exit 2\n";
+		SHELL+="fi\n";
+
+		SHELL+=". $CONFIG\n";
+
+		SHELL+="PPPOE_PIDFILE=\"$PIDFILE.pppoe\"\n";
+		SHELL+="PPPD_PIDFILE=\"$PIDFILE.pppd\"\n";
+		SHELL+="STARTPID=\"$PIDFILE.start\"\n";
+
+		SHELL+="if test \"$DEMAND\" = \"\" ; then\n";
+		SHELL+="	DEMAND=no\n";
+		SHELL+="fi\n";
+
+		SHELL+="trap \"\" 15\n";
+
+		SHELL+="if [ -r \"$PIDFILE\" ] ; then\n";
+		SHELL+="    PID=`cat $PIDFILE`\n";
+		SHELL+="\n";
+		SHELL+="    kill -0 $PID > /dev/null 2>&1\n";
+		SHELL+="    if [ $? != 0 ] ; then\n";
+		SHELL+="        [ \"$DEBUG\" = \"1\" ] && echo \"$ME: The adsl-connect script (PID $PID) appears to have died\" >& 2\n";
+		SHELL+="    fi\n";
+		SHELL+="\n";
+		SHELL+="    if [ -r \"$PPPD_PIDFILE\" ] ; then\n";
+		SHELL+="        PPPD_PID=`cat \"$PPPD_PIDFILE\"`\n";
+		SHELL+="        $LOGGER -p daemon.notice \"Killing pppd\"\n";
+		SHELL+="        [ \"$DEBUG\" = \"1\" ] && echo \"Killing pppd ($PPPD_PID)\"\n";
+		SHELL+="        kill $PPPD_PID > /dev/null 2>&1\n";
+		SHELL+="    fi\n";
+
+		SHELL+="    PIDS=`cat $STARTPID`\n";
+		SHELL+="    kill -0 $PIDS > /dev/null 2>&1\n";
+		SHELL+="    if [ $? = 0 ] ; then\n";
+		SHELL+="        $LOGGER -p daemon.notice \"Killing adsl-connect\"\n";
+		SHELL+="        kill $PIDS > /dev/null 2>&1\n";
+		SHELL+="    fi\n";
+
+		SHELL+="    # Kill adsl-connect\n";
+		SHELL+="    $LOGGER -p daemon.notice \"Killing adsl-connect\"\n";
+		SHELL+="    [ \"$DEBUG\" = \"1\" ] && echo \"Killing adsl-connect ($PID)\"\n";
+		SHELL+="    kill $PID > /dev/null 2>&1\n";
+
+		SHELL+="    rm -f \"$PIDFILE\" \"$PPPD_PIDFILE\" \"$PPPOE_PIDFILE\" \"$STARTPID\"\n";
+		SHELL+="else\n";
+		SHELL+="    [ \"$DEBUG\" = \"1\" ] && echo \"$ME: No ADSL connection appears to be running\" >&2\n";
+		SHELL+="    ok=ok\n";
+		SHELL+="    pkill $SUEBEI\n";
+		SHELL+="fi\n";
+		SHELL+=" pkill $SUEBEI\n";
+		SHELL+=" pkill oklink\n";
+		SHELL+="/sbin/servce network stop 2>/dev/null\n";
+		SHELL+="sleep 3\n";
+		SHELL+="/sbin/servce network start 2>/dev/null\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_bcdns()\n";
+		SHELL+="{\n";
+		SHELL+="if [ \"$DNS1\" = \"server\" ] ; then\n";
+		SHELL+="    DNS1=\"\"\n";
+		SHELL+="    DNS2=\"\"\n";
+		SHELL+="    PEERDNS=yes\n";
+		SHELL+="elif [ -n \"$DNS1\" ] ; then\n";
+		SHELL+="  	if [ !  -f $RESOLVFILE ] ; then\n";
+		SHELL+="	$ECHO \"# MADE-BY-RP-PPPOE\" > $RESOLVFILE\n";
+		SHELL+="	fi\n";
+		SHELL+="  	if [ -r $RESOLVFILE ] ; then\n";
+		SHELL+="	    grep -s \"MADE-BY-RP-PPPOE\" $RESOLVFILE > /dev/null 2>&1\n";
+		SHELL+="	    if [ \"$?\" != 0 ] ; then\n";
+		SHELL+="		test -f $$RESOLVFILE && copy $RESOLVFILE $RESOLVFILE.bak\n";
+		SHELL+="	    fi\n";
+		SHELL+="	fi\n";
+		SHELL+="	$ECHO \"nameserver $DNS1\" >> $RESOLVFILE\n";
+		SHELL+="        PEERDNS=no\n";
+		SHELL+="	if [ -n \"$DNS2\" ] ; then\n";
+		SHELL+="	    $ECHO \"nameserver $DNS2\" >> $RESOLVFILE\n";
+		SHELL+="	    $ECHO \"nameserver $DNS3\" >> $RESOLVFILE\n";
+		SHELL+=" 	fi\n";
+		SHELL+="fi\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_bcpz()\n";
+		SHELL+="{\n";
+		SHELL+="case \"$DEVICE\" in\n";
+		SHELL+="  ppp*) CONFiG=\"$NETWORKDIR/ifcfg-$DEVICE\" ;;\n";
+		SHELL+="  *) DEVICE=ppp0\n";
+		SHELL+="  CONFiG=\"$NETWORKDIR/ifcfg-ppp0\"    ;;\n";
+		SHELL+="esac\n";
+		SHELL+="if [ -d /var/run ] ; then\n";
+		SHELL+="    VARRUN=/var/run\n";
+		SHELL+="else\n";
+		SHELL+="    VARRUN=/etc/ppp\n";
+		SHELL+="fi\n";
+
+		SHELL+="test -f $CONFIG && copy $CONFIG $CONFIG.bak\n";
+		SHELL+="echo \"eth=$DEVICE\">$HOME/.OKYH/NETDEV   \n";
+		SHELL+="$ECHO \"USERCTL=$USERCTL\" >$CONFIG\n";
+		SHELL+="$ECHO \"BOOTPROTO=dialup\" >>$CONFIG\n";
+		SHELL+="[ -z \"$NAME\" ] && NAME=\"$DEVICE-$ETH\"\n";
+		SHELL+="$ECHO \"NAME=$DEVICE-$ETH\" >>$CONFIG\n";
+		SHELL+="$ECHO \"DEVICE=$DEVICE\" >>$CONFIG\n";
+		SHELL+="$ECHO \"TYPE=xDSL\" >>$CONFIG\n";
+		SHELL+="$ECHO \"ONBOOT=no\" >>$CONFIG\n";
+		SHELL+="$ECHO \"PIDFILE=/var/run/pppoe-adsl.pid\" >>$CONFIG\n";
+		SHELL+="$ECHO \"FIREWALL=$FIREWALL\" >>$CONFIG\n";
+		SHELL+="[ -z \"$PING\" ] && PING=\".\"\n";
+		SHELL+="$ECHO \"PING=$PING\" >>$CONFIG\n";
+		SHELL+="[ -z \"$PPPOE_TIMEOUT\" ] && PPPOE_TIMEOUT=80\n";
+		SHELL+="$ECHO \"PPPOE_TIMEOUT=$PPPOE_TIMEOUT\" >>$CONFIG\n";
+		SHELL+="[ -z \"$LCP_FAILURE\" ] && LCP_FAILURE=3\n";
+		SHELL+="$ECHO \"LCP_FAILURE=$LCP_FAILURE\" >>$CONFIG\n";
+		SHELL+="[ -z \"$LCP_INTERVAL\" ] && LCP_INTERVAL=20\n";
+		SHELL+="$ECHO \"LCP_INTERVAL=$LCP_INTERVAL\" >>$CONFIG\n";
+		SHELL+="[ -z \"$CLAMPMSS\" ] && CLAMPMSS=1412\n";
+		SHELL+="$ECHO \"CLAMPMSS=$CLAMPMSS\" >>$CONFIG\n";
+		SHELL+="[ -z \"$CONNECT_POLL\" ] && CONNECT_POLL=6\n";
+		SHELL+="$ECHO \"CONNECT_POLL=$CONNECT_POLL\" >>$CONFIG\n";
+		SHELL+="[ -z \"$CONNECT_TIMEOUT\" ] && CONNECT_TIMEOUT=60\n";
+		SHELL+="$ECHO \"CONNECT_TIMEOUT=$CONNECT_TIMEOUT\" >>$CONFIG\n";
+		SHELL+="[ -z \"$DEFROUTE\" ] && DEFROUTE=yes\n";
+		SHELL+="$ECHO \"DEFROUTE=$DEFROUTE\" >>$CONFIG\n";
+		SHELL+="[ -z \"$SYNCHRONOUS\" ] && SYNCHRONOUS=no\n";
+		SHELL+="$ECHO \"SYNCHRONOUS=$SYNCHRONOUS\" >>$CONFIG\n";
+		SHELL+="$ECHO \"ETH=$ETH\" >> $CONFIG\n";
+		SHELL+="[ -z \"$PROVIDER\" ] && PROVIDER=\"$NAME\"\n";
+		SHELL+="$ECHO \"PROVIDER=$PROVIDER\" >>$CONFIG\n";
+		SHELL+="$ECHO \"USER=$USER\" >>$CONFIG\n";
+		SHELL+="$ECHO \"PEERDNS=$PEERDNS\" >>$CONFIG\n";
+		SHELL+="$ECHO \"PASS=$PASS\" >>$CONFIG\n";
+		SHELL+="$ECHO \"DNS1=$DNS1\" >>$CONFIG\n";
+		SHELL+="$ECHO \"SEVNAME=$SEVNAME\" >>$CONFIG\n";
+
+		SHELL+="ppppz=/etc/ppp/pppoe.conf\n";
+		SHELL+="if [ -f $ppppz ]; then\n";
+		SHELL+="   YFWM=`sed -n -e '/servicename=/p' $ppppz` \n";
+		SHELL+="   if [ \"ok\" = \"ok$YFWM\"  ]; then\n";
+		SHELL+="   echo \"$FWM\">>$ppppz\n";
+		SHELL+="   else\n";
+		SHELL+="   PZNR=`cat $ppppz`\n";
+		SHELL+="   echo \"$PZNR\" |sed -e  \"s/$YFWM/$FWM/g\">$ppppz\n";
+		SHELL+="   fi\n";
+		SHELL+="else\n";
+		SHELL+="   echo \"$FWM\">>$ppppz\n";
+		SHELL+="fi\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_bcmm()\n";
+		SHELL+="{\n";
+		SHELL+="$ECHO \"pei zhi wen jian zai $PAPFILE he $CHAPFILE\"\n";
+		SHELL+="if [ -r $PAPFILE ] ; then\n";
+		SHELL+="    $ECHO \"  (pei zhi wen jian 1 bei fen zai $PAPFILE.bak)\"\n";
+		SHELL+="    test -f $PAPFILE && copy $PAPFILE $PAPFILE.bak\n";
+		SHELL+="else\n";
+		SHELL+="    cp /dev/null $PAPFILE.bak\n";
+		SHELL+="fi\n";
+		SHELL+="if [ -r $CHAPFILE ] ; then\n";
+		SHELL+="    $ECHO \"  (pei zhi wen jian 2 ben fen zai $CHAPFILE.bak)\"\n";
+		SHELL+="    test -f $CHAPFILE && copy $CHAPFILE $CHAPFILE.bak\n";
+		SHELL+="else\n";
+		SHELL+="    cp /dev/null $CHAPFILE.bak\n";
+		SHELL+="fi\n";
+		SHELL+="\n";
+		SHELL+="grep -v \"^$USER|^\\\"$USER\\\"\" $PAPFILE.bak > $PAPFILE\n";
+		SHELL+="$ECHO \"\\\"$USER\\\"	*	\\\"$PASS\\\"\" >> $PAPFILE\n";
+		SHELL+="egrep -v \"^$USER|^\\\"$USER\\\"\" $CHAPFILE.bak > $CHAPFILE\n";
+		SHELL+="$ECHO \"\\\"$USER\\\"	*	\\\"$PASS\\\"\" >> $CHAPFILE\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_kslj()\n";
+		SHELL+="{\n";
+		SHELL+="DEVICE=ppp0\n";
+		SHELL+="USER=\"$1\"\n";
+		SHELL+="PASS=\"$2\"\n";
+		SHELL+="ETH=eth0\n";
+		SHELL+="USERCTL=\"yes\"\n";
+		SHELL+="FIREWALL=NAME\n";
+		SHELL+="DEMAND=\"$USER\"\n";
+		SHELL+="if  [ \"$3\" = \"\" -o \"$4\" = \"\" ]; then\n";
+		SHELL+="DNS1=server\n";
+		SHELL+="else\n";
+		SHELL+="DNS1=\"$3\"\n";
+		SHELL+="DNS2=\"$4\"\n";
+		SHELL+="ETH=\"$5\"\n";
+		SHELL+="FWM=\"servicename=$6\"\n";
+		SHELL+="fi\n";
+		SHELL+="okyh_bcpz\n";
+		SHELL+="okyh_bcmm\n";
+		SHELL+="okyh_bcdns\n";
+		SHELL+="okyh_ljkd\n";
+		SHELL+="exit\n";
+		SHELL+="}\n";
+
+		SHELL+="okyh_wbsz()\n";
+		SHELL+="{\n";
+		SHELL+="clear\n";
+		SHELL+="\n";
+		SHELL+="$ECHO \"OKYH pei zhi ADSL\"\n";
+		SHELL+="$ECHO \"\"\n";
+		SHELL+="\n";
+		SHELL+="# Must be root\n";
+		SHELL+="if [ \"`$ID -u`\" != 0 ] ; then\n";
+		SHELL+="    $ECHO \"$0: bu shi 'root' shen fen , wu fa ji xu\"\n";
+		SHELL+="    exit 1\n";
+		SHELL+="fi\n";
+
+		SHELL+="if [ ! -x $PPPD ] ; then\n";
+		SHELL+="    $ECHO \"RP-PPPOE de ban ben cuo wu\"\n";
+		SHELL+="    $ECHO \"xu yao RP-PPPOR 2.3.10 huo geng gao ban ben\"\n";
+		SHELL+="    exit 1\n";
+		SHELL+="fi\n";
+
+		SHELL+="devices=\"\"\n";
+		SHELL+="device_count=0\n";
+		SHELL+="get_device\n";
+
+		SHELL+="if [ $device_count -gt 0 ] ; then\n";
+		SHELL+="    $ECHO \"yi xia shi yi cun zai de ADSL zhang hu\"\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO \"  she bei:      ming zi:\"\n";
+
+		SHELL+="    for i in $devices ; do\n";
+		SHELL+="	. $NETWORKDIR/ifcfg-$i\n";
+		SHELL+="	$ECHO \"  $i         $NAME\"\n";
+		SHELL+="    done\n";
+
+		SHELL+="    $ECHO \"\"\n";
+
+		SHELL+="    for i in $devices ; do\n";
+		SHELL+="	default_device=$i\n";
+		SHELL+="	break\n";
+		SHELL+="    done\n";
+
+		SHELL+="    clear_env\n";
+		SHELL+="	$ECHO -n \"[ru '0']:\"\n";
+		SHELL+="	read dev\n";
+		SHELL+="fi\n";
+
+		SHELL+="case $dev in\n";
+		SHELL+="   ppp*) DEVICE=$dev ;;\n";
+		SHELL+="   0) DEVICE=ppp$dev ;;\n";
+		SHELL+="   1) DEVICE=ppp$dev ;;\n";
+		SHELL+="   2) DEVICE=ppp$dev ;;\n";
+		SHELL+="   3) DEVICE=ppp$dev ;;\n";
+		SHELL+="   4) DEVICE=ppp$dev ;;\n";
+		SHELL+="   5) DEVICE=ppp$dev ;;\n";
+		SHELL+="   *) DEVICE=ppp0 ;;\n";
+		SHELL+="esac\n";
+
+		SHELL+=" DEMAND=no\n";
+		SHELL+="CONFIG=$NETWORKDIR/ifcfg-$DEVICE\n";
+		SHELL+="if  [ -f $CONFIG ]; then\n";
+		SHELL+=". $CONFIG\n";
+		SHELL+="fi\n";
+
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO \"qing shu ru ADSL  deng lu yong hu ming\"\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    if [ -z \"$USER\" ] ; then\n";
+		SHELL+="	$ECHO  -n \"yong hu ming? \"\n";
+		SHELL+="    else\n";
+		SHELL+="	$ECHO -n \"ni yuan lai de yong hu ming shi $USER: \"\n";
+		SHELL+="    fi\n";
+		SHELL+="\n";
+		SHELL+="    read U\n";
+		SHELL+="\n";
+		SHELL+="    if [ -z \"$U\" ] ; then\n";
+		SHELL+="	if [ -z \"$USER\" ] ; then\n";
+		SHELL+="	    continue\n";
+		SHELL+="	fi\n";
+		SHELL+="    else\n";
+		SHELL+="	USER=\"$U\"\n";
+		SHELL+="    fi\n";
+
+		SHELL+="echo -n \"fu wu ming:\"\n";
+		SHELL+="read SEVNAME\n";
+		SHELL+="FWM=\"servicename=$SEVNAME\"\n";
+
+		SHELL+="    [ -n \"$ETH\" ] || ETH=eth0\n";
+		SHELL+="    if test `uname -s` = \"Linux\" ; then\n";
+		SHELL+="	$IFCONFIG $ETH > /dev/null 2>&1 || ETH=eth0\n";
+		SHELL+="    fi\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO \"qing xuan ze yi kuai lian jie ADSL Modem de wang ka\"\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO -n \"mo ren de shi $ETH: \"\n";
+		SHELL+="    read E\n";
+		SHELL+="\n";
+		SHELL+="    case $E in\n";
+		SHELL+="    eth*) ETH=$E ;;\n";
+		SHELL+="    *) ETH=eth0\n";
+		SHELL+="    okyh_eth ;;\n";
+		SHELL+="    esac\n";
+		SHELL+="    \n";
+		SHELL+="    DEMAND=\"$USER\"\n";
+		SHELL+="\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO \"shi  fou she zhi dang di de DNS\"\n";
+		SHELL+="    $ECHO \"bu she zhi DNS , qing an 'Enter'\"\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO -n \"DNS:\"\n";
+
+		SHELL+="    read DNS1\n";
+
+		SHELL+="    if [ -n \"$DNS1\" ] ; then\n";
+		SHELL+="        if [ \"$DNS1\" = \"sh\" ] ; then\n";
+		SHELL+="	DNS1=\"61.152.82.18\"\n";
+		SHELL+="	DNS2=\"202.96.209.133\"\n";
+		SHELL+="        elif [ \"$DNS1\" != \"server\" ] ; then\n";
+		SHELL+="           $ECHO -n \"DNS2:\"\n";
+		SHELL+="	    read DNS2\n";
+		SHELL+="	fi\n";
+		SHELL+="    else\n";
+		SHELL+="        DNS1=server\n";
+		SHELL+="    fi\n";
+		SHELL+="\n";
+		SHELL+="$ECHO -n \"\n";
+		SHELL+="shi fou shi yong zi dong lian jie ?\n";
+		SHELL+="\n";
+		SHELL+="mo ren shi qi yong de [s/f]?\"\n";
+		SHELL+="read boot\n";
+		SHELL+="if [ \"zd-f\" = \"zd-$boot\" ]; then\n";
+		SHELL+="     ONBOOT=no\n";
+		SHELL+="else\n";
+		SHELL+="     ONBOOT=yes\n";
+		SHELL+="     okadsl_zdlj     \n";
+		SHELL+="fi\n";
+		SHELL+="\n";
+		SHELL+="$ECHO \"\"\n";
+		SHELL+="$ECHO \"she zhi mi ma\"\n";
+		SHELL+="$ECHO \"\"\n";
+		SHELL+="$ECHO -n \"shu ru mi ma: \"\n";
+		SHELL+="read PASS\n";
+
+		SHELL+="USERCTL=\"yes\"\n";
+		SHELL+="FIREWALL=NAME\n";
+		SHELL+="clear\n";
+
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO \"** $DEVICE de pei zhi xin xi ****\"\n";
+		SHELL+="    $ECHO \"\"\n";
+		SHELL+="    $ECHO \"wang ka:               $ETH\"\n";
+		SHELL+="    $ECHO \"yong hu ming:          $USER\"\n";
+		SHELL+="    if [ -n \"$DNS1\" ] ; then\n";
+		SHELL+="        if [ \"$DNS1\" = \"server\" ] ; then\n";
+		SHELL+="	    $ECHO \"DNS zi dong cong ISP na li huo qu\"\n";
+		SHELL+="        else\n";
+		SHELL+="	    $ECHO \"shou xuan DNS:        $DNS1\"\n";
+		SHELL+="	    if [ -n \"$DNS2\" ] ; then\n";
+		SHELL+="		$ECHO \"bei yong DNS:      $DNS2\"\n";
+		SHELL+="	    fi\n";
+		SHELL+="        fi\n";
+		SHELL+="   fi \n";
+		SHELL+="if [ $ONBOOT = \"no\" ]; then\n";
+		SHELL+="    echo mei you shi yong zi dong lian jie\n";
+		SHELL+="else\n";
+		SHELL+="    echo xi tong qi dong shi zi dong lian ADSL\n";
+		SHELL+="fi\n";
+
+		SHELL+="while [ true ] ; do\n";
+		SHELL+="        $ECHO -n 'shi fou bao cun zhe ge peizhi xin xi (y/n)? '\n";
+		SHELL+="        read ANS\n";
+		SHELL+="	case \"ANS\" in\n";
+		SHELL+="	    Y|y|yes|Yes|oui|Oui)\n";
+		SHELL+="		ANS=y\n";
+		SHELL+="		;;\n";
+		SHELL+="            N|n|no|No|non|Non)\n";
+		SHELL+="		ANS=n\n";
+		SHELL+="		;;\n";
+		SHELL+="	esac\n";
+		SHELL+="	if [ \"$ANS\" = \"y\" -o \"$ANS\" = \"n\" ] ; then\n";
+		SHELL+="	    break\n";
+		SHELL+="        fi\n";
+		SHELL+="done\n";
+		SHELL+="if [ \"$ANS\" = \"n\" ] ; then\n";
+		SHELL+="	exit\n";
+		SHELL+="fi\n";
+		SHELL+="echo\n";
+		SHELL+="echo\n";
+
+		SHELL+="okyh_bcdns\n";
+		SHELL+="okyh_bcpz\n";
+		SHELL+="okyh_bcmm\n";
+
+		SHELL+="echo \"\n";
+		SHELL+="\n";
+		SHELL+="zheng zai lian jie ADSL\n";
+		SHELL+="\"\n";
+
+		SHELL+="$0 ljkd\n";
+
+		SHELL+="echo \"\n";
+		SHELL+="\n";
+		SHELL+="yi wan cheng lian jie , qing yong liu lan qi jian cha shi fou neng liu lan wang ye...\n";
+		SHELL+="\n";
+		SHELL+="zhu yi:\n";
+		SHELL+="zai RF4.1 deng de xi tong li , qing ba lian jie ADSL Modem de wang ka she wei jin yong\"\n";
+
+		SHELL+="exit 0\n";
+		SHELL+="}\n";
+
+
+		SHELL+="umask 077\n";
+
+		SHELL+="while [ $# -gt 0 ]; do\n";
+		SHELL+="  case \"$1\" in\n";
+		SHELL+="    zd-k) okadsl_zdlj ; exit ;;\n";
+		SHELL+="    zd-g) okyh_gbzdlj ; exit ;; \n";
+		SHELL+="    ljkd)  okyh_ljkd $2 ; shift $#  ;exit ;;\n";
+		SHELL+="    gx)  okyh_gxpz $2 ; shift $#  ;exit;;\n";
+		SHELL+="    gblj)  okyh_gblj $2 ; shift $#  ;exit ;; \n";
+		SHELL+="    gxkh)  okyh_gxpz_khd $2 ; shift $# ;exit;; \n";
+		SHELL+="    txgl) okyh_tx_adsl ; shift 1 ;exit;;\n";
+		SHELL+="    ad*) okyh_kslj \"$1\" \"$2\"; shift $# ;exit;;\n";
+		SHELL+="    ks) okyh_kslj \"$2\" \"$3\"; shift $# ;exit;;\n";
+		SHELL+="    dlxx) okyh_kslj \"$2\" \"$3\" \"$4\" \"$5\"  \"$6\" \"$7\"; shift $# ;exit;;\n";
+		SHELL+="    eth*) okyh_eth \"$1\" \"$2\" \"GATEWAY=$3\" ; shift $# ;exit;;\n";
+		SHELL+="    sz) okyh_wbsz ; shift 1 ;exit;;\n";
+		SHELL+="    *)  shift $# ;;\n";
+		SHELL+="  esac\n";
+		SHELL+="done\n";
+
+		
+		如果(OKBasicLib.SFGLY() == 真)
+		{
+			OKBasicLib.XWB("/bin/okadsl",SHELL);
+			OKBasicLib.SHELL("chmod +x /bin/okadsl");
+			如果(CS == "sz")
+				OKBasicLib.SHELLCK("/bin/okadsl sz","ADSL文本设置");
+			否则
+				OKBasicLib.SHELL("/bin/okadsl "+CS);
+		}
+	}
+}

@@ -1,0 +1,370 @@
+﻿引入 用户界面,工具;
+
+/*
+####################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+"#          www.oukan,1m.cn
+#####################################
+*/
+
+class SH_OKYH
+{
+	public static string BL()
+	{
+		string SHELL="#!/bin/bash\n";
+
+		SHELL+="menu=/tmp/okcd/Utilities\n";
+		SHELL+="xtcd=/usr/share/applnk/System\n";
+		SHELL+="gnome=/usr/share/applications\n";
+		SHELL+="PATH=\"/sbin;/bin/usr/bin;$PATH\"\n";
+		SHELL+="gnome1=/usr/share/gnome/apps\n";
+		SHELL+="okcd=/usr/share/applnk\n";
+		SHELL+="srf=\"rfinput chinput fcitx yong skim scim ami ";
+		SHELL+="skkinput xwnmo xcim hanIM 3jj kinput kinput2\"\n";
+		SHELL+="cjml=/usr/lib/chajian\n";
+		SHELL+="llqml=\"\n";
+		SHELL+="/usr/*/mozilla*/plugins\n";
+		SHELL+="/usr/*/netscape*/plugins\n";
+		SHELL+="/usr/*/firefox*/plugins\n";
+		SHELL+="/usr/*/opera*/plugins\n";
+		SHELL+="\"\n";
+		SHELL+="mms=\"\n";
+		SHELL+="gxine\n";
+		SHELL+="kxine\n";
+		SHELL+="kaffeine\n";
+		SHELL+="totem\n";
+		SHELL+="mplayer\n";
+		SHELL+="\"\n";
+		SHELL+="rtsp=\"\n";
+		SHELL+="realplay\n";
+		SHELL+="gxine\n";
+		SHELL+="kxine\n";
+		SHELL+="kaffeine\n";
+		SHELL+="totem\n";
+		SHELL+="mplayer\n";
+		SHELL+="realplay\n";
+		SHELL+="../*/*/realplay\n";
+		SHELL+="\"\n";
+		SHELL+="mail=\"kmail\n";
+		SHELL+="\"\n";
+
+		SHELL+="if [ `id -u` = \"0\" ]; then\n";
+		SHELL+="	okbfml=/mnt/.okbf\n";
+		SHELL+="	if [ ! -e $okbfml ]; then\n";
+		SHELL+="		mkdir -p $okbfml\n";
+		SHELL+="	fi\n";
+		SHELL+="fi\n";
+		SHELL+="if [ ! -e $HOME/.OKYH ]; then\n";
+		SHELL+=" 	mkdir -p $HOME/.OKYH\n";
+		SHELL+="fi\n";
+
+		return SHELL;
+	}
+
+	public static LLQ()
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+="okie_llq()\n";
+		SHELL+="{\n";
+		SHELL+="    cat <<LLQSZ\n";
+		SHELL+="\n";
+		SHELL+="pref(\"network.protocol-handler.external.mms\", true); // for mail\n";
+		SHELL+="pref(\"network.protocol-handler.app.mms\", \"/usr/bin/playmms\"); // for mail\n";
+		SHELL+="pref(\"network.protocol-handler.external.rtsp\", true); // for mail\n";
+		SHELL+="pref(\"network.protocol-handler.app.rtsp\", \"/usr/bin/playrtsp\"); // for mail\n";
+		SHELL+="pref(\"network.protocol-handler.external.ed2k\", true); // for mail\n";
+		SHELL+="pref(\"network.protocol-handler.app.ed2k\", \"/usr/bin/ed2k\"); // for mail\n";
+		SHELL+="\n";
+		SHELL+="LLQSZ\n";
+		SHELL+="}\n";
+
+		SHELL+="	if [ \"`whoami`\" = \"root\" ]; then\n";
+		SHELL+="pref=\"`find /usr -name \"*-prefs.js\"`\n";
+		SHELL+="`find /usr -name \"firefox.js\"`\"\n";
+		SHELL+="		for mm in $pref ; do\n";
+		SHELL+="			if [ -f $mm ]; then\n";
+		SHELL+=" 				if [ ! -f $mm.okb ];  then\n";
+		SHELL+="					cp $mm $mm.okb\n";
+		SHELL+="				fi\n";
+		SHELL+="				sed -e '/mms/d' $mm.okb |sed -e '/rtsp/d'>$mm\n";
+		SHELL+="				okie_llq>>$mm\n";
+		SHELL+="			fi\n";
+		SHELL+="		done\n";
+		SHELL+=" 		for bf in $mms ; do\n";
+		SHELL+="			if [ -f /usr/bin/$bf ]; then\n";
+		SHELL+="				ln -sf /usr/bin/$bf /usr/bin/playmms\n";
+		SHELL+="			fi\n";
+		SHELL+="		done\n";
+		SHELL+="		for bf in $rtsp ; do\n";
+		SHELL+="			if [ -f /usr/bin/$bf ]; then\n";
+		SHELL+="				ln -sf /usr/bin/$bf /usr/bin/playrtsp\n";
+		SHELL+="			fi\n";
+		SHELL+="		done\n";
+		SHELL+="		for bf in $mail ; do\n";
+		SHELL+="			if [ -f /usr/bin/$bf ]; then\n";
+		SHELL+="				ln -sf /usr/bin/$bf /usr/bin/mailsys\n";
+		SHELL+="			fi\n";
+		SHELL+="		done\n";
+		SHELL+="		for bf in $mms ; do\n";
+		SHELL+="			if [ -f /usr/bin/$bf ]; then\n";
+		SHELL+="				ln -sf /usr/bin/$bf /usr/bin/playmms\n";
+		SHELL+="			fi\n";
+		SHELL+="		done\n";
+		SHELL+="		if [ ! -e $cjml ]; then\n";
+		SHELL+="			mkdir -p $cjml\n";
+		SHELL+="		fi\n";
+		SHELL+="		for  plug in $llqml ; do\n";
+		SHELL+="			if [ -d $plug ]; then\n";
+		SHELL+="				cp -rf $plug/* $cjml/\n";
+		SHELL+="				cp -rf $cjml/* $plug/\n";
+		SHELL+="			fi\n";
+		SHELL+="		done\n";
+		SHELL+="	fi\n";
+
+		OKBasicLib.SHELL(SHELL);
+
+	}
+
+
+	public static QLKDE(int CS)
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+=" rm -rf $HOME/.kde/Autostart\n";
+
+		if(OKBasicLib.SFGLY() == true)
+		{
+			SHELL+="if [ ! -f /usr/share/autostart.okb ]; then\n";
+			SHELL+="   cd  /\n";
+			SHELL+="   tar czvf /usr/share/autostart.okb usr/share/autostart/* >/dev/unll\n";
+			SHELL+="fi\n";
+
+			if(CS==1)
+			{
+				SHELL+="   cd /\n";
+				SHELL+="   tar xzvf /usr/share/autostart.okb >/dev/unll\n";
+				SHELL+="  exit\n";
+			}
+			else
+			{
+				SHELL+="if [ ! -e $xtcd/Starts ]; then\n";
+				SHELL+="	mkdir -p $xtcd/Starts\n";
+				SHELL+="fi\n";
+				SHELL+="cp -rf /usr/share/autostart/* $xtcd/Starts/\n";
+
+				SHELL+="for zdtb in /usr/share/autostart/* ; do\n";
+				SHELL+="   zd=`cat $zdtb`\n";
+				SHELL+="  case $zd in\n";
+				SHELL+="     *kalarm*) ;;\n";
+				SHELL+="     *kdesktop*) ;;\n";
+				SHELL+="     *kmix*) ;;\n";
+				SHELL+="     *netstatus*) ;;\n";
+				SHELL+="     *rfnetstat*) ;;\n";
+				SHELL+="     *kicker*)  ;;\n";
+				SHELL+="     *OKYHSRF*) ;;\n";
+				SHELL+="     *) rm -rf $zdtb ;;\n";
+				SHELL+="  esac\n";
+				SHELL+="done\n";
+			}
+
+		OKBasicLib.SHELL(SHELL);
+
+		}
+	}
+	public static JSFW(int CS)
+	{
+		string SHELL=SH_OKYH.BL();
+		if(OKBasicLib.SFGLY() == true)
+		{
+			SHELL+="if [ ! -f /etc/rc.d/rc5.okb ]; then\n";
+			SHELL+="   cd  /\n";
+			SHELL+="   tar czvf /etc/rc.d/rc5.okb etc/rc.d/rc5.d >/dev/unll\n";
+			SHELL+="fi\n";
+			if(CS==1)
+			{
+				SHELL+="   cd /\n";
+				SHELL+="   tar xzvf /etc/rc.d/rc5.okb etc/rc.d/rc5.d >/dev/unll\n";
+				SHELL+="   tar xzvf /boot/grub/grub.okb boot/grub/grub.conf  >/dev/unll\n";
+				SHELL+="  exit\n";
+			}
+			else
+			{
+				SHELL+="for fw in /etc/rc.d/rc5.d/* ; do\n";
+				SHELL+="   case $fw in \n";
+				SHELL+="    *ls-disk*|*local*) mv -f $fw `echo $fw |sed -e 's/K/S/g'` 2>/dev/unll ;;\n";
+				SHELL+="    *oklink*|*cups*) mv -f $fw `echo $fw |sed -e 's/K/S/g'` 2>/dev/unll ;;\n";
+				SHELL+="    *) mv -f $fw `echo $fw |sed -e 's/S/K/g'` 2>/dev/unll ;;\n";
+				SHELL+="  esac\n";
+				SHELL+="done\n";
+				SHELL+="if [ ! -f /boot/grub/grub.okb ]; then\n";
+				SHELL+="   cd  /\n";
+				SHELL+="   tar czvf /boot/grub/grub.okb boot/grub/grub.conf >/dev/unll\n";
+				SHELL+="fi\n";
+
+				文本 GRUB=OKBasicLib.DWB("/boot/grub/grub.conf");
+				如果(GRUB.查找("quiet") == -1)
+				{
+					GRUB.替换全部("ro ","ro devfs=mount quiet ");
+					OKBasicLib.XWB("/boot/grub/grub.conf",GRUB);
+				}
+
+			}
+			OKBasicLib.SHELL(SHELL);
+
+		}
+	}
+	
+	public static DYGL(int CS)
+	{
+		string SHELL=SH_OKYH.BL();
+
+		if(OKBasicLib.SFGLY() == true)
+		{
+			SHELL+="if [ ! -f /boot/grub/grub.okb ]; then\n";
+			SHELL+="   cd  /\n";
+			SHELL+="   tar czvf /boot/grub/grub.okb boot/grub/grub.conf >/dev/unll\n";
+			SHELL+="fi\n";
+			if(CS==1)
+			{
+				SHELL+="   cd /\n";
+				SHELL+="   tar xzvf /boot/grub/grub.okb boot/grub/grub.conf  >/dev/unll\n";
+				SHELL+="  exit\n";
+			}
+			else
+			{
+				文本 GRUB=OKBasicLib.DWB("/boot/grub/grub.conf");
+				如果(GRUB.查找("acpi=off ") == -1)
+				{
+					GRUB.替换全部("ro ","ro acpi=off ");
+					OKBasicLib.XWB("/boot/grub/grub.conf",GRUB);
+				}
+			}
+
+		OKBasicLib.SHELL(SHELL);
+
+		}
+	}
+
+	public static XWIN()
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="oyh_x_rcc()\n";
+		SHELL+="{\n";
+		SHELL+="tee $HOME/.xinitrc << RCFILE\n";
+		SHELL+="#!/bin/sh\n";
+		SHELL+="RCFILE\n";
+		SHELL+="}\n";
+		SHELL+="\n";
+		SHELL+="okyh_x_glq()\n";
+		SHELL+="{\n";
+		SHELL+="\n";
+		SHELL+="case $CHOSE in\n";
+		SHELL+="  1)\n";
+		SHELL+="    if [ -f `which kde` ];then\n";
+		SHELL+="      startkde\n";
+		SHELL+="    else\n";
+		SHELL+="      echo \"mei zhao dao\";exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  2)\n";
+		SHELL+="    if [ -f `which xfce` ];then\n";
+		SHELL+="      xfwm\n";
+		SHELL+="    else\n";
+		SHELL+="       echo \"mei zhao dao\";exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  3)\n";
+		SHELL+="    if [ -f `which icewm` ];then\n";
+		SHELL+="      xsetbg -onroot $HOME/.wall.jpg &\n";
+		SHELL+="      icewm\n";
+		SHELL+="    else\n";
+		SHELL+="      echo \"mei zhao dao\";exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  4)\n";
+		SHELL+="    if [ -f `which mlvwm` ];then\n";
+		SHELL+="      cd /usr/X11R6/lib/X11/mlvwm\n";
+		SHELL+="      xsetbg -onroot /usr/X11R6/lib/X11/mlvwm/mac.jpg &\n";
+		SHELL+="      mlvwm\n";
+		SHELL+="      else\n";
+		SHELL+="      echo \"mei zhao dao\";exit 1'\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  5)\n";
+		SHELL+="    if [ -f `which fvwm95` ];then\n";
+		SHELL+="      fvwm95\n";
+		SHELL+="    else\n";
+		SHELL+="      echo \"mei zhao dao\";exit 1'\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  6)\n";
+		SHELL+="    if [ -f `which afterstep` ];then\n";
+		SHELL+="      afterstep\n";
+		SHELL+="    else\n";
+		SHELL+="      echo \"mei zhao dao\";exit 1\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  7)\n";
+		SHELL+="    if [ -f `which wmaker` ];then\n";
+		SHELL+="      wmaker\n";
+		SHELL+="\n";
+		SHELL+="    fi\n";
+		SHELL+="  ;;\n";
+		SHELL+="  0) exit ;;\n";
+		SHELL+="  *) echo 'wu xiao de xuan ze.'  ;;\n";
+		SHELL+="esac\n";
+		SHELL+="tee<<xianshi\n";
+		SHELL+="   \"1\" \"KDE Desktop\" \n";
+		SHELL+="   \"2\" \"xfce \"  \n";
+		SHELL+="   \"3\" \"cewm\" \n";
+		SHELL+="   \"4\" \"mlvwm\" \n";
+		SHELL+="   \"5\" \"Fvwm95\" \n";
+		SHELL+="   \"6\" \"AfterStep\" \n";
+		SHELL+="   \"7\" \"WindowMaker\"  \n";
+		SHELL+="xianshi\n";
+		SHELL+="}\n";
+
+		OKBasicLib.SHELL(SHELL);
+	}
+	public static QDCKCX()
+	{
+		string SHELL=BL();	
+
+		SHELL+="if [ -f /usr/bin/\"$1\" ]; then\n";
+		SHELL+="  oyh_x_rcc\n";
+		SHELL+="  echo \"/usr/bin/$1\">>$HOME/.xinitrc\n";
+		SHELL+="  startx\n";
+		SHELL+="  rm -rf $HOME/.xinitrc\n";
+		SHELL+="  exit\n";
+		SHELL+="elif [ -f /usr/local/bin/\"$1\" ]; then\n";
+		SHELL+="  oyh_x_rcc\n";
+		SHELL+="  echo \"/usr/local/bin/$1\">>$HOME/.xinitrc\n";
+		SHELL+="  startx\n";
+		SHELL+="  rm -rf $HOME/.xinitrc\n";
+		SHELL+="  exit\n";
+		SHELL+=" elif  [ -f \"/$1\" ]; then\n";
+		SHELL+="  oyh_x_rcc\n";
+		SHELL+="  echo \"exec \\\"/$1\\\"\">>$HOME/.xinitrc\n";
+		SHELL+="  startx\n";
+		SHELL+="  rm -rf $HOME/.xinitrc\n";
+		SHELL+="  exit\n";
+		SHELL+="elif [ ok != \"ok$1\" ]; then\n";
+		SHELL+="  echo mei you $1\n";
+		SHELL+="  exit\n";
+		SHELL+="elif [ ok = \"ok$DISPLAY\" ]; then\n";
+		SHELL+="  oyh_x_rrc\n";
+		SHELL+="  echo \"exec $0 xwin\">>$HOME/.xinitrc\n";
+		SHELL+="  startx\n";
+		SHELL+="  exit\n";
+		SHELL+="fi\n";
+		SHELL+="  okyh_x_glq\n";
+		SHELL+="  exit\n";
+
+		OKBasicLib.SHELL(SHELL);
+
+	}
+
+
+}

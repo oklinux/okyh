@@ -1,0 +1,15 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\\Wine\\AppDefaults\\QQ.EXE]
+"Version"="win98"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\QQ.EXE\DllOverrides]
+"*"="native,builtin"
+"mshtml"="native,builtin"
+"msvcrt"="native,builtin"
+"ole32"="builtin,native"
+"riched20"="native,builtin"
+"rpcrt4"="native,builtin"
+"shdocvw"="native,builtin"
+"shlwapi"="native,builtin"
+"urlmon"="native,builtin"

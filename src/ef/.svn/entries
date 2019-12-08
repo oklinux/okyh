@@ -1,0 +1,142 @@
+8
+
+dir
+0
+https://okyh.googlecode.com/svn/trunk/src/ef
+https://okyh.googlecode.com/svn
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+.history
+file
+
+
+
+add
+
+sz-zddl.ef
+file
+
+
+
+add
+
+sz-ppp.ef
+file
+
+
+
+add
+
+okyh.efp
+file
+
+
+
+add
+
+okyh.inf
+file
+
+
+
+add
+
+okyh.efw
+file
+
+
+
+add
+
+httpclass.ef
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+sz-eth.ef
+file
+
+
+
+add
+
+okyh.ef
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+lib-okyh.ef
+file
+
+
+
+add
+
+gj-rpms.ef
+file
+
+
+
+add
+
+GH-STOCK.ef
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+okyh.history
+file
+
+
+
+add
+
+sz-inittab.ef
+file
+
+
+
+add
+
+sz-srf.ef
+file
+
+
+
+add
+

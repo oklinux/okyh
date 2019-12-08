@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Wine 使用向导
+Comment=asyWine
+Exec=/usr/bin/EasyWine
+Icon=/usr/share/EasyWine/xpm/icon.xpm
+Terminal=false
+Type=Application
+Categories=Application;Utility;
+

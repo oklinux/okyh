@@ -1,0 +1,267 @@
+引入 工具 ,用户界面;
+/*
+#################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2007
+"#          www.oukan,1m.cn
+"################################
+*/
+
+
+class SH_JRC
+{
+	public static 文本 BL()
+	{
+		string SHELL="#!/bin/bash\n";
+
+		SHELL+="ztml=\"\n";
+		SHELL+="/usr/X11R6/lib/X11/fonts/TTF/*\n";
+		SHELL+="/usr/share/fonts/zh_*/TrueType/*\n";
+		SHELL+="/usr/X11R6/lib/X11/fonts/TT/*\n";
+		SHELL+="/usr/share/fonts/TT/*\"\n";
+		SHELL+="cdrom=\"\n";
+		SHELL+="/m*/hda\n";
+		SHELL+="/m*/hdb\n";
+		SHELL+="/m*/hdc\n";
+		SHELL+="/m*/hdd\n";
+		SHELL+="/m*/*cdr*\n";
+		SHELL+="\"\n";
+
+		SHELL+="for vcd in $cdrom ; do\n";
+		SHELL+="  if [ -d $vcd ]; then\n";
+		SHELL+="    break\n";
+		SHELL+="  else\n";
+		SHELL+="    vcd=\"$herodir/cdrom\"\n";
+		SHELL+="   mkdir -p \"$vcd\"\n";
+		SHELL+=" fi\n";
+		SHELL+="done\n";
+
+		SHELL+="if [ -f /herosoft/bin/class ]; then\n";
+		SHELL+="  herodir=/herosoft\n";
+		SHELL+="else\n";
+		SHELL+="   echo mei zhao dao Herosoft Class\n";
+		SHELL+="    exit\n";
+		SHELL+="fi\n";
+
+		return SHELL;
+	}
+	公开 静态 CFG(文本 CS)
+	{
+		string SHELL=BL();
+
+		SHELL+="tee <<OKCLASS>\"$herodir/config\"\n";
+		SHELL+="CLASS REGISTRY Version 2\n";
+		SHELL+=";; All keys relative to \\\\Machine\\\\Software\\\\Class\\\\Class\\\\Config\n";
+		SHELL+="\n";
+		SHELL+="[Drive A]\n";
+		SHELL+="\"Path\" = \"/mnt/floppy\"\n";
+		SHELL+="\"Type\" = \"floppy\"\n";
+		SHELL+="\"Label\" = \"Floppy\"\n";
+		SHELL+="\"Serial\" = \"87654321\"\n";
+		SHELL+="\"Device\" = \"/dev/fd0\"\n";
+		SHELL+="\n";
+		SHELL+="[Drive C]\n";
+		SHELL+="\"Path\" = \"$herodir/disk-c\"\n";
+		SHELL+="\"Type\" = \"hd\"\n";
+		SHELL+="\"Label\" = \"Hero\"\n";
+		SHELL+="\"Filesystem\" = \"win95\"\n";
+		SHELL+="\n";
+		SHELL+="[Drive D]\n";
+		SHELL+="\"Path\" = \"/$vcd\"\n";
+		SHELL+="\"Type\" = \"cdrom\"\n";
+		SHELL+="\"Label\" = \"CD-Rom\"\n";
+		SHELL+="\"Filesystem\" = \"win95\"\n";
+		SHELL+="\"Device\" = \"/dev/cdrom\"\n";
+		SHELL+="\n";
+		SHELL+="[Drive E]\n";
+		SHELL+="\"Path\" = \"/tmp\"\n";
+		SHELL+="\"Type\" = \"hd\"\n";
+		SHELL+="\"Label\" = \"Temp\"\n";
+		SHELL+="\"Filesystem\" = \"win95\"\n";
+		SHELL+="\n";
+		SHELL+="[Drive F]\n";
+		SHELL+="\"Path\" = \"${HOME}\"\n";
+		SHELL+="\"Type\" = \"hd\"\n";
+		SHELL+="\"Label\" = \"User\"\n";
+		SHELL+="\"Filesystem\" = \"win95\"\n";
+		SHELL+="\n";
+		SHELL+="[Drive X]\n";
+		SHELL+="\"Path\" = \"/\"\n";
+		SHELL+="\"Type\" = \"hd\"\n";
+		SHELL+="\"Label\" = \"Linux\"\n";
+		SHELL+="\"Filesystem\" = \"win95\"\n";
+		SHELL+="\n";
+		SHELL+="[class]\n";
+		SHELL+="\"Windows\" = \"c:\\\\\\\\windows\"\n";
+		SHELL+="\"System\" = \"c:\\\\\\\\windows\\\\\\\\system\"\n";
+		SHELL+="\"Temp\" = \"e:\\\\\\\\\"\n";
+		SHELL+="\"Path\" = \"c:\\\\\\\\windows;c:\\\\\\\\windows\\\\\\\\system;e:\\\\\\\\;e:\\\\\\\\test;f:\\\\\\\\\"\n";
+		SHELL+="\"Profile\" = \"c:\\\\\\\\windows\\\\\\\\Profiles\\\\\\\\Administrator\"\n";
+		SHELL+="\"GraphicsDriver\" = \"XWINDRV\"\n";
+		SHELL+=";\"ShowDirSymlinks\" = \"1\"\n";
+		SHELL+="\"ShellLinker\" = \"/herosoft/bin/shelllink\"\n";
+		SHELL+="\"ACP\" = \"936\"\n";
+		SHELL+="\"OEMCP\" = \"936\"\n";
+		SHELL+="\n";
+		SHELL+="[FONT936]\n";
+		SHELL+="\"MS Song\"=\"Fangsong Ti\"\n";
+		SHELL+="\"CBCECCE5\"=\"Fangsong Ti\"\n";
+		SHELL+="\"MS Song\"=\"\\xCB\\xCE\\xCC\\xE5\"\n";
+		SHELL+="\"CBCECCE5\"=\"MS Song\"\n";
+		SHELL+="\n";
+		SHELL+="[FONT950]\n";
+		SHELL+="\"B773B2D3A9FAC5E9\"=\"sunsim\"\n";
+		SHELL+="\"B2D3A9FAC5E9\"=\"ming\"\n";
+		SHELL+="\"MS Ming\"=\"ming\"\n";
+		SHELL+="\n";
+		SHELL+="# <classconf>\n";
+		SHELL+="\n";
+		SHELL+="[DllDefaults]\n";
+		SHELL+="\"DefaultLoadOrder\" = \"native, builtin, so\"\n";
+		SHELL+="\"*\" = \"native,builtin,so\"\n";
+		SHELL+="\n";
+		SHELL+="[XWINDRV]\n";
+		SHELL+="\"AllocSystemColors\" = \"100\"\n";
+		SHELL+="\"PrivateColorMap\" = \"N\"\n";
+		SHELL+="\"PerfectGraphics\" = \"N\"\n";
+		SHELL+=";;;\"ScreenDepth\" = \"16\"\n";
+		SHELL+=";;;\"Display\" = \":0.0\"\n";
+		SHELL+="\"Managed\" =  \""+CS+"\"\n";
+		SHELL+=";\"Desktop\" = \"640x480\"\n";
+		SHELL+="\"UseDGA\" = \"N\"\n";
+		SHELL+="\"UseXShm\" = \"Y\"\n";
+		SHELL+="\"DXGrab\" = \"N\"\n";
+		SHELL+="\"DesktopDoubleBuffered\" = \"N\"\n";
+		SHELL+="\"TextCP\" = \"0\"\n";
+		SHELL+=";; \"XVideoPort\" = \"43\"\n";
+		SHELL+="\n";
+		SHELL+="[fonts]\n";
+		SHELL+="\"Resolution\" = \"96\"\n";
+		SHELL+="\"Default\" = \"-adobe-times-\"\n";
+		SHELL+="\n";
+		SHELL+="[serialports]\n";
+		SHELL+="\"Com1\" = \"/dev/ttyS0\"\n";
+		SHELL+="\"Com2\" = \"/dev/ttyS1\"\n";
+		SHELL+="\"Com3\" = \"/dev/ttyS2\"\n";
+		SHELL+="\"Com4\" = \"/dev/modem\"\n";
+		SHELL+="\n";
+		SHELL+="[parallelports]\n";
+		SHELL+="\"Lpt1\" = \"/dev/lp0\"\n";
+		SHELL+="\n";
+		SHELL+="[spooler]\n";
+		SHELL+="\"LPT1:\" = \"|lpr\"\n";
+		SHELL+=";\"LPT2:\" = \"|gs -sDEVICE=bj200 -sOutputFile=/tmp/fred -q -\"\n";
+		SHELL+=";\"LPT3:\" = \"/dev/lp3\"\n";
+		SHELL+="\n";
+		SHELL+="[ports]\n";
+		SHELL+=";\"read\" = \"0x779,0x379,0x280-0x2a0\"\n";
+		SHELL+=";\"write\" = \"0x779,0x379,0x280-0x2a0\"\n";
+		SHELL+="\n";
+		SHELL+="[spy]\n";
+		SHELL+="\"Exclude\" = \"WM_SIZE;WM_TIMER;\"\n";
+		SHELL+="\n";
+		SHELL+="[registry]\n";
+		SHELL+="\"LoadGlobalRegistryFiles\" = \"Y\"\n";
+		SHELL+="\"LoadHomeRegistryFiles\" = \"Y\"\n";
+		SHELL+="\"LoadWindowsRegistryFiles\" = \"Y\"\n";
+		SHELL+="\"WritetoHomeRegistryFiles\" = \"Y\"\n";
+		SHELL+="; \"PeriodicSave\" = \"600\"\n";
+		SHELL+="\"SaveOnlyUpdatedKeys\" = \"N\"\n";
+		SHELL+="\n";
+		SHELL+="[ClassLook]\n";
+		SHELL+="\"ClassLook\" = \"Win98\"\n";
+		SHELL+="\n";
+		SHELL+="[Console]\n";
+		SHELL+=";\"Drivers\" = \"tty\"\n";
+		SHELL+=";\"XtermProg\" = \"nxterm\"\n";
+		SHELL+=";\"InitialRows\" = \"25\"\n";
+		SHELL+=";\"InitialColumns\" = \"80\"\n";
+		SHELL+=";\"TerminalType\" = \"nxterm\"\n";
+		SHELL+="\n";
+		SHELL+="[Clipboard]\n";
+		SHELL+="\"ClearAllSelections\" = \"0\"\n";
+		SHELL+="\"PersistentSelection\" = \"1\"\n";
+		SHELL+="\n";
+		SHELL+="# </classconf>\n";
+		SHELL+="OKCLASS\n";
+
+     		OKBasicLib.SHELL(SHELL);
+
+	}
+	public static CHULI(文本 CS)
+	{
+		文本 SHELL=BL();
+
+		SHELL+="case \""+CS+"\" in\n";
+		SHELL+="     *.exe)\n";
+		SHELL+="     for exe in `find $herodir -name \""+CS+"\"` ; do\n";
+		SHELL+="         if [ -f $exe ]; then\n";
+		SHELL+="            cd \"`dirname $exe`\"\n";
+		SHELL+="            $herodir/bin/class $exe\n";
+		SHELL+="            exit\n";
+		SHELL+="         fi\n";
+		SHELL+="     done\n";
+		SHELL+="     exit ;;\n";
+		SHELL+="esac\n";
+
+		如果(OKBasicLib.SFGLY() == 真)
+		{
+		SHELL+="font=\"`find $herodir/ -name Fonts`\"\n";
+		SHELL+="if [ -d \"$font\"  ] ; then\n";
+		SHELL+=" for zt in $ztml ; do\n";
+		SHELL+="  if [ -f \"$zt\" ]; then\n";
+		SHELL+="     ln -sf \"$zt\" \"$font/`basename $zt`\"\n";
+		SHELL+="  fi \n";
+		SHELL+=" done\n";
+
+		SHELL+="	class=/herosoft/.class\n";
+		SHELL+="	if [ ! -e $class ]; then\n";
+		SHELL+="		exit\n";
+		SHELL+="	fi\n";
+
+
+
+		SHELL+="if [ \"classxz\" = \"class"+CS+"\" ]; then\n";
+		SHELL+="  echo -n \"nin que shi yao xie zai Class [shi/fou]?\"\n";
+		SHELL+="  read xz\n";
+		SHELL+="  if [ \"class-shi\" = \"class-$xz\" ]; then\n";
+		SHELL+="      rm -rf /root/.kde/share/applnk/Herosoft \\\n";
+		SHELL+="   /usr/share/applnk/Hrosoft/  /usr/share/applnk/App*/Herosoft \\\n";
+		SHELL+="     $gerodir /usr/share/applications/class-link*.desktop \\\n";
+		SHELL+="      /usr/share/applnk/App*/Multimedia/class-link*.desktop \\\n";
+		SHELL+="      /usr/share/applnk/Multimedia/class-link*.desktop \\\n";
+		SHELL+="      exit\n";
+		SHELL+="  fi\n";
+		SHELL+="  exit\n";
+		SHELL+="fi\n";
+
+		SHELL+="mkdir -p /tmp/hero\n";
+		SHELL+="for n in   /rosot/.kde/share/applnk/Herosoft/*/*/*.desktop \\\n";
+		SHELL+=" /root/.kde/share/applnk/Herosoft/*/*.desktop ; do\n";
+		SHELL+="   if  [ -f \"$n\" ]; then\n";
+		SHELL+="     cp -rf \"$n\" /tmp/hero\n";
+		SHELL+="   fi\n";
+		SHELL+="done\n";
+		SHELL+="NOME=0\n";
+		SHELL+="for i in /tmp/hero/*.desktop ; do\n";
+		SHELL+="   if  [ -f \"$i\" ]; then\n";
+		SHELL+="    echo \"Categories=GNOME;Application;AudioVideo;Audio;Video;Player\">>	\"$i\"\n";
+		SHELL+="    mv -f \"$i\" \"/usr/share/applications/class-link$NOME.desktop\"\n";
+		SHELL+="    NOME=`expr  $NOME  + 1`\n";
+		SHELL+="   fi\n";
+		SHELL+="done\n";
+		SHELL+="cp -rf /root/.kde/share/applnk/Herosoft  /usr/share/applnk\n";
+		SHELL+="rm -rf  /tmp/hero\n";
+		SHELL+="   chmod -R 777 \"$herodir/.tmp\"\n";
+
+		如果(CS == "zm")
+			CFG("Y");
+		否则
+		SHELL+="  rm -rf $herodir/.class/config\n";
+		}
+
+		OKBasicLib.SHELL(SHELL);
+		
+	}
+}
+

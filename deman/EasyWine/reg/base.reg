@@ -1,0 +1,390 @@
+REGEDIT4
+
+; Windows version to imitate (win95,win98,winme,nt351,nt40,win2k,winxp,win2k3,win20,win30,win31)
+; Set version to win98 is recommended.
+[HKEY_CURRENT_USER\Software\Wine]
+"Version"="win98"
+"ShowDirSymlinks"="1"
+"ShowDotFiles"="1"
+
+[HKEY_CURRENT_USER\Software\Wine\X11 Driver]
+"AllocSystemColors"="100"
+"DesktopDoubleBuffered"="Y"
+"DXGrab"="Y"
+"Managed"="Y"
+"PrivateColorMap"="N"
+"TextCP"="0"
+"UseDGA"="N"
+"UseTakeFocus"="Y"
+"UseXRandR"="N"
+"UseXVidMode"="Y"
+
+; Be careful here, wrong DllOverrides settings have the potential
+; to pretty much kill your setup.
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults]
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\acmsetup.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\acmsetup.exe\DllOverrides]
+"*"="builtin, native"
+"*advapi32"="builtin"
+"*comctl32"="builtin, native"
+"*commctrl"="builtin, native"
+
+;AcroReader 6
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\AcroRd32.exe]
+"Version"="win2k"
+
+; ALZip
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\alzip.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\alzip.exe\DllOverrides]
+"comctl32"="native"
+
+; Awasu RSS Feed Reader
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\awasu.exe]
+"Version"="win2k"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\awasu.exe\DllOverrides]
+"msvcrt"="native, builtin"
+
+; Awasu installation
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\upgrade.exe\DllOverrides]
+"msvcrt"="native, builtin"
+
+; Winecfg
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\winecfg.exe\DllOverrides]
+"ole32"="builtin"
+
+;Densi denwachou 2003
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Blarea8.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Blarea8.exe\X11 Driver]
+"Managed"="N"
+
+; Bottler XDCC Bott Interface
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Bottler.exe]
+"Version"="win2k"
+
+; DVD Shrink
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\DVD Shrink 3.2.exe]
+"Version"="win2k"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\DVD Shrink 3.2.exe\DllOverrides]
+"*"="builtin, native"
+
+; Future Pinball
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\FuturePinballSetup.exe]
+"Version"="win2k"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\FuturePinballSetup.exe\DllOverrides]
+"ole32"="builtin, native"
+"rpcrt4"="builtin, native"
+
+; Future Pinball
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Future Pinball.exe]
+"Version"="winxp"
+
+; Google Earth
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\GoogleEarth.exe]
+"Version"="winxp"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\GoogleEarth.exe\DllOverrides]
+"*"="builtin"
+"msvcrt"="native"
+"ole32"="native"
+"usp10"="native"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\GoogleEarthSetup.exe]
+"Version"="winxp"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\grpconv.exe]
+"Version"="nt40"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\grpconv.exe\DllOverrides]
+"*comctl32"="builtin"
+
+;MS HHelp Control
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\hh.exe\X11 Driver]
+"Desktop"="640x480"
+
+;Half Life Demo
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\hldemo.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\hldemo.exe\X11 Driver]
+"Managed"="N"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\ie6setup.exe\DllOverrides]
+"*"="builtin, native"
+"setupapi"="native, builtin"
+"setupx"="native, builtin"
+"wininet"="native, builtin"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\ie6batch.exe\DllOverrides]
+"*comctl32"="builtin"
+
+; Imatch Image Management
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\IMatch.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\IMatch.exe\DllOverrides]
+"comctl32"="native"
+
+;OpenJane_IE sppedup hack
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Jane2ch.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Jane2ch.exe\DllOverrides]
+"mlang"="builtin, native"
+
+; KLV 4
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\klv.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\klv.exe\X11 Driver]
+"Desktop"="1024x768"
+"Managed"="Y"
+
+; Lauge
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\lauge.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\lauge.exe\DllOverrides]
+"comctl32"="native"
+
+; MailWasher Pro
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\MailWasher.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\MailWasher.exe\DllOverrides]
+"comctl32"="builtin"
+
+; Miranda IM
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\miranda32.exe]
+"Version"="winxp"
+
+; MDAC_TYP.EXE
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\odbcconf.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\odbcconf.exe\DllOverrides]
+"odbccp32"="native, builtin"
+
+; PhotoFiltre
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\PhotoFiltre.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\PhotoFiltre.exe\DllOverrides]
+"twain_32"=""
+
+; PhotoShop
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Photoshop.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\Photoshop.exe\DllOverrides]
+"twain_32"=""
+
+; PowBallDX
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\PowBallDX.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\PowBallDX.exe\DllOverrides]
+"ddraw"=""
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\PowBallDX.exe\X11 Driver]
+"Desktop"="640x480"
+"Managed"="Y"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\QuickTimePlayer.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\QuickTimePlayer.exe\X11 Driver]
+"Desktop"="1024x768"
+"Managed"="N"
+
+;Real Player 10
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\realplay.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\realplay.exe\DllOverrides]
+"ddraw"=""
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\realplay.exe\X11 Driver]
+"Desktop"="1024x768"
+"Managed"="N"
+
+; RoboWar 5
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\RoboWar 5.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\RoboWar 5.exe\DllOverrides]
+"comctl32"="native"
+"comdlg32"="native"
+"riched32"="native"
+
+;IE4,5,6 Installer
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\rundll32.exe\DllOverrides]
+"atl"="native, builtin"
+"crypt32"="native, builtin"
+"mcianim.drv"="native, builtin"
+"mciavi.drv"="native, builtin"
+"mshtml"="native"
+"msi"="native, builtin"
+"msiexec.exe"="native, builtin"
+"msvcrt"="native, builtin"
+"ole32"="native, builtin"
+"oleaut32"="native, builtin"
+"olepro32"="native, builtin"
+"quartz"="native, builtin"
+"rpcrt4"="native, builtin"
+"shdocvw"="native, builtin"
+"shlwapi"="native, builtin"
+"wininet"="native, builtin"
+"wintrust"="native, builtin"
+
+; TVgenial
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\TVgenial.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\TVgenial.exe\X11 Driver]
+"Desktop"="1024x768"
+"Managed"="N"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\updcrl.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\updcrl.exe\DllOverrides]
+"*comctl32"="builtin"
+
+; WeatherScope
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\WeatherScope.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\WeatherScope.exe\DllOverrides]
+"comctl32"="native"
+
+; Wegweiser (Agenda)
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\WEGWEISER.EXE]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\WEGWEISER.EXE\X11 Driver]
+"Desktop"=""
+"Managed"="N"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\winamp.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\winamp.exe\X11 Driver]
+"Managed"="N"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\wmplayer2.exe]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\wmplayer2.exe\DllOverrides]
+"ddraw"=""
+
+; Some native dlls won't work, so leave these builtin.
+; native advpack.dll is needed for MDAC_TYP.EXE, IE Inst., Outlook Exp. Inst., MSJet4 SP8 etc.
+; Do not modify these lines.
+[HKEY_CURRENT_USER\Software\Wine\DllOverrides]
+"*"="native, builtin"
+"*autorun.exe"="native,builtin"
+"*ctfmon.exe"="builtin"
+"*ddhelp.exe"="builtin"
+"*findfast.exe"="builtin"
+"*maildoff.exe"="builtin"
+"*mdm.exe"="builtin"
+"*mosearch.exe"="builtin"
+"advapi32"="builtin"
+"advpack"="native, builtin"
+"AGENTSVR.EXE"="builtin"
+"avicap32"="builtin"
+"capi2032"="builtin"
+"comctl32"="builtin"
+"comdlg32"="builtin"
+"crtdll"="builtin"
+"ctl3d32"="builtin"
+"d3d8"="builtin"
+"d3d9"="builtin"
+"dbghelp"="builtin"
+"ddeml"="builtin"
+"ddraw"="builtin"
+"ddrawex"="builtin"
+"dinput"="builtin"
+"dinput8"="builtin"
+"dispdib"="builtin"
+"display.drv"="builtin"
+"dmusic32"="builtin"
+"dplay"="builtin"
+"dplayx"="builtin"
+"dpnet"="builtin"
+"dsound"="builtin"
+"dswave"="builtin"
+"dxdiagn"="builtin"
+"eMusicClient.exe"="builtin"
+"gdi.exe"="builtin"
+"gdi32"="builtin"
+"glu32"="builtin"
+"gult32"="builtin"
+"icmp"="builtin"
+"icwconn1.exe"="builtin"
+"ifsmgr.vxd"="builtin"
+"imaadp32.acm"="builtin"
+"imm"="builtin"
+"imm32"="builtin"
+"iphlpapi"="builtin"
+"joystick.drv"="builtin"
+"kernel32"="builtin"
+"keyboard.drv"="builtin"
+"krnl386.exe"="builtin"
+"lz32"="builtin"
+"lzexpand"="builtin"
+"mcianim.drv"="builtin"
+"mciavi.drv"="builtin"
+"mcicda.drv"="builtin"
+"mciseq.drv"="builtin"
+"mciwave.drv"="builtin"
+"midimap.drv"="builtin"
+"mmsystem"="builtin"
+"mouse.drv"="builtin"
+"mpr"="builtin"
+"msacm.drv"="builtin"
+"msacm32"="builtin"
+"msadp32.acm"="builtin"
+"msi"="native, builtin"
+"msvfw32"="builtin"
+"msvidc32"="builtin"
+"mswsock"="builtin"
+"newdev"="builtin"
+"ntdll"="builtin"
+"odbc32"="native, builtin"
+"ole32"="native, builtin"
+"opengl32"="builtin"
+"pdf.ocx"="builtin"
+"psapi"="builtin"
+"qttask.exe"="builtin"
+"rasapi16"="builtin"
+"rasapi32"="builtin"
+"realsched.exe"="builtin"
+"serialui"="builtin"
+"setupapi"="builtin"
+"shell"="builtin"
+"shell32"="builtin"
+"snmpapi"="builtin"
+"sound"="builtin"
+"sti"="builtin"
+"system.drv"="builtin"
+"tapi32"="builtin"
+"toolhelp"="builtin"
+"twain"="builtin"
+"twain_32"="builtin"
+"user.exe"="builtin"
+"user32"="builtin"
+"ver"="builtin"
+"version"="builtin"
+"vnbt.vxd"="builtin"
+"vtdapi.vxd"="builtin"
+"vwin32.vxd"="builtin"
+"w32skrnl"="builtin"
+"w32sys"="builtin"
+"win32s16"="builtin"
+"win87em"="builtin"
+"winampa.exe"="builtin"
+"winaspi"="builtin"
+"wing"="builtin"
+"winmm"="builtin"
+"winnls32"="builtin"
+"winsock"="builtin"
+"wintab"="builtin"
+"wintab32"="builtin"
+"wnaspi32"="builtin"
+"wow32"="builtin"
+"wprocs"="builtin"
+"ws2_32"="builtin"
+"wsock32"="builtin"

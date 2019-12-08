@@ -1,0 +1,641 @@
+
+
+
+
+
+#OKYH-WINE-CFG
+WINE REGISTRY Version 2
+  ;;OKYH for Wine config
+
+[Drive A]
+"Path" = "/mnt/floppy"
+"Type" = "floppy"
+"Label" = "Floppy"
+"Filesystem" = "win95"
+"Serial" = "87654321"
+"Device" = "/dev/fd0"
+
+[Drive C]
+"Path" = "dosdevices/c:"
+"Type" = "hd"
+"Label" = "MS-DOS"
+"Filesystem" = "win95"
+
+[Drive D]
+"Path" = "/mnt/cdrom"
+"Type" = "cdrom"
+"Label" = "CD-Rom"
+"Filesystem" = "win95"
+"Device" = "/dev/cdrom"
+
+[Drive Y]
+"Path" = "/tmp"
+"Type" = "hd"
+"Label" = "Tmp Drive"
+"Filesystem" = "win95"
+
+[Drive E]
+"Path" = "../"
+"Type" = "network"
+"Label" = "Home"
+"Filesystem" = "win95"
+
+[Drive Z]
+"Path" = "/"
+"Type" = "hd"
+"Label" = "Root"
+"Filesystem" = "win95"
+
+[wine]
+"Windows" = "c:\\windows"
+"System" = "c:\\windows\\system"
+"Temp" = "c:\\windows\\temp\\"
+"Path" = "c:\\windows;c:\\windows\\system;e:\\;f:\\"
+"Profile" = "c:\\windows\\Profiles\\Administrator"
+"GraphicsDriver" = "x11drv"
+"ShowDirSymlinks" = "1"
+;"ShowDotFiles" = "1"
+"ShellLinker" = "/bin/okwine"
+
+[Restart]
+"Reboot" = "wineboot"
+"Boot" = "wineboot"
+
+# [wineconf]
+
+[Version]
+"windows" = "wine-bb"
+"DOS" = "6.22"
+
+
+ 
+ 
+[DllOverrides]
+
+"regsvr32.exe" = "native"
+
+"*advapi32" = "builtin"
+
+"url" = "native, builtin"
+
+"*comctl32" = "builtin"
+
+"*mapi" = "native, builtin"
+"*mapi32" = "native, builtin"
+
+"ole32" = "native, builtin"
+"compobj" = "native, builtin"
+"ole2" = "native, builtin"
+"ole2nls" = "native, builtin"
+"ole2conv" = "native, builtin"
+"ole2prox" = "native, builtin"
+"ole2thk" = "native, builtin"
+"storage" = "native, builtin"
+"olepro32" = "native, builtin"
+"rpcrt4" = "native, builtin"
+"oleaut32" = "native, builtin"
+"msvcrt" = "native, builtin"
+"msvcrt40" = "native, builtin"
+"msvcrtd" = "native, builtin"
+"wininet" = "native, builtin"
+"cabinet" = "native, builtin"
+"hhctrl.ocx" = "native, builtin"
+"dciman32" = "native"
+"msi" = "native"
+"oleacc" = "builtin, native"
+"mshtml" = "native, builtin"
+"msvcirt" = "native, builtin"
+"mlang" = "native, builtin"
+"atl" = "native, builtin"
+"riched20" = "native, builtin"
+"*userenv" = ""
+
+"*setupapi" = "builtin"
+"devenum" = "native, builtin"
+"quartz" = "native, builtin"
+"urlmon" = "native, builtin"
+"shdocvw" = "native, builtin"
+"jscript" = "native, builtin"
+"wintrust" = "native, builtin"
+"shlwapi" = "native, builtin"
+"secur32" = "native, builtin"
+"crypt32" = "native, builtin"
+"rsabase" = "native, builtin"
+"ddraw" = "builtin"
+"ddrawex" = "builtin"
+
+"*twain_32" = "builtin"
+"*twain" = "builtin"
+
+"odbc32" = "native, builtin"
+
+"*docbox.api" = ""
+
+"*user.exe" = "native,builtin"
+"*autorun.exe" = "native,builtin"
+"*qbdagent.exe" = ""
+"*ddhelp.exe" = "builtin"
+"*findfast.exe" = "builtin"
+"*mdm.exe" = "builtin"
+"*pstores.exe" = "builtin"
+"*mosearch.exe" = "builtin"
+"*maildoff.exe" = "builtin"
+"*ctfmon.exe" = "builtin"
+
+"*ICWCONN1.EXE" = "builtin"
+"*IEINFO5.OCX" = "builtin"
+
+"*qttask.exe" = "builtin"
+
+"iPodService.exe" = ""
+"*" = "builtin, native"
+
+;"oleaut32"     = "builtin, native"
+;"ole32"        = "builtin, native"
+;"commdlg"      = "builtin, native"
+;"comdlg32"     = "builtin, native"
+;"shell"        = "builtin, native"
+;"shell32"      = "builtin, native"
+;"shfolder"     = "builtin, native"
+;"shlwapi"      = "builtin, native"
+;"shdocvw"      = "builtin, native"
+;"advapi32"     = "builtin, native"
+;"msvcrt"       = "native, builtin"
+;"mciavi.drv"   = "native, builtin"
+;"mcianim.drv"  = "native, builtin"
+
+
+"*notepad.exe" = "native, builtin"
+"C:\\windows\\regedit.exe" = "native, builtin"
+"*" = "builtin, native"
+
+[x11drv]
+"AllocSystemColors" = "100"
+"PrivateColorMap" = "N"
+"PerfectGraphics" = "N"
+;;"ScreenDepth" = "16"
+;;"Display" = ":0.0"
+"Managed" = "Y"
+;"Desktop" = "640x480"
+"UseDGA" = "Y"
+"UseXVidMode" = "Y"
+"UseTakeFocus" = "Y"
+"DXGrab" = "N"
+"DesktopDoubleBuffered" = "N"
+;"Synchronous" = "Y"
+;
+;"ClientSideWithRender" = "N"
+"ClientSideWithCore" = "N"
+;
+"ClientSideAntiAliasWithRender" = "N"
+"ClientSideAntiAliasWithCore" = "N"
+;
+"VideoRam" = "32"
+"AGPVertexRam" = "32"
+;;"NV_VAR" = "Y"
+;;"ARB_VBO" = "Y"
+
+"ClientSideAntiAliasWithCore" = "N"
+
+[fonts]
+"Resolution" = "96"
+;"Default" = "simsun"
+"Default" = "-redflag-song-"
+"DefaultFixed" = "-redflag-song-"
+;medium-r-normal--*-*-*-*-c-*-gb18030.2000-1"
+"DefaultFixed" = "fixed"
+"DefaultSerif" = "-redflag-song-"
+;medium-r-normal--*-*-*-*-c-*-gb18030.2000-1"
+"DefaultSansSerif" = "-redflag-song-"
+
+[FontDirs]
+
+[InputMethod]
+"UseXIM" = "N"
+"InputStyle" = "overthespot"
+"XIMFontSet" = "-misc-fixed-medium-r-normal--14-*-*-*-*-*"
+
+[serialports]
+"Com1" = "/dev/ttyS0"
+"Com2" = "/dev/ttyS1"
+"Com3" = "/dev/ttyS2"
+"Com4" = "/dev/modem"
+
+[parallelports]
+"Lpt1" = "/dev/lp0"
+
+[ppdev]
+;"378" = "/dev/parport0"
+;"278" = "/dev/parport1"
+;"3bc" = "/dev/parport2"
+
+[spooler]
+"FILE:" = "tmp.ps"
+"LPT1:" = "|lpr"
+"LPT2:" = "|gs -sDEVICE=bj200 -sOutputFile=/tmp/fred -q -"
+"LPT3:" = "/dev/lp3"
+
+[ports]
+;"read"  = "0x779,0x379,0x280-0x2a0"
+;"write" = "0x779,0x379,0x280-0x2a0"
+
+[Debug]
+;"RelayExclude" = "RtlEnterCriticalSection;RtlLeaveCriticalSection"
+;"RelayInclude" = "user32.CreateWindowA"
+;"RelayFromExclude" = "user32;x11drv"
+;"RelayFromInclude" = "sol.exe"
+;"SnoopExclude" = "RtlEnterCriticalSection;RtlLeaveCriticalSection"
+;"SpyExclude" = "WM_SIZE;WM_TIMER;"
+
+[registry]
+;"GlobalRegistryDir" = "/etc";
+"LoadGlobalRegistryFiles" = "Y"
+"LoadHomeRegistryFiles" = "Y"
+"LoadWindowsRegistryFiles" = "Y"
+"WritetoHomeRegistryFiles" = "Y"
+"SaveOnlyUpdatedKeys" = "Y"
+
+[Tweak.Layout]
+"WineLook" = "Win98"
+
+[Clipboard]
+"ClearAllSelections" = "0"
+"PersistentSelection" = "1"
+
+[afmdirs]
+"1" = "/usr/share/ghostscript/fonts"
+"2" = "/usr/share/a2ps/afm"
+"3" = "/usr/share/enscript"
+"4" = "/usr/X11R6/lib/X11/fonts/Type1"
+
+[WinMM]
+
+"Drivers" = "wineoss.drv"     ##default for most common configurations
+;"Drivers" = "winearts.drv"   ##for KDE
+;"Drivers" = "winealsa.drv"   ##for ALSA users
+;"Drivers" = "winejack.drv"   ##for Jack sound server
+;"Drivers" = "winenas.drv"    ##for NAS sound system
+;"Drivers" = "wineaudioio.drv"##for Solaris machines
+;"Drivers" = ""               ##to disable sound
+"WaveMapper" = "msacm.drv"
+"MidiMapper" = "midimap.drv"
+
+[dsound]
+;"HELmargin" = "5"
+;"HELqueue" = "5"
+;"SndQueueMax" = "28"
+;"SndQueueMin" = "12"
+;"HardwareAcceleration" = "Emulation"
+
+[Network]
+"UseDnsComputerName" = "N"
+
+
+
+
+##sample AppDefaults entries
+
+
+
+[AppDefaults\\bf1942.exe\\d3dgl]
+"ClipSpaceFix" = "N"
+
+[AppDefaults\\mohaa.exe\\memory]
+"MemoryLayoutOverride" = "0x10000000"
+[AppDefaults\\mohaa.exe\\opengl]
+"FixedGLExtensionBuffer" = "Y"
+[AppDefaults\\mohaademo.exe\\memory]
+"MemoryLayoutOverride" = "0x10000000"
+[AppDefaults\\mohaademo.exe\\opengl]
+"FixedGLExtensionBuffer" = "Y"
+
+[AppDefaults\\moh_spearhead.exe\\memory]
+"MemoryLayoutOverride" = "0x10000000"
+[AppDefaults\\moh_spearhead.exe\\opengl]
+"FixedGLExtensionBuffer" = "Y"
+[AppDefaults\\moh_spearhead.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\moh_spearhead_demo.exe\\memory]
+"MemoryLayoutOverride" = "0x10000000"
+[AppDefaults\\moh_spearhead_demo.exe\\opengl]
+"FixedGLExtensionBuffer" = "Y"
+
+[AppDefaults\\moh_breakthrough.exe\\opengl]
+"FixedGLExtensionBuffer" = "Y"
+[AppDefaults\\moh_breakthrough.exe\\version]
+"windows" = "win2k"
+
+[AppDefaults\\SimCity 4.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\SimCity 4.exe\\transgaming]
+"cmdlineadd" = "-d:software"
+
+[AppDefaults\\Civilization3.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\Civilization3x.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\civ3conquests.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\CoDSP.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\CoDMP.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\CityOfHeroes.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\CityOfHeroes.exe\\cursor]
+"CursorAlphaAlwaysOn" = "Y"
+[AppDefaults\\CohUpdater.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\CohUpdater.exe\\cursor]
+"CursorAlphaAlwaysOn" = "Y"
+
+[AppDefaults\\Generals.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\Painkiller.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\eqgame.exe\\d3dgl]
+"ClipSpaceFix" = "N"
+"ForceMaxVertexBlendMatrices" = "2"
+[AppDefaults\\testeqgame.exe\\d3dgl]
+"ClipSpaceFix" = "N"
+"ForceMaxVertexBlendMatrices" = "2"
+
+[AppDefaults\\hl2.exe\\d3dgl]
+"ForceMaxVertexBlendMatrices" = "2"
+[AppDefaults\\hl2.exe\\Version]
+"Windows" = "win98"
+
+[AppDefaults\\STEAM.exe\\d3dgl]
+"ForceMaxVertexBlendMatrices" = "2"
+[AppDefaults\\STEAM.exe\\Version]
+"Windows" = "win98"
+
+[AppDefaults\\Speed.exe\\d3dgl]
+"PixelShaders" = "N"
+
+[AppDefaults\\MaxPayne2.exe\\d3dgl]
+"PixelShaders" = "N"
+
+[AppDefaults\\Doom3.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\FarCry.exe\\Version]
+"Windows" = "win2k"
+[AppDefaults\\FarCry.exe\\d3dgl]
+"PretendGeforceTwoForFixedFunction" = "Y"
+
+
+;[AppDefaults\\sol.exe\\Version]
+;"Windows" = "nt40"
+;
+;[AppDefaults\\pickygame.exe\\dsound]
+;"EmulDriver" = "N"
+
+
+[AppDefaults\\wcmd.exe\\x11drv]
+"Desktop"="N"
+
+[AppDefaults\\reboot.exe\\x11drv]
+"Desktop"="N"
+
+[AppDefaults\\assocscan.exe\\x11drv]
+"Desktop"="N"
+
+[AppDefaults\\pluginserver.exe\\x11drv]
+"Desktop"="N"
+
+[AppDefaults\\enumfonts.exe\\x11drv]
+"Desktop"="N"
+
+
+[AppDefaults\\IpxSet32.exe\\x11drv]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[AppDefaults\\QuickTimeInstaller.exe\\x11drv]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[AppDefaults\\QuickTimeInstaller(1).exe\\x11drv]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[AppDefaults\\demo32.exe\\x11drv]
+"Desktop" = "800x600"
+"Managed" = "N"
+
+[AppDefaults\\ikernel.exe\\x11drv]
+"Managed" = "N"
+
+
+[AppDefaults\\iDriver.exe\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\iDriver.exe\\DllOverrides]
+"msi" = "builtin"
+
+[AppDefaults\\iDriver.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\iTunesSetup.exe\\DllOverrides]
+"msi" = "builtin"
+
+[AppDefaults\\iTunesSetup.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\iTunes.exe\\DllOverrides]
+"wininet" = "builtin"
+"ole32" = "builtin"
+
+[AppDefaults\\iTunes.exe\\Version]
+"Windows" = "win2k"
+
+[AppDefaults\\iPodService.exe\\Version]
+"Windows" = "win2k"
+
+
+[AppDefaults\\OUTLOOK.EXE]
+;"DenyShellExecute" = ""
+
+
+[AppDefaults\\rundll32.exe\\DllOverrides]
+"ddraw" = "builtin"
+
+
+[AppDefaults\\cxwget.exe\\DllOverrides]
+"wininet" = "builtin"
+
+
+;
+
+[AppDefaults\\hl.exe\\x11drv]
+"Desktop" = "1024x768"
+"Managed" = "N"
+
+[AppDefaults\\StarCraft.exe\\x11drv]
+"Desktop" = "640x480"
+"Managed" = "N"
+
+[AppDefaults\\Unreal.exe\\x11drv]
+"Desktop" = "1024x768"
+"Managed" = "N"
+
+[AppDefaults\\ut.exe\\x11drv]
+"Desktop" = "1024x768"
+"Managed" = "N"
+
+[AppDefaults\\c&c95.exe\\x11drv]
+"Desktop" = "640x480"
+"Managed" = "N"
+
+[AppDefaults\\ra95.exe\\x11drv]
+"Desktop" = "640x480"
+"Managed" = "N"
+
+[AppDefaults\\steam.exe\\DllOverrides]
+"oleacc" = "builtin"
+
+[AppDefaults\\steamtmp.exe\\DllOverrides]
+"Managed" = "N"
+
+[AppDefaults\\_INS0432._MP\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\_INS0466._MP\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\_INS0576._MP\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\_INS5176._MP\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\_INS5576._MP\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\setup.exe\\x11drv]
+"Managed" = "N"
+
+[AppDefaults\\SthSDVD.exe\\x11dev]
+"Managed" = "N"
+
+[AppDefaults\\SthSVCD.exe\\x11dev]
+"Managed" = "N"
+
+[AppDefaults\\mmxado.exe\\x11dev]
+"Managed" = "N"
+
+[AppDefaults\\QQ.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+"*"        = "builtin,native"
+
+
+[AppDefaults\\QQ2000.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+"*"        = "builtin,native"
+
+
+[AppDefaults\\QQ2000b.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+"*"        = "builtin,native"
+
+[AppDefaults\\TMShell.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+
+[AppDefaults\\TBorwser.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin" 
+
+[AppDefaults\\TTraveler.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+ 
+[AppDefaults\\kssetup.exe\\DllOverrides]
+"ole32"    = "native"
+"oleaut32" = "native"
+"rpcrt4"   = "native"
+"comctl32" = "native"
+"shell"    = "native"
+"shell32"  = "native"
+"shfolder" = "native"
+"*"        = "builtin,native"
+
+
+[AppDefaults\\xdict.exe\\DllOverrides]
+"commdlg"  = "native"
+"ole32"    = "native"
+
+[AppDefaults\\xdict.exe\\Version]
+"Windows"  = "win2k"   
+
+[AppDefaults\\NetTransport.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+
+[AppDefaults\\londip.exe\\wine]
+"Path"     = "c:\\londip\\system\\"
+
+[AppDefaults\\hypmine.exe\\wine]
+"Path"     = "c:\\dzh\\internet\\"
+
+
+[AppDefaults\\firefox.exe\\DllOverrides]
+"shell"    = "native,builtin"
+"shell32"  = "native,builtin"
+"shfolder" = "native,builtin"
+"rpcrt4"   = "native,builtin"
+"commctrl" = "native,builtin"
+"comctl32" = "native,builtin"
+
+
+[AppDefaults\\SS.exe\\DllOverrides]
+"shell"       = "native,builtin"
+"shell32"     = "native,builtin"
+"shfolder"    = "native,builtin"
+"rpcrt4"      = "native,builtin"
+"commctrl"    = "native,builtin"
+"comctl32"    = "native,builtin"
+"*"           = "builtin,native"
+[AppDefaults\\SS.exe\\Version]
+"Windows"     = "win98"
+
+
+#WINE-CFG-END
+
+

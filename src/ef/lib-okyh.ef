@@ -1,0 +1,264 @@
+﻿引入 用户界面,工具;
+/*################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+/#          www.oukan,1m.cn
+################################
+*/
+
+class OKBasicLib
+{
+
+	public static string DWB(string WJM)
+	{
+		二进制文件流 BIN_WENBEN = new 二进制文件流();
+		字节集 DQ_WENBEN=BIN_WENBEN.读入文件(WJM,文件编码类型.未知);
+		string shuju=DQ_WENBEN.UTF8到文本();
+		return shuju;
+	}
+	public static XWB(string WJM, string WBNR)
+	{
+		binary shuju=WBNR.到UTF8();
+		shuju=shuju.左边(shuju.长度()-1);
+		二进制文件流 BIN_WENBEN = new 二进制文件流();
+		BIN_WENBEN.写到文件(WJM,shuju,文件编码类型.未知);
+	}
+	public static string DPZ(string WJM, string WBNR, string MRWB)
+	{
+		string XS=DWB(WJM);
+		XS=XS.删除所有空白();
+		XS=XS.替换全部("\"","");
+		int CZ=系统.文本类.查找(XS,WBNR+"=",0);
+		整数 CZ0=系统.文本类.查找(XS,"\n",CZ);
+		文本 CZ1=系统.文本类.中间(XS,CZ,CZ0-CZ);
+		文本[] FG=系统.文本类.分割(CZ1,"=");
+		string FH=FG[FG.长度()-1];
+		if(CZ == -1)
+			FH=MRWB;
+		return FH;
+	}
+	public static string DPZ2(string WJM,string PZX,string WBNR, string MRWB)
+	{
+		string XS=DWB(WJM);
+		XS=XS.删除所有空白();
+		XS=XS.替换全部("\"","");
+		int QSWZ=系统.文本类.查找(XS,"["+PZX+"]",0);
+		int JSWZ=系统.文本类.查找(XS,"\n",QSWZ);
+		int CZ=系统.文本类.查找(XS,WBNR+"=",JSWZ);
+		整数 CZ0=系统.文本类.查找(XS,"\n",CZ);
+		文本 CZ1=系统.文本类.中间(XS,CZ,CZ0-CZ);
+		文本[] FG=系统.文本类.分割(CZ1,"=");
+		string FH=FG[FG.长度()-1];
+		if(JSWZ != -1)
+		{
+			if(CZ > JSWZ)
+				FH=MRWB;
+		}
+		if(CZ == -1)
+			FH=MRWB;
+		return FH;
+	}
+	public static string THPZ(string XS,string PZX,string WBNR, string THNR)
+	{
+		//这是用来修改配置文本的方法
+		//参数是（文本 配置文本，配置节名，配置项名，新配置项内容）
+		int QSWZ=系统.文本类.查找(XS,"["+PZX+"]",0);
+		if(QSWZ != -1)
+		{
+			QSWZ=0;
+		}		
+		int JSWZ=系统.文本类.查找(XS,"\n",QSWZ);
+		int CZ=系统.文本类.查找(XS,WBNR,QSWZ);
+		整数 CZ0=系统.文本类.查找(XS,"\n",CZ);
+		文本 CZ1=系统.文本类.中间(XS,CZ,CZ0-CZ);
+		文本[] FG=系统.文本类.分割(CZ1,"=");
+		string FH=FG[1];
+		if(JSWZ == -1)
+		{
+			FH=XS.替换(CZ1,FG[0]+THNR);
+		}
+		else
+		{
+			if(CZ < JSWZ)
+				FH=XS.替换(CZ1,FG[0]+THNR);
+		}
+		if(CZ == -1)
+			FH=XS;
+		return FH;
+	}
+
+	public 静态 逻辑 WJYZ(string WJM,string NR)
+	{
+		if (用户界面.辅助类.文件是否存在(WJM)==真)
+		{
+			string WJNR=DWB(WJM);
+			if(系统.文本类.查找(WJNR,NR,0)==-1)
+				返回 假;
+			否则
+				返回  真;
+		}
+		否则
+			返回 假;
+
+	} 			
+
+
+	public static string QXTBL(string BLM)
+	{
+		//这是取LINUX下获取系统环境变量的方法，参数是（文本 变量名）
+		string FH;
+		string SHELL="#!/bin/sh\n\n";
+		SHELL+="/bin/echo -n $";
+		SHELL+=BLM;
+		SHELL+=">/dev/shm/efshell-bl.tmp 2>&1\n\n";
+		SHELL+="exit\n\n";
+		XWB("/dev/shm/efshell-bl.sh",SHELL);
+		运行环境.启动进程("/bin/sh /dev/shm/efshell-bl.sh",".",真) ;
+		FH=DWB("/dev/shm/efshell-bl.tmp");
+		SHELL="#!/bin/sh\n/bin/rm -rf /dev/shm/efshell-bl*\nexit 0\n";
+		XWB("/dev/shm/efshell-bl.sh",SHELL);
+		运行环境.启动进程("/bin/sh /dev/shm/efshell-bl.sh",".",真) ;
+		return FH;
+	}
+
+
+	public static string SHELL(string ZXML,int CS<可为空>=0)
+	{
+		//这是取LINUX下执行Shell并获得返回结果的方法，参数是（文本 命令和命令参数,[整数 1]）
+		string FH;
+		string SHELL="#!/bin/sh\n\n";
+		如果(用户界面.辅助类.文件是否存在(ZXML) == 真)
+			SHELL+="chmod  7777 "+ZXML+"\n";
+		又如(ZXML.查找("\n",0) > 0)
+		{
+			XWB("/dev/shm/efshell-es.sh",ZXML);
+			ZXML="/dev/shm/efshell-es.sh";
+			SHELL+="chmod  7777 "+ZXML+"\n";
+		}
+		又如(CS==2)
+			SHELL+="/bin/sh ";
+		
+		SHELL+=ZXML;
+		SHELL+=">/dev/shm/efshell-es.tmp 2>&1\n\n";
+		SHELL+="if [ \"$?\" != 0  ]; then\n";
+		SHELL+="/bin/rm -rf  /dev/shm/efshell-es.tmp;fi\n\n";
+		SHELL+="exit\n\n";
+		XWB("/dev/shm/efshell-es-0.sh",SHELL);
+		运行环境.启动进程("/bin/sh /dev/shm/efshell-es-0.sh",".",真) ;
+		if(用户界面.辅助类.文件是否存在("/dev/shm/efshell-es.tmp") == false)
+			FH="false";
+		else
+		{
+			FH=DWB("/dev/shm/efshell-es.tmp");
+		}
+		SHELL="#!/bin/sh\n/bin/rm -rf /dev/shm/efshell-es*\nexit 0\n";
+		XWB("/dev/shm/efshell-es-1.sh",SHELL);
+		运行环境.启动进程("/bin/sh /dev/shm/efshell-es-1.sh",".",真) ;
+		return FH;
+	}
+
+	
+	public static SHELLCK(string SML,string CKBT)
+	{
+		//这是在终端窗口中执行的方法
+		bool ROOT=SFGLY();
+
+		string SHELL="#!/bin/sh\n";
+		SHELL+="okyh_zdck()\n";
+		SHELL+="{\n";
+		SHELL+="GUESS_XTERMS=\"konsole rxvt xterm dtterm eterm Eterm kvt aterm\"\n";
+		SHELL+="for a in $GUESS_XTERMS; do\n";
+		SHELL+="  if type $a >/dev/null 2>&1; then\n";
+		SHELL+="      XTERM=$a\n";
+		SHELL+="      break\n";
+		SHELL+=" fi\n";
+		SHELL+="done\n";
+		SHELL+="chmod a+x \"$1\"\n";
+		if(SML.左边(1) == "/")
+			SHELL+="     $XTERM -title \""+CKBT+"\" -e \"$1\" --xwin \"$@\"\n";
+		又如(SML.查找("\n",0) > -1)
+			SHELL+="     $XTERM -title \""+CKBT+"\" -e \"$1\" --xwin \"$@\"\n";
+		else
+			SHELL+="     $XTERM -title \""+CKBT+"\" -e \"`pwd`/$1\" --xwin \"$@\"\n";
+		SHELL+="/bin/rm -rf /dev/shm/efshell-ck*\nexit 0\n";
+		SHELL+="}\n";
+
+		if(SML.查找("\n",0) > 0)
+		{
+			XWB("/dev/shm/efshell-ck-es.sh",SML);
+			SML="/dev/shm/efshell-ck-es.sh";
+			SHELL+="chmod  7777 "+SML+"\n";
+		}
+
+		if(ROOT == false)
+		{
+			string SHELL2="#!/bin/sh\n\n";
+			SHELL2+="echo qing shu ru ROOT mi ma\n";
+			SHELL2+="chmod  7777 "+SML+"\n";
+			SHELL2+="su root  -c \""+SML+"\"\n";
+			SHELL2+="exit\n";
+			SML="/dev/shm/efshell-ck-2.sh";
+			OKBasicLib.XWB(SML,SHELL2);
+		}
+		SHELL+="chmod  7777 "+SML+"\n";
+		SHELL+="okyh_zdck  "+SML+"\n";
+		OKBasicLib.XWB("/dev/shm/efshell-ck.sh",SHELL);
+		运行环境.启动进程("/bin/sh /dev/shm/efshell-ck.sh",".",真) ;
+		
+	
+	}
+	
+	public static bool SFGLY()
+	{
+		if(用户界面.辅助类.文件是否存在("/usr/bin/id") == true)
+		{
+			if(SHELL("/usr/bin/id -u",1) == "0\n")
+				return true ;
+			又如(QXTBL("UID")== "0")
+				返回 真;
+			else
+				return false;
+		}
+		else
+			return false;
+	}
+
+
+	public static BMZH(文本 YBM,string BM,string WJM)
+	{
+		string SHELL="#!/bin/bash\n";
+
+		SHELL+="if [ `id -u`  = 0 ]; then\n";
+		SHELL+="case "+BM+" in\n";
+		SHELL+="  UTF8|UTF-8|GB2312|GB18030|GBK)\n";
+		SHELL+="  for jb in /bin/ok* ; do\n";
+		SHELL+="  if [ -f "+WJM+" ]; then\n";
+		SHELL+="  iconv --from-code="+YBM+" -t ";
+		SHELL+=BM+" "+WJM;
+		SHELL+=" -o ./okyh.tmp 2>&1 2>/dev/null\n";
+		SHELL+="  if [ $? = 0  ]; then\n";
+		SHELL+="   mv -f ./okyh.tmp > \"$jb\"\n";
+		SHELL+="  fi\n";
+		SHELL+="  rm -rf ./okyh.tmp\n";
+		SHELL+="  fi;done ;;\n";
+		SHELL+="esac\n";
+		SHELL+="fi\n";
+
+		SHELL(SHELL);
+
+	}
+	公开 静态 QDLLQ(文本 URL)
+	{
+		如果(用户界面.辅助类.文件是否存在("/usr/bin/konsqueror") == 真)
+			SHELL("konqueror "+URL);
+		又如(用户界面.辅助类.文件是否存在("/usr/bin/opera") == 真)
+			SHELL("opera "+URL);
+		又如(用户界面.辅助类.文件是否存在("/usr/bin/mozilla") == 真)
+			SHELL("mozilla "+URL);
+		又如(用户界面.辅助类.文件是否存在("/usr/bin/firefox") == 真)
+			SHELL("firefox "+URL);
+	}
+
+
+}
+

@@ -1,0 +1,15 @@
+File Magager
+Program Magager
+Control Panel
+Application Uninstaller
+Wine Configuration
+Task Manager
+Notepad
+Registry Editor
+Mine Sweeper
+我的电脑.desktop
+腾讯TM.desktop
+QQ游戏.desktop
+腾讯QQ.desktop
+腾讯TT.desktop
+QQ音乐.desktop

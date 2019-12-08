@@ -1,0 +1,22 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Control Panel\Colors]
+"Background"="0 0 0"
+"Scrollbar"="234 233 232"
+"Menu"="234 233 232"
+"MenuText"="0 0 0"
+"ActiveBorder"="234 233 232"
+"InactiveBorder"="234 233 232"
+"Hilight"="169 209 255"
+"HilightText"="0 0 0"
+"ButtonFace"="234 233 232"
+"ButtonShadow"="128 128 128"
+"GrayText"="128 128 128"
+"ButtonText"="0 0 0"
+"InactiveTitleText"="234 233 232"
+"ButtonHilight"="255 255 255"
+"ButtonDkShadow"="64 64 64"
+"ButtonLight"="234 233 232"
+"InfoText"="0 0 0"
+"InfoWindow"="255 255 225"
+

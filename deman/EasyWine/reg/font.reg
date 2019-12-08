@@ -1,0 +1,21 @@
+ REGEDIT4
+
+[HKEY_CURRENT_USER\Software\\Wine\\WineBrowser]
+"Browsers"="firefox"
+
+[HKEY_CURRENT_USER\Software\\Wine\\X11 Driver]
+"ClientSideAntiAliasWithRender"="N"
+
+[HKEY_CURRENT_USER\Software\\Wine\\Fonts\\Replacements]
+@="simsun"
+"Arial"="simsun"
+"Fixedsys"="simsun"
+"Microsoft Sans Serif"="simsun"
+"MingLiU"="simsun"
+"MS UI Gothic"="simsun"
+"PMingLiU"="simsun"
+"simsun"="simsun"
+"Songti"="simsun"
+"System"="simsun"
+"Tahoma"="simsun"
+"Terminal"="simsun"

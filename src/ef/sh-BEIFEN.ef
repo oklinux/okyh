@@ -1,0 +1,308 @@
+﻿引入 用户界面,工具;
+
+/*
+####################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+"#          www.oukan,1m.cn
+#####################################
+*/
+
+class SH_BF
+{
+	public static XTBF()
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="  cd /\n";
+		SHELL+="  bf1=`ls / `\n";
+		SHELL+="  for bf2 in $bf1 ; do\n";
+		SHELL+="     case $bf2 in\n";
+		SHELL+="      tmp|media) ;;\n";
+		SHELL+="      mycomputer) ;;\n";
+		SHELL+="      mnt) ;;\n";
+		SHELL+="      usr);;\n";
+		SHELL+="      *) if [ ! -d /mnt/.okbf/sysbak ]; then\n";
+		SHELL+="      tar czvf /mnt/.okbf/gml-$bf2.tgz $bf2 2>&1\n";
+		SHELL+="      elif [ $? != 0 ] ; then\n";
+		SHELL+="      [ -d /mnt/.okbf/sysbak ] mkdir -p /mnt/.okbf/sysbak\n";
+		SHELL+="      cp -rf \"$bf2\" /mnt/.okbf/sysbak/ 2>&1 2>/dev/null\n";
+		SHELL+="      elif [ $? != 0 ] ; then\n";
+		SHELL+="      rm -rf /mnt/.okbf/*\n";
+		SHELL+="      break\n";
+		SHELL+="      fi ;;\n";
+		SHELL+="    esac\n";
+		SHELL+="  done\n";
+		SHELL+="  bf3=`ls /usr`\n";
+		SHELL+="  for bf4 in $bf3 ;do\n";
+		SHELL+="    if [ ! -d /mnt/.okbf/sysbak ]; then\n";
+		SHELL+="      tar czvf /mnt/.okbf/cxml-$bf4.tgz usr/$bf4 2>&1\n";
+		SHELL+="      elif [ $? != 0 ] ; then\n";
+		SHELL+="      [ -d /mnt/.okbf/sysbak ] mkdir -p /mnt/.okbf/sysbak\n";
+		SHELL+="      cp -rf \"/usr\" /mnt/.okbf/sysbak/ 2>&1 2>/dev/null\n";
+		SHELL+="      elif [ $? != 0 ] ; then\n";
+		SHELL+="      rm -rf /mnt/.okbf/*\n";
+		SHELL+="      break\n";
+		SHELL+="      fi\n";
+		SHELL+="  done\n";
+
+		SHELL+="  rm -rf /mnt/.okbf/.oksysbak.tgz\n";
+		SHELL+="	cd\n";
+		SHELL+="mkdir -p /tmp\n";
+		SHELL+="chmod -R 777 /tmp\n";
+		SHELL+="mkdir -p /mnt\n";
+		SHELL+="mkdir -p /media\n";
+		SHELL+="	exit\n";
+
+		OKBasicLib.XWB("/bin/okxthy",WB_XTHY());
+		
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(SHELL);
+		否则
+			OKBasicLib.SHELLCK(SHELL,"OKYH正在执行");
+
+	}
+	public static XTHF()
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="okyh_xthf()\n";
+		SHELL+="{\n";
+		SHELL+="  case \"$1\" in\n";
+		SHELL+="    sd*|hd*) mount \"/dev/$1\" /mnt/.okbf 2>&1 2>/dev/null\n";
+		SHELL+="        if [ $? = 0 ] ; then\n";
+		SHELL+="	   fqml=/mnt/.okbf\n";
+		SHELL+="	fi ;;\n";
+		SHELL+="  esac\n";
+		SHELL+="  cd $fqml/\n";
+		SHELL+="     if [ -f mnt/.okbf/.oksysbak.tgz ]; then\n";
+		SHELL+="		tar xzvf mnt/.okbf/.oksysbak.tgz etc h* sbin root opt usr\n";
+		SHELL+="	fi\n";
+		SHELL+="	if [ -f /*/bin/lilo ]; then\n";
+		SHELL+="		cp etc/lilo.conf.* etc/lilo.conf \n";
+		SHELL+="		lilo\n";
+		SHELL+="	fi\n";
+		SHELL+="  cd $fqml/\n";
+
+		SHELL+="  for hf1 in $fqml/mnt/.okbf/gml*.tgz ; do\n";
+		SHELL+="   if [ -f $hf1 ]; then\n";
+		SHELL+="     case $hf1 in\n";
+		SHELL+="       *-boot*) ;;\n";
+		SHELL+="       *) tar xzvf $hf1 ;;\n";
+		SHELL+="    esac\n";
+		SHELL+="   fi\n";
+		SHELL+="  done\n";
+
+		SHELL+="  for hf3 in $fqml/mnt/.okbf/cxml*.tgz ; do\n";
+		SHELL+="     cd $fqml/\n";
+		SHELL+="     if [ -f $hf3 ] ;then\n";
+		SHELL+="       tar xzvf $hf3\n";
+		SHELL+="    fi\n";
+		SHELL+="  done\n";
+		SHELL+="  if [ -d $fqml/mnt/.okbf/sysbak ]; then\n";
+		SHELL+="     rm -rf $fqml/mnt/.oknf/sysbak/{boot bin}\n";
+		SHELL+="     cp -rf $fqml/mnt/.okbf/sysbak/* $fqml/ 2>&1 2>/dev/null\n";
+		SHELL+="     cp -rf $fqml/{boot bin} $fqml/mnt/.okbf/sysbak/\n";
+		SHELL+="  fi\n";
+		SHELL+="cd\n";
+
+		SHELL+="rm -rf /tmp/okhf\n";
+		SHELL+="umount /mnt/.okbf 2>/dev/null\n";
+		SHELL+="exit\n";
+
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(SHELL);
+		否则
+			OKBasicLib.SHELLCK(SHELL,"OKYH正在执行");
+
+	}
+	public static string WB_XTHY()
+	{
+
+		string SHELL=SH_OKYH.BL();
+		SHELL+="  case \"$1\" in\n";
+		SHELL+="    sd*|hd*) mount \"/dev/$1\" /mnt/.okbf 2>&1 2>/dev/null\n";
+		SHELL+="        if [ $? = 0 ] ; then\n";
+		SHELL+="	   fqml=/mnt/.okbf\n";
+		SHELL+="	fi ;;\n";
+		SHELL+="  esac\n";
+		SHELL+="  rm -rf /tmp//okhf\n";
+		SHELL+="  mkdir /tmp/okhf\n";
+		SHELL+="  ln -sf / /tmp/gml 2>/dev/null\n";
+		SHELL+="    cd /tmp/okhf\n";
+		SHELL+="  for hf1 in /mnt/.okbf/gml*.tgz ; do\n";
+		SHELL+="   if [ -f $hf1 ]; then\n";
+		SHELL+="     case $hf1 in\n";
+		SHELL+="       *-bin*) ;;\n";
+		SHELL+="       *-dev*) ;;\n";
+		SHELL+="       *-boot*) ;;\n";
+		SHELL+="       *-proc*) ;;\n";
+		SHELL+="       *-lib*);;\n";
+		SHELL+="       *-initrd*) ;;\n";
+		SHELL+="       *-usr*) ;;\n";
+		SHELL+="       *) tar xzvf $hf1\n";
+		SHELL+="         hf2=`ls`\n";
+		SHELL+="         if [ -x $hf2 ]; then\n";
+		SHELL+="           cd /\n";
+		SHELL+="           rm -rf $hf2\n";
+		SHELL+="           cd /tmp/okhf\n";
+		SHELL+="           mv $hf2 / \n";
+		SHELL+="         fi   ;;\n";
+		SHELL+="    esac\n";
+		SHELL+="   fi\n";
+		SHELL+="  done\n";
+
+		SHELL+="  mkdir -p  /tmp/okhfusr\n";
+		SHELL+="  for hf3 in /mnt/.okbf/cxml*.tgz ; do\n";
+		SHELL+="     cd /tmp/okhfusr\n";
+		SHELL+="     if [ -f $hf3 ] ;then\n";
+		SHELL+="       tar xzvf $hf3\n";
+		SHELL+="       for hf4 in usr/* ; do\n";
+		SHELL+="         if [ -x \"$hf4\" ]; then\n";
+		SHELL+="           cd / ;rm -rf $hf4\n";
+		SHELL+="           cd /tmp/okhfusr\n";
+		SHELL+="           mv $hf4 /usr/\n";
+		SHELL+="         fi\n";
+		SHELL+="      done\n";
+		SHELL+="     fi\n";
+		SHELL+="  done\n";
+		SHELL+="  if [ -d $fqml/mnt/.okbf/sysbak ]; then\n";
+		SHELL+="     rm -rf $fqml/mnt/.oknf/sysbak/{boot bin}\n";
+		SHELL+="     cp -rf $fqml/mnt/.okbf/sysbak/* $fqml/ 2>&1 2>/dev/null\n";
+		SHELL+="     cp -rf $fqml/{boot bin} $fqml/mnt/.okbf/sysbak/\n";
+		SHELL+="  fi\n";
+		SHELL+="cd\n";
+		SHELL+="rm -rf /tmp/ok*\n";
+		SHELL+="mkdir -p /tmp\n";
+		SHELL+="chmod -R 777 /tmp\n";
+		SHELL+="mkdir -p /mnt\n";
+		SHELL+="mkdir -p /media\n";
+		SHELL+="exit\n";
+
+		return SHELL;
+	}
+
+	public static XTHY()
+	{
+
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(WB_XTHY());
+		否则
+			OKBasicLib.SHELLCK(WB_XTHY(),"OKYH正在执行");
+
+	}
+
+	public static WINBF()
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="for disk in /m*/*/ntldr \\\n";
+		SHELL+="   /m*/*/io.sys ; do\n";
+		SHELL+="   if [ -f \"$disk\" ]; then\n";
+		SHELL+="    cd `dirname \"$disk\"`\n";
+		SHELL+="    echo `pwd`>/mnt/.okbf/.windir\n";
+		SHELL+="    break\n";
+		SHELL+=" else\n";
+		SHELL+="    exit\n";
+		SHELL+="  fi\n";
+		SHELL+="done\n";
+
+		SHELL+="cp -rf \"$0\" read.tmp 2>&1 2>/dev/null\n";
+		SHELL+="if [ \"$?\" != \"0\" ]; then\n";
+		SHELL+=" echo Windows zai zhi du fen qu\n";
+		SHELL+="  exit\n";
+		SHELL+="fi\n";
+		SHELL+="rm  \"System Volume Information\" \\\n";
+		SHELL+="   pagefile.sys .recycled RECYCLED win*/temp ";
+		SHELL+="    .recycled .Trash Doc*and*Settings/*/*/Temp* ";
+		SHELL+="   read.tmp  Documents*and*Settings/*/Temp* -rf\n";
+		SHELL+="if [ -f /mnt/.okbf/win-bak.tgz  ]; then\n";
+		SHELL+="  exit\n";
+		SHELL+="fi\n";
+
+		SHELL+="tar czvf /mnt/.okbf/win-bak.tgz `basename \"$disk\"` ./ 2>&1\n";
+		SHELL+="if [ \"$?\" != \"0\" ]; then\n";
+		SHELL+="  rm -rf /mnt/.okbf/win-bak.tgz \n";
+		SHELL+="fi\n";
+		SHELL+="exit\n";
+
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(SHELL);
+		否则
+			OKBasicLib.SHELLCK(SHELL,"OKYH正在执行");
+
+	}
+	public static WINHF()
+	{
+		string SHELL=SH_OKYH.BL();
+		SHELL+="for disk in /m*/*/ntldr \\\n";
+		SHELL+="   /m*/*/io.sys ; do\n";
+		SHELL+="   if [ -f \"$disk\" ]; then\n";
+		SHELL+="    cd `dirname \"$disk\"`\n";
+		SHELL+="    break\n";
+		SHELL+=" elif [ -f /mnt/.okbf/.windir ]; then\n";
+		SHELL+="    cd `cat /mnt/.okbf/.windir`\n";
+		SHELL+="    break\n";
+		SHELL+=" else\n";
+		SHELL+="    exit\n";
+		SHELL+="  fi\n";
+		SHELL+="done\n";
+
+		SHELL+="cp -rf \"$0\" read.tmp 2>&1 2>/dev/null\n";
+		SHELL+="if [ \"$?\" != \"0\" ]; then\n";
+		SHELL+=" echo Windows zai zhi du fen qu\n";
+		SHELL+="  exit\n";
+		SHELL+="fi\n";
+		SHELL+="tar cjvf /mnt/.okbf/win-doc.tbz  Doc*and*Settings/*/*Documents\n";
+
+		SHELL+="if [ -f /mnt/.okbf/win-bak.tgz  ]; then\n";
+		SHELL+="  rm -rf ./*\n";
+		SHELL+="  tar xzvf /mnt/.okbf/win-bak.tgz 2>&1\n";
+		SHELL+="  tar xjvf /mnt/.okbf/win-doc.tbz 2>&1\n";
+		SHELL+="fi\n";
+		SHELL+="exit\n";
+
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(SHELL);
+		否则
+			OKBasicLib.SHELLCK(SHELL,"OKYH正在执行");
+
+	}
+	public static YHBF()
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+="	cd /\n";
+		SHELL+="	tar czvf .okuserbak.tgz root\n";
+		SHELL+="	tar czvf /mnt/.okbf/gml-home.tgz home\n";
+		SHELL+="	if [ -f /mnt/.okbf/.userbak.tgz ]; then\n";
+		SHELL+="		mv -f .okuserbak.tgz /mnt/.okbf/gml-root.tgz\n";
+		SHELL+="	else\n";
+		SHELL+="		mv .okuserbak.tgz /mnt/.okbf/.userbak.tgz\n";
+		SHELL+="	fi\n";
+		SHELL+="	exit\n";
+		
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(SHELL);
+		否则
+			OKBasicLib.SHELLCK(SHELL,"OKYH正在执行");
+
+	}
+	public static YHHF()
+	{
+		string SHELL=SH_OKYH.BL();
+
+		SHELL+=" 	cd /\n";
+		SHELL+="	if [ -f /mnt/.okbf/gml-root.tgz ]; then\n";
+		SHELL+="		rm -rf /root /home\n";
+		SHELL+="		tar xzvf /mnt/.okbf/gml-root.tgz\n";
+		SHELL+="		tar xzvf /mnt/.okbf/gml-home.tgz\n";
+		SHELL+="	fi\n";
+		SHELL+="	cd\n";
+		SHELL+="	rm -rf /tmp/okhf\n";
+		SHELL+="	exit\n";
+
+		如果(OKBasicLib.QXTBL("DISPLAY") == "")
+			OKBasicLib.SHELL(SHELL);
+		否则
+			OKBasicLib.SHELLCK(SHELL,"OKYH正在执行");
+
+	}
+}

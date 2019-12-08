@@ -1,0 +1,29 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Wine]
+"Version"="win98"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\IEXPLORE.EXE]
+"advpack"="native"
+"shlwapi"="native,builtin"
+"rpcrt4"="native,builtin"
+"ole32"="native"
+"shdocvw"="native,builtin"
+"wininet"="native,builtin"
+"oleaut32"="native,builtin"
+"urlmon"="native,builtin"
+"crypt32"="native,builtin"
+"mshtml"="native,builtin"
+"wintrust"="native,builtin"
+"digest"="native,builtin"
+"regsvr32.exe"="native,builtin"
+"rsaenh"="native,builtin"
+"mlang"="native,builtin"
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\grpconv.exe]
+"Version"="win2k"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+"Start Page"="http://www.easywine.org/"

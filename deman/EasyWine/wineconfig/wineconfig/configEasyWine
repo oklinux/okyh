@@ -1,0 +1,455 @@
+WINE REGISTRY Version 2
+;; Powered by Sidenet
+;; http://sidenet.ddo.jp/winetips/
+;; Version 1.8.3
+;; All keys relative to \\Machine\\Software\\Wine\\Wine\\Config
+
+;; WARNING
+;; This file is ignored in wine >= 200506*
+
+;; If you think it is necessary to show others your complete config for a
+;; bug report, filter out empty lines and comments with
+;; grep -v "^;" ~/.wine/config | grep '.'
+
+[wine]
+"GraphicsDriver" = "x11drv"; (x11drv, ttydrv)
+;"ShowDotFiles" = "1"
+
+# [wineconf]
+
+[Version]
+; Windows version to imitate (win95,win98,winme,nt351,nt40,win2k,winxp,win2k3,win20,win30,win31)
+; Set version to win98 is recommended.
+"Windows" = "win98"
+; DOS version to imitate
+; Only effect when "Windows" = "win31"
+;"DOS" = "6.22"
+
+; Be careful here, wrong DllOverrides settings have the potential
+; to pretty much kill your setup.
+
+[DllOverrides]
+; Some native dlls won't work, so leave these builtin.
+; Do not modify these lines.
+"advapi32"     = "builtin";Native version won't work
+"avicap32"     = "builtin";Hardware related
+"capi2032"     = "builtin";Completely implemented
+"comctl32"     = "builtin";Native version cause bugs.
+"comdlg32"     = "builtin";thunk
+"crtdll"       = "builtin";Completely implemented
+"ctl3d32"      = "builtin";thunk
+"d3d8"         = "builtin";Hardware related
+"d3d9"         = "builtin";Hardware related
+"dbghelp"      = "builtin";Native version won't work
+"ddeml"        = "builtin";
+"ddraw"        = "builtin";Hardware related
+"ddrawex"      = "builtin";Hardware related
+"dinput"       = "builtin";
+"dinput8"      = "builtin";Hardware related
+"dispdib"      = "builtin";Completely implemented
+"display.drv"  = "builtin";Hardware related
+"dmusic32"     = "builtin";thunk
+"dplay"        = "builtin";
+"dplayx"       = "builtin";
+"dpnet"        = "builtin";
+"dsound"       = "builtin";Hardware related
+"dswave"       = "builtin";Hardware related
+"dxdiagn"      = "builtin";
+"gdi.exe"      = "builtin";Hardware related
+"gdi32"        = "builtin";Hardware related
+"glu32"        = "builtin";Hardware related
+"grpconv.exe"  = "builtin";Cause crash
+"gult32"       = "builtin";Hardware related
+"icmp"         = "builtin";Hardware related
+"icwconn1.exe" = "builtin";Prevent from loading Connection Wizard
+"ifsmgr.vxd"   = "builtin";Completely implemented
+"imaadp32.acm" = "builtin";Completely implemented
+"imm"          = "builtin";Special hack needed
+"imm32"        = "builtin";Special hack needed
+"iphlpapi"     = "builtin";Hardware related
+"joystick.drv" = "builtin";Hardware related
+"kernel32"     = "builtin";Hardware related
+"keyboard.drv" = "builtin";Hardware related
+"krnl386.exe"  = "builtin";Hardware related
+"lz32"         = "builtin";Completely implemented
+"lzexpand"     = "builtin";Completely implemented
+"mcianim.drv"  = "builtin";Completely implemented
+"mciavi.drv"   = "builtin";Completely implemented
+"mcicda.drv"   = "builtin";Completely implemented
+"mciseq.drv"   = "builtin";Completely implemented
+"mciwave.drv"  = "builtin";Completely implemented
+"midimap.drv"  = "builtin";Completely implemented
+"mmsystem"     = "builtin";Hardware related
+"mouse.drv"    = "builtin";Hardware related
+"mpr"          = "builtin";thunk
+"msacm.drv"    = "builtin";Completely implemented
+"msacm32"      = "builtin";thunk
+"msadp32.acm"  = "builtin";Completely implemented
+"msvfw32"      = "builtin";Hardware related
+"msvidc32"     = "builtin";Completely implemented
+"mswsock"      = "builtin";Hardware related
+"newdev"       = "builtin";Hardware related
+"ntdll"        = "builtin";Hardware related
+"opengl32"     = "builtin";Hardware related
+"psapi"        = "builtin";Hardware related
+"rasapi16"     = "builtin";Hardware related
+"rasapi32"     = "builtin";Hardware related
+"serialui"     = "builtin";Hardware related
+"setupapi"     = "builtin";thunk
+"shell"        = "builtin";Special hack needed
+"shell32"      = "builtin";Special hack needed
+"snmpapi"      = "builtin";Hardware related
+"sound"        = "builtin";Hardware related
+"sti"          = "builtin";Hardware related
+"system.drv"   = "builtin";Hardware related
+"tapi32"       = "builtin";Hardware related
+"toolhelp"     = "builtin";Hardware related
+"twain"        = "builtin";Hardware related
+"twain_32"     = "builtin";Hardware related
+"user.exe"     = "builtin";Hardware related
+"user32"       = "builtin";Hardware related
+"ver"          = "builtin";Special hack needed
+"version"      = "builtin";Special hack needed
+"vnbt.vxd"     = "builtin";
+"vtdapi.vxd"   = "builtin";
+"vwin32.vxd"   = "builtin";Hardware related
+"w32skrnl"     = "builtin";Hardware related
+"w32sys"       = "builtin";Hardware related
+"win32s16"     = "builtin";Hardware related
+"win87em"      = "builtin";Hardware related
+"winaspi"      = "builtin";Hardware related
+"wing"         = "builtin";Hardware related
+"winmm"        = "builtin";Hardware related
+"winnls32"     = "builtin";thunk
+"winsock"      = "builtin";Hardware related
+"wintab"       = "builtin";Hardware related
+"wintab32"     = "builtin";Hardware related
+"wnaspi32"     = "builtin";Hardware related
+"wow32"        = "builtin";
+"wprocs"       = "builtin";Hardware related
+"ws2_32"       = "builtin";Hardware related
+"wsock32"      = "builtin";Hardware related
+
+; Windows ODBC
+; If you'd like to use UNIX ODBC, remove this line.
+"odbc32"       = "native, builtin"
+
+; Acrobat Reader 6 Plugin
+; Currently, this plugin crashes IE6
+"acroiehelper" = "builtin"
+
+; MLang
+; Builtin mlang.dll can speed up Internet Explorer.
+; May cause font corruptions on CJK systems.
+;"mlang" = "builtin"
+
+; you can specify applications too
+; this one will apply for all notepad.exe
+;"*notepad.exe" = "native, builtin"
+; this one will apply only for a particular file
+;"C:\\windows\\regedit.exe" = "native, builtin"
+
+; default for all other dlls and executables
+"*" = "native, builtin"
+
+[x11drv]
+; Number of colors to allocate from the system palette
+"AllocSystemColors" = "100"
+; Use a private color map
+"PrivateColorMap" = "N"
+; Favor correctness over speed in some graphics operations
+"PerfectGraphics" = "N"
+; Color depth to use on multi-depth screens
+;;"ScreenDepth" = "16"
+; Allow the window manager to manage created windows
+"Managed" = "Y"
+; Use a desktop window of 640x480 for Wine
+;"Desktop" = "640x480"
+; Use XFree86 DGA extension if present
+; (make sure /dev/mem is accessible by you !)
+"UseDGA" = "N"
+; Use XVidMode extension if present
+"UseXVidMode" = "Y"
+; Use XRandR extension if present
+"UseXRandR" = "N"
+; Use the take focus protocol
+"UseTakeFocus" = "Y"
+; Enable DirectX mouse grab
+"DXGrab" = "Y"
+; Create the desktop window with a double-buffered visual
+; (useful to play OpenGL games)
+"DesktopDoubleBuffered" = "Y"
+; Run in synchronous mode (useful for debugging X11 problems)
+;;"Synchronous" = "Y"
+;
+; Use the Render extension to render client side fonts (default "Y")
+;;"ClientSideWithRender" = "Y"
+; Fallback on X core requests to render client side fonts (default "Y")
+;;"ClientSideWithCore" = "Y"
+; Set both of the previous two to "N" in order to force X11 server side fonts
+;
+; Anti-alias fonts if using the Render extension (default "Y")
+;;"ClientSideAntiAliasWithRender" = "N"
+; Anti-alias fonts if using core requests fallback (default "Y")
+;;"ClientSideAntiAliasWithCore" = "Y"
+;
+; Use the X Input Method (default "Y") 
+;;"UseXIM" = "Y" 
+; XIM Input Style (onthespot, offthespot, overthespot ,root) 
+;;"InputStyle" = "onthespot" 
+;
+; Codepage for clipboard (0 for ANSI, 20932 for euc-jp)
+"TextCP" = "0"
+
+[fonts]
+;Read the Fonts topic in the Wine User Guide before adding aliases
+;See a couple of examples for russian users below
+;"Resolution" = "96"
+;"Default" = "simsun"
+"Default" = "-redflag-song-"
+"DefaultFixed" = "-redflag-song-"
+;medium-r-normal--*-*-*-*-c-*-gb18030.2000-1"
+"DefaultFixed" = "fixed"
+"DefaultSerif" = "-redflag-song-"
+;medium-r-normal--*-*-*-*-c-*-gb18030.2000-1"
+"DefaultSansSerif" = "-redflag-song-"
+
+; the TrueType font dirs you want to make accessible to wine
+[FontDirs]
+"dir1" = "/usr/X11R6/lib/X11/fonts/TrueType"
+;"dir2" = "/usr/share/fonts/truetype"
+;"dir3" = "/usr/X11R6/lib/X11/fonts/TT"
+;"dir4" = "/usr/share/fonts/TT"
+
+[InputMethod]
+; Use XIM Input Method
+"UseXIM" = "Y"
+; XIM Input Style : "overthespot" or "offthespot" or "root" (default).
+"InputStyle" = "overthespot"
+"XIMFontSet" = "-misc-fixed-medium-r-normal--14-*-*-*-*-*"
+
+[serialports]
+"Com1" = "/dev/ttyS0"
+"Com2" = "/dev/ttyS1"
+"Com3" = "/dev/ttyS2"
+"Com4" = "/dev/modem"
+
+[parallelports]
+"Lpt1" = "/dev/lp0"
+
+;[ppdev]
+;; key:  io-base of the emulated port
+;; value : parport-device{,timeout}
+;; timeout for auto closing an open device ( not yet implemented)
+;"378" = "/dev/parport0"
+;"278" = "/dev/parport1"
+;"3bc" = "/dev/parport2"
+
+;[spooler]
+;;Wine detects CUPS configuration automaticly.
+;"FILE:" = "tmp.ps"
+;"LPT1:" = "|lpr"
+;"LPT2:" = "|gs -sDEVICE=bj200 -sOutputFile=/tmp/fred -q -"
+;"LPT3:" = "/dev/lp3"
+
+;[ports]
+;"read"  = "0x779,0x379,0x280-0x2a0"
+;"write" = "0x779,0x379,0x280-0x2a0"
+
+;[Debug]
+;"RelayExclude" = "RtlEnterCriticalSection;RtlLeaveCriticalSection"
+;"RelayInclude" = "user32.CreateWindowA"
+;"RelayFromExclude" = "user32;x11drv"
+;"RelayFromInclude" = "sol.exe"
+;"SnoopExclude" = "RtlEnterCriticalSection;RtlLeaveCriticalSection"
+;"SpyExclude" = "WM_SIZE;WM_TIMER;"
+
+[registry]
+;These are all booleans.  Y/y/T/t/1 are true, N/n/F/f/0 are false.
+;Defaults are read all, write to Home
+; Where to find the global registries
+;"GlobalRegistryDir" = "/etc";
+; Global registries (stored in /etc)
+"LoadGlobalRegistryFiles" = "Y"
+; Load Windows registries from the Windows directory
+"LoadWindowsRegistryFiles" = "Y"
+; Registry periodic save timeout in seconds
+; "PeriodicSave" = "600"
+; Save only modified keys
+"SaveOnlyUpdatedKeys" = "Y"
+
+[Clipboard]
+"ClearAllSelections" = "0"
+"PersistentSelection" = "1"
+"UsePrimary" = "0"
+
+; List of all directories directly contain .AFM files
+;[afmdirs]
+;"1" = "/usr/share/ghostscript/fonts"
+;"2" = "/usr/share/a2ps/afm"
+;"3" = "/usr/share/enscript"
+;"4" = "/usr/X11R6/lib/X11/fonts/Type1"
+
+[WinMM]
+; Uncomment the "Drivers" line matching your sound setting.
+
+"Drivers" = "wineoss.drv"      ; default for most common configurations
+;"Drivers" = "winearts.drv"    ; for KDE
+;"Drivers" = "winealsa.drv"    ; for ALSA users
+;"Drivers" = "winejack.drv"    ; for Jack sound server
+;"Drivers" = "winenas.drv"     ; for NAS sound system
+;"Drivers" = "wineaudioio.drv" ; for Solaris machines
+;"Drivers" = ""                ; to disable sound
+"WaveMapper" = "msacm.drv"
+"MidiMapper" = "midimap.drv"
+
+[dsound]
+;; HEL only: Number of waveOut fragments ahead to mix in new buffers.
+;"HELmargin" = "5"
+;; HEL only: Number of waveOut fragments ahead to queue to driver.
+;"HELqueue" = "5"
+;; Max number of fragments to prebuffer
+;"SndQueueMax" = "28"
+;; Min number of fragments to prebuffer
+;"SndQueueMin" = "12"
+;; Forces emulation mode (using wave api)
+;"HardwareAcceleration" = "Emulation"
+;; Sets default playback device (0 - number of devices - 1)
+;"DefaultPlayback" = "0"	; use first device (/dev/dsp)
+;"DefaultPlayback" = "1" 	; use second device (/dev/dsp1)
+;"DefaultPlayback" = "2" 	; use third device (/dev/dsp2)
+;; Sets default capture device (0 - number of devices - 1)
+;"DefaultCapture" = "0"		; use first device (/dev/dsp)
+;"DefaultCapture" = "1"		; use second device (/dev/dsp1)
+;"DefaultCapture" = "2"		; use third device (/dev/dsp2)
+
+[Network]
+;; Use the DNS (Unix) host name always as NetBIOS "ComputerName" (boolean, default "Y").
+;; Set to N if you need a persistent NetBIOS ComputerName that possibly differs 
+;; from the Unix host name. You'll need to set ComputerName in 
+;; HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\ComputerName\ComputerName, too.
+;"UseDnsComputerName" = "N"
+
+;; Application specific configuration
+
+; 3 InstallShield versions who like to put their full screen window in front,
+; without any chance to switch to another X11 application.
+; So just catch them in a desktop window.
+; Note: KDE handles this correctry.
+;
+;[AppDefaults\\_INS0432._MP\\x11drv]
+;"Desktop" = "640x480"
+;
+;[AppDefaults\\_INS0466._MP\\x11drv]
+;"Desktop" = "640x480"
+;
+;[AppDefaults\\_INS0576._MP\\x11drv]
+;"Desktop" = "640x480"
+;
+;[AppDefaults\\_INS5176._MP\\x11drv]
+;"Desktop" = "640x480"
+;
+;[AppDefaults\\_INS5576._MP\\x11drv]
+;"Desktop" = "800x600"
+
+
+;Disable window management for some apps.
+;
+;Densi denwachou 2003
+[AppDefaults\\Blarea8.exe\\x11drv]
+"Managed" = "N"
+;
+;Half Life Demo
+[AppDefaults\\hldemo.exe\\x11drv]
+"Managed" = "N"
+;
+;Real Player 10
+[AppDefaults\\realplay.exe\\x11drv]
+"Managed" = "N"
+;
+;Winamp
+[AppDefaults\\winamp.exe\\x11drv]
+"Managed" = "N"
+
+
+;;Some apps work better with native comctl32
+;;NOTE: May cause side effects
+;
+;;Winamp
+;[AppDefaults\\winamp.exe\\DllOverrides]
+;"comctl32" = "native"
+;
+;;WinnyP
+;[AppDefaults\\winnyp.exe\\DllOverrides]
+;"comctl32" = "native"
+;
+;;Lunascape
+;[AppDefaults\\Luna.exe\\DllOverrides]
+;"comctl32" = "native"
+;
+;;Mame file 2
+;[AppDefaults\\mame2.exe\\DllOverrides]
+;"comctl32" = "native"
+
+
+;OpenJane_IE sppedup hack
+[AppDefaults\\Jane2ch.exe\\DllOverrides]
+"mlang" = "builtin, native"
+;"comctl32" = "native"
+;;Internet Explorer
+;[AppDefaults\\iexplore.exe\\DllOverrides]
+;"mlang" = "builtin, native"
+
+
+;IE4,5,6 Installer
+[AppDefaults\\acmsetup.exe\\DllOverrides]
+"*comctl32" = "builtin"
+[AppDefaults\\grpconv.exe\\DllOverrides]
+"*comctl32" = "builtin"
+[AppDefaults\\iebatch.exe\\DllOverrides]
+"*comctl32" = "builtin"
+[AppDefaults\\updcrl.exe\\DllOverrides]
+"*comctl32" = "builtin"
+
+
+;Adobe Reader 6.0
+[AppDefaults\\AcroRd32.exe\\Version]
+"Windows" = "win2k"
+
+
+;;Windows Explorer
+;[AppDefaults\\explorer.exe\\DllOverrides]
+;"shell32" = "native"
+
+
+;;Windows Media Player 9 Installer
+;;WARNING: Windows Media Player 9 Installer may brake your setup!
+;[AppDefaults\\setup_wm.exe\\Version]
+;"Windows" = "winme"
+;[AppDefaults\\setup_wm.exe\\DllOverrides]
+;"msvcrt" = "builtin"
+
+
+;;Example: Catch setup.exe in a desktop window.
+;[AppDefaults\\setup.exe\\x11drv]
+;"Desktop" = "800x600"
+
+;;Example: Catch full screen games in a desktop window.
+;;Half Life Demo
+;[AppDefaults\\hldemo.exe\\x11drv]
+;"Desktop" = "640x480"
+
+;;Example: XIM Input Style
+;[AppDefaults\\notepad.exe\\x11drv]
+;"InputStyle" = "offthespot"
+
+;;Example: Windows version
+;[AppDefaults\\sol.exe\\Version]
+;"Windows" = "nt40"
+
+;; You can add an AppDefault entry like this for such cases.
+;[AppDefaults\\pickygame.exe\\dsound]
+;"EmulDriver" = "N"
+
+# [/wineconf]
+

@@ -1,0 +1,24 @@
+WINE REGISTRY Version 2
+;; All keys relative to \\Machine\\Software\\Wine\\Wine\\Config
+
+;; WARINING
+;; This config file is for base installation.
+
+[wine]
+"Windows" = "c:\\windows"
+"System" = "c:\\windows\\system"
+"Temp" = "c:\\windows\\temp"
+"Path" = "c:\\windows;c:\\windows\\system;c:\\windows\\command"
+;"Profile" = "c:\\windows\\Profiles\\Administrator"
+"GraphicsDriver" = "x11drv"
+
+# [wineconf]
+
+[Version]
+"Windows" = "win98"
+
+[DllOverrides]
+"*" = "builtin, native"
+
+# [/wineconf]
+

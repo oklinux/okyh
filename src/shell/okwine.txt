@@ -1,0 +1,1313 @@
+#!/bin/bash
+################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+#          www.oukan,1m.cn
+################################`
+
+OKYHVER=VER
+iso=""
+ljj=/
+hd=""
+label="Oukan OKYH" 
+dqlj=`pwd`
+okwinexe=$0
+xx="bz"
+ieexe="$HOME/.wine/dosdevices/c:/Program Files/Internet Explorer/IEXPLORE.EXE"
+oe="$HOME/.wine/dosdevices/c:/Program Files/Outlook Express/msimn.exe"
+wmp="$HOME/.wine/dosdevices/c:/Program Files/Windows Media Player/mplayer2.exe"
+kde=$HOME/.kde/share/applnk/Windows
+bb=win98
+
+
+ztml="
+/usr/X11R6/lib/X11/fonts/TrueType/*
+/usr/share/fonts/truetype/*
+/usr/X11R6/lib/X11/fonts/TT/*
+/usr/share/X11/fonts/TTF/
+/usr/share/fonts/TT/*"
+
+windll="
+browseui.dll
+comcat.dll
+comct232.ocx
+comctl32.dll
+comctl32.ocx
+comdlg32.dll
+commctrl.dll
+commdlg.dll
+comm.drv
+compbatt.sys
+compfile.lst
+compobj.dll
+cxnative.exe
+digest.dll
+dxtmsft.dll
+dxtrans.dll
+hlink.dll
+inetcpl.cpl
+initpki.dll
+mfc30.dll
+mfc30loc.dll
+mfc40.dll
+mfc40loc.dll
+mfc42chs.dll
+mfc42.dll
+mfc42loc.dll
+mfc42u.dll
+mfcans32.dll
+mfcd30.dll
+mfcn30.dll
+mfco30.dll
+mfcuia32.dll
+mfcuiw32.dll
+mshtml.dll
+mshtmled.dll
+msrating.dll
+mstime.dll
+msvcrt20.dll
+msvcrt40.dll
+msvcrt.dll
+msxml3.dll
+msxml.dll
+nwlink.vxd
+ole32.dll
+oleaut32.dll
+plugin.ocx
+regsvr32.exe
+rsabase.dll
+rundll32.exe
+shdoc401.dll
+shell32.dll
+shell.dll
+shfolder.dll
+shlwapi.dll
+shpc32.dll
+shscrap.dll
+stdole32.tlb
+urlmon.dll
+wininet.dll
+ws2_32.dll"
+
+
+txwk()
+{
+$xdev --title "ŷ٩OKYH" --$1 "$2" 19 40
+ok=$?
+}
+
+
+okyh_cxpz1()
+{
+	cat <<EDF
+"shell"       = "native,builtin"
+"shell32"     = "native,builtin"
+"shfolder"    = "native,builtin"
+"rpcrt4"      = "native,builtin"
+"commctrl"    = "native,builtin"
+"comctl32"    = "native,builtin"
+"*"           = "builtin,native"
+EDF
+}
+
+okyh_cxpz2()
+{
+	cat <<EDF
+"ole32"       = "native"
+"oleaut32"    = "native"
+"rpcrt4"      = "native"
+EDF
+}
+
+okyh_cxpz3()
+{
+	cat <<EDF
+"oleaut32"    = "native"
+"rpcrt4"      = "native"
+"comctl32"    = "native"
+"shell"       = "native"
+"shell32"     = "native"
+"shfolder"    = "native"
+"ole32"       = "native"
+EDF
+}
+
+okyh_cxpz4()
+{
+	cat <<EDF
+"commdlg"     = "native"
+"ole32"       = "native"
+EDF
+}
+
+
+okyh_cxpz5()
+{
+	cat <<EDF
+"shell"       = "native,builtin"
+"shell32"     = "native,builtin"
+"shfolder"    = "native,builtin"
+"rpcrt4"      = "native,builtin"
+"commctrl"    = "native,builtin"
+"comctl32"    = "native,builtin"
+"msvcirt"     = "native,builtin"
+EDF
+}
+
+okyh_cxpz6()
+{
+	cat <<EDF
+"*"           = "builtin,native"
+EDF
+}
+
+okyh_cxpz7()
+{
+	cat <<EDF
+"*advapi32"="builtin"
+"advpack"="native,builtin"
+"crypt32"="native,builtin"
+"ddraw"="builtin"
+"digest"="native"
+"mshtml"="native,builtin"
+"ole32"="native,builtin"
+"oleaut32"="native,builtin"
+"regsvr32.exe"="native,builtin"
+"rpcrt4"="native,builtin"
+"rsaenh"="native,builtin"
+"shdocvw"="native,builtin"
+"shlwapi"="native"
+"urlmon"="native"
+"wininet"="native"
+"wintrust"="native,builtin"
+EDF
+}
+
+
+okie_dll()
+{
+   cat <<EDF
+[AppDedauils\\\iexplore.exe\\\Version]
+"Windows"  = "win98"
+[AppDefaults\\\iexplore.exe\\\DllOverrides]
+"mshtml"   = "native, builtin"
+"shfolder" = "native, builtin"
+"shell32"  = "native, builtin"
+"shell"    = "native, builtin"
+"shdocvw"  = "native, builtin"
+"shlwapi"  = "native, builtin"
+"urlmon"   = "native, builtin"
+"crypt32"  = "native, builtin"
+"wininet"  = "native, builtin"
+
+EDF
+}
+
+
+desktop_entry()
+{
+    cat <<EOF
+[Desktop Entry]
+Name=$linkname
+Exec=env WINEPREFIX="${WINEPREFIX:-$HOME/.wine}" wine "$path" $args
+Type=Application
+StartupWMClass=Wine
+EOF
+    [ -z "$descr"   ] || echo "Comment=$descr"
+    [ -z "$workdir" ] || echo "Path=$workdir"
+    [ -z "$xpmicon" ] || echo "Icon=$xpmicon"
+}
+
+directory_entry()
+{
+    cat <<EOF
+[Desktop Entry]
+Type=Directory
+EOF
+    if [ "$1" = "wine" ] ; then
+        echo "Name=Windows"
+        echo "Icon=wine"
+    else
+        echo "Name=$1"
+        echo "Icon=folder"
+    fi
+}
+
+copy_icon()
+{
+    if [ -f "$icon" ]
+    then
+        xpmicon=`basename "$icon" .xpm`
+
+        mkdir -p "$1"
+        cp "$icon" "$1/$xpmicon.xpm"
+    else
+        xpmicon=""
+    fi
+}
+
+
+get_menu_entries()
+{
+    tmp="$xdg_config_dir/$1.menu"
+
+    if [ -r "$tmp" ] ; then
+        awk '
+BEGIN {  RS="<" }
+/^Filename/ {
+  RSTART=index($0,">")
+  if (RSTART>0) {
+     print substr($0,RSTART+1)
+  }
+}' $tmp
+    fi
+}
+
+write_menu_file()
+{
+    menu=`echo "$1" | sed 's!/!-!g'`
+    filename=`echo "$2" | sed 's!/!-!g'`
+
+    tmpfile=`mktemp /tmp/wine.XXXXXX`
+    (
+        echo '<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"'
+        echo '"http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">'
+        echo '<Menu>'
+        echo '  <Name>Applications</Name>'
+
+        IFS="/"
+
+        fullname='wine'
+        for i in $1; do
+            echo "  <Menu>"
+            echo "    <Name>$fullname-$i</Name>"
+            echo "    <Directory>$fullname-$i.directory</Directory>"
+
+            dir_file_name="$xdg_data_dir/desktop-directories/$fullname-$i.directory"
+            if [ ! -f "$dir_file_name" ] ; then
+                directory_entry "$i" > "$dir_file_name"
+            fi
+            test "$i" = "wine" || fullname="$fullname-$i"
+        done
+
+        echo "    <Include>"
+
+        IFS="
+"
+        for i in `get_menu_entries "$menu"`
+        do
+            test "$i" = "$filename" && continue
+            echo "      <Filename>$i</Filename>"
+        done
+
+        # New record
+        echo "      <Filename>$filename</Filename>"
+        echo "    </Include>"
+
+        IFS='/'
+        for i in $1; do
+            echo "  </Menu>"
+        done
+        echo '</Menu>'                        
+    ) > $tmpfile
+    chmod 0600 $tmpfile
+
+    mv -f $tmpfile "$xdg_config_dir/$menu.menu"
+}
+
+okwine_xdg()
+{
+
+xdg_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/menus/applications-merged"
+xdg_data_dir="${XDG_DATA_HOME:-$HOME/.local/share}"
+
+mkdir -p "$xdg_config_dir"
+mkdir -p "$xdg_data_dir/desktop-directories"
+
+lj=`echo "$path" | sed -e 's:\\\:/:g'`
+lj1=`dirname "$HOME/.wine/dosdevices/$lj"`
+
+
+if [ -d "$lj1"  ] ; then
+  workdir="$lj1"
+fi
+
+copy_icon "$xdg_data_dir/icons"
+
+linkname=`basename "$link"`
+
+if [ $mode = "menu" ] ; then
+    mkdir -p "$xdg_data_dir/applications/wine/`dirname "$link"`"
+
+    linkpath=`dirname "$link"`
+    if [ "$linkpath" = "." ] ; then
+        linkpath=""
+    else
+        linkpath="/$linkpath"
+    fi
+
+    desktop_entry > "$xdg_data_dir/applications/wine/$link.desktop"
+    write_menu_file "wine$linkpath" "wine$linkpath/$linkname.desktop"
+else
+    if [ -d "$HOME/Desktop" ]
+    then
+      desktop_target="$HOME/Desktop/$linkname.desktop"
+    else
+      desktop_target="$HOME/$linkname.desktop"
+    fi
+    desktop_entry > "$desktop_target"
+fi
+
+exit 0
+}
+	
+
+kde_entry()
+{
+    xname=`basename "$link"`
+    cat <<EOF
+# KDE Config File
+[KDE Desktop Entry]
+9Name=$xname
+Name[zh_CN]=$xname
+Name[zh_TW]=$xname
+
+Exec=wine '$path' -- $args
+Type=Application
+Path="$workdir"
+Icon=$xpmicon
+Comment=$descr
+EOF
+}
+
+gnome_entry()
+{
+    xname=`basename "$link"`
+    cat <<EOF
+[Desktop Entry]
+Name=$xname
+Name[zh_CN]=$xname
+Name[zh_TW]=$xname
+
+Exec=wine "$path" -- $args
+Type=Application
+Path="$workdir"
+Icon=$xpmicon
+Comment=$descr
+EOF
+
+}
+
+mdk_entry()
+{
+    base=`basename "$link"`
+    section=`dirname "$link"`
+    [ -z "$icon" ] || xicon="icon=\"$xpmicon\""
+    echo "?package(local.Wine):needs=x11 section=\"Wine/$section\" title=\"$base\" longtitle=\"$descr\" command=\"wine \\\"$path\\\" -- $args\" $xicon"
+}
+
+wine_icon()
+{
+  dir="$1"
+  mkdir -p "$dir"
+  mkdir -p "$dir/""`dirname "$link"`" || true
+case $icon in
+  *.xpm)  mkdir -p "$dir/icon"
+   if [ -f "$icon" ]; then
+        if [ ! -f "$dir/icon/.icon" ]; then
+	   echo 0>>"dir/icon/.icon"
+       fi
+       tbbh=`cat "$dir/icon/.icon"`
+       tbbh1=`expr $tbbh + 1`
+      echo $tbbh1>"$dir/icon/.icon"
+    cp "$icon" "$dir//icon/xpm$tbbh.xpm"
+    xpmicon="$dir/icon/xpm$tbbh.xpm"
+  else
+    xpmicon=""
+  fi ;;
+  *.[eE][xX][eE]) xpmicon=$icon ;;
+esac
+}
+
+
+
+wine_link()
+{
+lj=`echo "$path" | sed -e 's:\\\:/:g'`
+lj1=`dirname "$HOME/.wine/dosdevices/$lj"`
+
+
+if [ -d "$lj1"  ] ; then
+  workdir="$lj1"
+fi
+
+
+# Debian/Mandrake
+
+which update-menus > /dev/null 2>&1
+if [ $? = 0 -a $mode = "menu" ] ;then
+  wine_icon $HOME/.menu/winxpm
+  xpmicon="$dir/$iconname"
+  mdk_entry >> "$HOME/.menu/Windows"
+  if [ -d "/usr/lib/menu" ] ;  then
+    mdk_entry >> "/usr/lib/menu/Windows"
+  fi
+  update-menus > /dev/null 2>&1
+fi
+
+
+if [ -d "$HOME/.kde" ]
+then
+  kdeversion=0
+  if which kde-config >/dev/null 2>&1
+  then
+    kdeversion=`kde-config -v | grep KDE: | sed -n "s/^KDE: \([^.]*\)\..*$/\1/p"`
+  fi
+
+  if [ $kdeversion -ge 2 ] ; then
+    copy_icon "$HOME/.kde/share/applnk/Windows"
+    if [ $mode = "menu" ] ; then
+      gnome_entry > "$HOME/.kde/share/applnk/Windows/$link"
+iconv -t UTF8 "$HOME/.kde/share/applnk/Windows/$link" -o "$HOME/.kde/share/applnk/Windows/$link.desktop"
+rm -f "$HOME/.kde/share/applnk/Windows/$link"
+    elif [ -d "$HOME/Desktop" ] ;  then
+      gnome_entry > "$HOME/Desktop/$link.desktop"
+iconv -t UTF8 "$HOME/Desktop/$link.desktop" -o "$HOME/Desktop/$link-wine.desktop"
+rm -f "$HOME/Desktop/$link.desktop"
+    fi
+  else
+    wine_icon "$HOME/.kde/share/applnk/Windows"
+    if [ $mode = "menu" ] ;  then
+      kde_entry > "$HOME/.kde/share/applnk/Windows/$link"
+iconv -t UTF8 "$HOME/.kde/share/applnk/Windows/$link" -o "$HOME/.kde/share/applnk/Windows/$link.kdelnk"
+rm -f "$HOME/.kde/share/applnk/Windows/$link"
+
+      # KDE 1.x kludge.  Wake up KDE, if we can find kpanel running
+      which kwmcom >/dev/null 2>/dev/null && \
+        ps u -C kpanel >/dev/null 2>/dev/null && \
+          kwmcom kpanel:restart
+
+    elif [ -d "$HOME/Desktop" ]
+    then
+      kde_entry > "$HOME/Desktop/$link.kdelnk"
+iconv -t UTF8 "$HOME/Desktop/$link.kdelnk" -o "$HOME/Desktop/$link"
+rm -f "$HOME/Desktop/$link.kdelnk"
+
+      #   KDE 1.x kludge:  wake up KDE, if we can find kfm running...
+      which kfmclient >/dev/null 2>/dev/null && \
+        ps u -C kfm >/dev/null 2>/dev/null  && \
+          kfmclient refreshDesktop
+    fi
+  fi
+fi
+
+if [ -d "$HOME/.kde2" ]
+then
+  copy_icon "$HOME/.kde2/share/applnk/Windows"
+  if [ $mode = "menu" ]
+  then
+    gnome_entry > "$HOME/.kde2/share/applnk/Windows/$link"
+iconv -t UTF8 "$HOME/.kde2/share/applnk/Windows/$link" -o "$HOME/.kde2/share/applnk/Windows/$link.desktop"
+rm -f "$HOME/.kde2/share/applnk/Windows/$link"
+
+  else
+    if [ -d "$HOME/Desktop2" ]
+    then
+      gnome_entry > "$HOME/Desktop2/$link.desktop"
+iconv -t UTF8 "$HOME/Desktop2/$link.desktop" -o "$HOME/Desktop2/$link-wine.desktop"
+rm -f "$HOME/Desktop2/$link.desktop"
+    fi
+    if [ -d "$HOME/Desktop" ]
+    then
+      gnome_entry > "$HOME/Desktop/$link.desktop"
+iconv -t UTF8 "$HOME/Desktop/$link.desktop" -o "$HOME/Desktop/$link-wine.desktop"
+rm -f "$HOME/Desktop/$link.desktop"
+    fi
+  fi
+fi
+
+if [ -d "$HOME/.kde3/share/applnk" ]
+then
+  wine_icon "$HOME/.kde3/share/applnk/Windows"
+  if [ $mode = "menu" ]
+  then
+    gnome_entry > "$HOME/.kde3/share/applnk/Windows/$link"
+iconv -t UTF8 "$HOME/.kde3/share/applnk/Windows/$link" -o "$HOME/.kde3/share/applnk/Windows/$link.desktop"
+rm -f "$HOME/.kde3/share/applnk/Windows/$link"
+
+  else
+    if [ -d "$HOME/Desktop3" ]
+    then
+      gnome_entry > "$HOME/Desktop3/$link.desktop"
+iconv -t UTF8 "$HOME/Desktop3/$link.desktop" -o "$HOME/Desktop3/$link-wine.desktop"
+rm -f "$HOME/Desktop3/$link.desktop"
+    fi
+    if [ -d "$HOME/Desktop2" ]
+    then
+      gnome_entry > "$HOME/Desktop2/$link.desktop"
+iconv -t UTF8 "$HOME/Desktop2/$link.desktop" -o "$HOME/Desktop2/$link-wine.desktop"
+rm -f "$HOME/Desktop2/$link.desktop"
+    fi
+    if [ -d "$HOME/Desktop" ]
+    then
+      gnome_entry > "$HOME/Desktop/$link.desktop"
+iconv -t UTF8 "$HOME/Desktop/$link.desktop" -o "$HOME/Desktop/$link-wine.desktop"
+rm -f "$HOME/Desktop/$link.desktop"
+    fi
+  fi
+fi
+
+
+if [ -d "$HOME/.gnome" ];then
+  wine_icon "$HOME/.gnome/apps/Windows"
+  if [ $mode = "menu" ]; then
+    gnome_entry > "$HOME/.gnome/apps/Windows/$link"
+iconv -t UTF8 "$HOME/.gnome/apps/Windows/$link" -o "$HOME/.gnome/apps/Windows/$link.desktop"
+rm -f "$HOME/.gnome/apps/Windows/$link"
+  elif [ -d "$HOME/.gnome-desktop" ];  then
+    gnome_entry > "$HOME/.gnome-desktop/$link"
+iconv -t UTF8 "$HOME/.gnome-desktop/$link" -o "$HOME/.gnome-desktop/$lin-wine.desktop"
+rm -f "$HOME/.gnome-desktop/$link"
+  fi
+fi
+
+rm -rf $HOME/Desktop*/*.lnk
+
+exit 0
+}
+
+
+okyh_bin()
+{
+cat <<winebin
+#!/bin/sh
+#okwine bin fille
+case "\$1" in
+  *DCOM98.EXE|*dcom98.exe) if [ -f /bin/okwine ]; then
+        okwine "pzwj" "--bb" "win98" ; fi
+      	WINEDLLOVERRIDES="ole32=n" wine-bin "\$1" ;exit;;
+   *dcom95.exe|*DCOM95.EXE) if [ -f /bin/okwine ]; then
+        okwine "pzwj" "--bb" "win95" ; fi
+	wineserver -k
+	WINEDLLOVERRIDES="ole32=n" wine-bin "\$1" ;exit ;;
+   *ie6setup*|*IE6SETUP*|*ie5setup*|*ie4setup*|*IE5SETUP*)
+       if [ -f /bin/okwine ]; then   okwine "pzwj" "--bb" "win98" ; fi
+	export WINEDLLOVERRIDES="advpack=n"
+	  wine-bin "\$1" ; exit ;;
+    *msinst.exe|*msinstw.exe|*MSINST.EXE|*MSINSTW.EXE)
+       WINEDLLOVERRIDES="ole32=n" wine-bin "\$1" ;exit;;
+    *.MSI|*.msi) wine-bin msiexec.exe "\$1" ;exit;;
+    *.BAT|*.bat) wine-bin wcmd.exe "\$1" ;exit;;
+    *.CHM|*.chm) wine-bin hh.exe "\$1" ;exit;;
+    *\\\\*)  lj=\`echo "\$1" | sed -e 's:\\\\\\:/:g'\`
+	       cd \`dirname "\$HOME/.wine/dosdevices/\$lj"\`
+       LC_ALL=zh_CN.UTF-8 $okwine/bin/wine-bin "\$1" \$2 \$3 \$4
+       exit ;;
+    --)  lj=\`echo "\$2" | sed -e 's:\\\\\\:/:g'\`
+       cd \`dirname "\$HOME/.wine/dosdevices/\$lj"\`
+       LC_ALL=zh_CN.UTF-8 $okwine/bin/wine-bin "\$2" \$3 \$4 \$5
+       exit ;;
+    */*)       szwz=\`dirname "\$1"\`
+       cd "\$szwz"
+        $okwine/bin/wine-bin \`basename "\$1"\` \$2 \$3 \$4
+       exit      ;;
+    *) wine-bin "\$1" \$2 \$3 \$4 \$5 \$6  ; exit ;;
+    esac
+winebin
+}
+
+okyh_wine()
+{
+rm -rf $HOME/.wine*
+rm -rf $HOME/.kde*/share/applnk/Windows
+rm -rf $HOME/.kde*/share/applnk/Wine
+rm -rf $HOME/.gnome*/apps/Windows
+rm -rf $HOME/.gnome*/apps/Wine
+rm -rf $HOME/.config/menus/applications-merged/wine*menu
+rm -rf $HOME/.local/share/applications/wine
+rm -rf $HOME/.local/share/desktop-directories/wine*
+rm -rf $HOME/Desktop/*wine.desktop
+
+cd  "$HOME"
+if  [  ! -e  $HOME/.wine_c ]; then
+	mkdir -p .wine_c
+	mkdir -p .wine_c/windows
+	mkdir -p .wine_c/windows/system
+	mkdir -p .wine_c/windows/system32
+	mkdir -p .wine_c/windows/Desktop
+	mkdir -p .wine_c/windows/inf
+	mkdir -p ".wine_c/windows/Start Menu"
+	mkdir -p .wine_c/windows/Fonts
+	mkdir -p .wine_c/windows/temp
+fi
+
+
+cd "$dqlj"
+}
+
+
+okyh_syscfg()
+{
+mkdir -p .wine 
+   if  [ !  -d  $HOME/.wine/dosdevices ]; then
+           mkdir -p $HOME/.wine/dosdevices
+   fi
+   if  [  -d  $HOME/.wine_c ]; then
+       ln -sf "$HOME/.wine_c" "$HOME/.wine/dosdevices/c:"
+       ln -sf "$HOME/.wine_c" "$HOME/.wine/dosdevices/C:"
+       ln -sf "$HOME/.wine_c" "$HOME/.wine/drive_c" 2>/dev/null
+   elif  [  -d  $HOME/.wine/drive_c ]; then
+      ln -sf "$HOME/.wine/drive_c" "$HOME/.wine/dosdevices/c:"
+      ln -sf "$HOME/.wine/drive_c" "$HOME/.wine/dosdevices/C:"
+   else
+      ln -sf `wine-bin winepath c:\\` "$HOME/.wine/dosdevices/c:"
+      ln -sf `wine-bin winepath c:\\` "$HOME/.wine/dosdevices/C:"
+   fi
+cd $HOME/.wine/dosdevices
+if [ -e /dev/fd0  ]; then
+	ln -sf /dev/fd0  a::
+	ln -sf /mnt/floppy a:
+fi
+ln -sf "$HOME" e:
+ln -sf /tmp y: 2>/dev/null
+if [ ! -x z: ] ; then
+	ln -sf / z:
+fi
+if [ -e /dev/cdrom ]; then
+	ln -sf /dev/cdrom  d::
+	ln -sf /mnt/cdrom d:
+fi
+ln -sf /dev/ttyS0 COM1:
+ln -sf /dev/ttyS1 COM2:
+ln -sf /dev/ttyS2 COM3:
+ln -sf /dev/lp0   LTP1:
+if [ -f /dev/modem ];then
+	ln -sf /dev/modem COM4:
+fi
+
+cd "$dqlj"
+}
+
+
+okyh_ztkb()
+{
+font="$HOME/.wine/dosdevices/c:/windows/Fonts"
+for zt in $ztml ; do
+  if [ -f "$zt" ]; then
+     ln -sf "$zt" "$font/`basename $zt`" 2>/dev/null
+  fi
+done
+for a in /mnt/*/*/*onts/simsun.tt* ; do
+	if [ -f "$a" ] ; then
+		cp "$a" $font
+	fi
+done
+}
+
+okyh_winepz()
+{
+wineserver -k
+ sed -e '1,/WINE-CFG/d' $0 |sed -e '1,/WINE-CFG/d'|\
+ sed -n -e '1,/WINE-CFG-END/p' |sed -e "s/wine-bb/$bb/g">$HOME/.wine/config
+   
+   if [ ! -d $HOME/.wine_c/windows/inf ]; then
+     mkdir -p $HOME/.wine_c/windows/inf
+   fi
+   sed -e '1,/INF-WCSCN/d' $0 |sed -e '1,/INF-WCSCN/d' |\
+   sed -n -e '1,/INF-END/p'>$HOME/.wine_c/windows/inf/wcscn.inf
+ if [ ! -f $HOME/.wine/system.reg ]; then
+ sed -e '1,/REG2-WINE-2/d' $0 |sed -e '1,/REG2-WINE/d' |\
+      sed -n -e '1,/REG-END/p'>$HOME/.wine/system.reg
+      winebb=`wine --version 2>$HOME/.OKW
+   sed -n -e '/Wine/p' $HOME/.OKW |sed -e 's/Wine //g'`
+   case $winebb in
+   1.0|1.0-2)  ;;
+   20*)  if [ 20050000 -gt $winebb ]; then
+        WIN=NIW
+   else   okyh_ztkb ; fi  ;;
+   *)      okyh_ztkb  ;;
+   esac
+    wine rundll32.exe setupapi.dll,InstallHinfSection\
+    DefaultInstall 128 wcscn.inf  2>/dev/null
+  fi
+  if [ -f "$HOME/.wine/user.reg" ]; then
+  cat "$HOME/.wine/user.reg" |sed -e '/Wine\]/d'>"$HOME/.wine/user.reg"
+  fi
+   sed -e '1,/WINE-USER/d' $0 |sed -e '1,/WINE-USER/d'|\
+   sed -n -e '1,/WINE-USER-END/p' |sed -e "s/wine-bb/$bb/g">>$HOME/.wine/user.reg
+ for okwc in $HOME/.OKYH/*.okwc ; do
+   if [ -f "$okwc" ]; then
+      cat "$okwc">>$HOME/.wine/config
+   fi
+ done
+ for okwc in $HOME/.OKYH/*.okw2 ; do
+   if [ -f "$okwc" ]; then
+      cat "$okwc">>$HOME/.wine/user.reg
+   fi
+ done
+
+}
+
+
+
+ok_disk()
+{
+if [ -d /mnt/WinC ]; then
+	if [ -f /dev/$hd ]; then
+		mount -o loop /dev/$hd /mnt/WinC
+	else
+		echo mei you xuan ze fen qu
+	fi
+else
+	if [ $HOME = "/root" ]; then
+		mkdir -p /mnt/WinC 
+		mount -o loop /dev/$hd /mnt/WinC
+	fi
+fi
+if [ -f "$iso.iso" ]; then
+	mount -o loop "$iso.iso" /mnt/cdrom
+else
+	echo mei zhao dao ISO
+	mount -o loop /dev/cdrom /mnt/cdrom
+fi
+}
+
+
+
+okdll_azlj()
+{
+ljdm=`echo "$lj
+//mnt/cdrom/*98*"`
+cab="win98_22.cab
+WIN98_22.CAB"
+
+
+for i in /mnt/cdrom/*98*/ ; do
+	if [ -d  $i  ]; then
+		cd $i
+	fi
+
+done
+
+if  [ -d "$lj" ]; then
+	cd $lj
+
+fi
+}
+
+
+okyh_ieaz()
+{
+if [ "OK$DISPLAY" = "OK" ]; then
+  echo mu qian bu zai zhuo mian xi tong shang
+  exit
+fi
+lj="$1"
+if [ -d "$lj" ]; then
+	cd "$lj"
+fi
+
+for i in ie*setup.exe ; do
+	if [ -f $i ]; then
+		az=$i
+	else
+		ieaz=0
+       		exit
+	fi
+done
+
+clear
+
+echo -n "OKYH an zhueng Internet Explorer xiang dao
+
+shi fou chu shi hua xu ni fen qu [s/f]?"
+read cs
+
+if [ "ies" =  "ie$cs" ]; then
+  $0 cs
+fi
+
+
+if [ ! -e $HOME/.wine/dosdevices ]; then
+   mkdir -p $HOME/.wine/dosdevices
+fi
+
+ln -sf `wine-bin winepath c:\\` $HOME/.wine/dosdevices/c\:
+
+
+
+echo -n "
+
+nin de PC shang shi fou cun zai Windows 98 [s/f]?"
+read dll
+
+if [ "ies" = "ie$dll" ]; then
+   $0 "yp"
+else
+  echo  qing shou gong an zhuang Win 98 DLL hou , an 'Enter' jian
+  read zd
+fi
+
+
+#ben di an zhuang
+if [ -f ./DCOM98.EXE ];then
+	WINEDLLOVERRIDES="ole32=n" wine DCOM98.EXE
+elif [ -f ./dcom98.exe ];then
+	WINEDLLOVERRIDES="ole32=n" wine dcom98.exe
+elif [ -f ./dcom95.exe ];then
+	ieaz=1
+	$0 "pzwj" "--bb" "win95"
+	wineserver -k
+	WINEDLLOVERRIDES="ole32=n" wine dcom95.exe
+elif [ -f DCOM95.EXE ]; then
+	ieaz=1
+	$0 "pzwj" "--bb" "win95"
+	wineserver -k
+	WINEDLLOVERRIDES="ole32=n" wine dcom95.exe
+else
+	echo mei you dcom98.exe huo DCOM98.EXE
+	ieaz=1
+fi
+
+while [ true ]; do
+	rm -rf $HOME/.OKYH/IEXPLORE.EXE.okwc
+	$0 "pzwj" "--bb" "win98"
+	wineserver -k
+	export WINEDLLOVERRIDES="advpack=n"
+	WINEDLLOVERRIDES="advpack=n" wine "$az"
+	if [ ! -e $HOME/.wine/regbak ]; then
+		mkdir -p $HOME/.wine/regbak
+	fi
+	cp -rf $HOME/.wine/*.reg $HOME/.wine/regbak
+	wineboot
+	if [ -f "$ieexe" ]; then
+		break
+	else
+		clear
+		echo "
+
+an 'Enter' jian hou , qing xuan ze chong xin an zhuag xuan xiang
+
+
+"
+		read zd
+
+	fi
+done
+okie_dll>>$HOME/.OKYH/IEXPLORE.EXE.okwc
+$0 pzwj
+wine "$ieexe"
+echo "
+
+
+=======================================================
+*******************************************************
+
+IE yi cheng gong an zhuang...
+
+     wu fa yun xing de iie jue fang fa
+       1, an zhuang huo dao ru Windows 98 de DLL
+       2, a zhuang DCOM98/95
+
+
+*******************************************************
+====================-==================================
+"
+		$0 --menu --path "$ieexe" --icon "$ieexe"  --link "Internet Explorer"
+		$0 --desktop --path "$ieexe" --icon "$ieexe"  --link "Internet Explorer"
+ 		$0 --menu --path "$oe" --icon "$oe"  --link "Outlook Express"
+		$0 --menu --path "$wmp" --icon "$wmp"  --link "Windows Media Player"
+		exit
+}
+
+wine_bb()
+{
+bb=`$xdev --stdout --title "ŷ٩OKYH" \
+    --menu "ŷ٩OKYHϵͳ���ù���
+Wine���ù���" 0 0 0 \
+   "win31" "Microsoft Windows 3.1" \
+   "nt351" "Microsoft Windows NT 3.51" \
+   "nt40" "Microsoft Windows NT 4.0" \
+   "win95" "Microsoft Windows 95" \
+   "win98" "Microsoft Windows 98" \
+   "winme" "Microsoft Windows ME" \
+   "win2k" "Microsoft Windows 2000" \
+   "winxp" "Microsoft Windows XP" \
+   "win2k3" "Microsoft Windows 2003" `
+}
+
+okyh_ietb()
+{
+		$0 --menu --path "$ieexe" --icon "$ieexe"  --link "Internet Explorer"
+		$0 --desktop --path "$ieexe" --icon "$ieexe"  --link "Internet Explorer"
+ 		$0 --menu --path "$oe" --icon "$oe"  --link "Outlook Express"
+		$0 --menu --path "$wmp" --icon "$wmp"  --link "Windows Media Player"
+		exit
+}
+
+
+
+
+
+okyh_tx_wine()
+{
+if [ ! -e $xdev ];then
+  echo mei you tu xing ku
+  exit
+elif [ "OK$DISPLAY" = "OK" ]; then
+  echo mu qian bu zai zhuo mian xi tong shang
+  exit
+fi
+}
+
+
+if  [ -f /usr/local/bin/wine ]; then
+	okwine=/usr/local
+elif  [ -d /usr/lib/okwine ]; then
+	okwine=/usr/lib/okwine
+	okcfg=$okwine/bin/okcfg
+	okwinexe=$0
+	cdcj=$okwine/bin/okshelllink
+else
+	okwine=/usr
+	okcfg=/bin/okwine
+	cdcj=/usr/bin/okshelllink
+fi
+
+if [ ! -e $okwine/bin/wine ];  then
+	echo mei you Wine
+	exit 
+else
+if [ `id -u` = "0" ]; then
+	case "$0" in
+	*/wine) ;;
+    *) VER=`cat $okwine/bin/wine`
+	case $VER in
+	*okwine*) ;;
+	*)   cp -rf $okwine/bin/wine $okwine/bin/wine-bin  ;;
+	esac
+	okyh_bin>$okwine/bin/wine
+	esac
+	cp -rf $0 $okwine/bin/wineshelllink
+	echo "[Desktop Entry]
+Encoding=UTF-8
+Type=MimeType
+MimeType=application/x-Executive
+Patterns=*.exe;*.EXE;
+Comment=Windows/DOS Application
+">/usr/share/mimelnk/application/wine.desktop
+echo "[Desktop Entry]
+Exec=wine
+Name=WINE
+Type=application
+MimeType=application/x-Executive
+">/usr/share/applnk/.hidden/wine.desktop
+echo "[Desktop Entry]
+Exec=wine
+Name=WINE
+Type=application
+MimeType=application/x-Executive
+">/usr/share/applications/wine.desktop
+
+echo "wine
+        command=wine
+        name=WINE
+        can_open_multiple_files=true
+        expects_uris=false
+        requires_terminal=false
+        mime_types=application/x-Executive
+">/usr/share/application-registrywine.applications
+  
+fi
+
+
+
+if  [ ! -f /bin/okwine ]; then
+ cp -rf "$0" /bin/okwine
+fi
+
+fi
+
+
+
+if [ ! -f  /bin/gokyh ]; then
+  xdev=d
+elif [ -f /usr/lib/libglib-2.0.so.0  ]; then
+  xdev=/bin/gokyh
+else
+  echo  "meei you GTK2"
+fi
+
+if [ $HOME = "/root" ]; then
+	if [ -d /mnt/floppy ]; then
+		rp=y
+	else
+		mkdir /mnt/floppy
+	fi
+	okdll=/bin/okdll
+	if [ ! -e $okdll ]; then
+	ln -s $okcfg $okdll
+	fi
+
+fi
+
+
+if [ ! -d $HOME/.wine ]; then
+   okyh_wine
+   okyh_syscfg
+   okyh_winepz
+fi
+
+if [ ! -e $HOME/.OKYH ]; then
+ 	mkdir $HOME/.OKYH
+fi
+
+if [ ! -e $HOME/.wine/dosdevices/c: ]; then
+   okyh_syscfg
+elif [ ! -e $HOME/.wine/dosdevices/e: ]; then
+   okyh_syscfg
+elif [ ! -e $HOME/.wine/dosdevices/z: ]; then
+   okyh_syscfg
+fi
+
+cd "$dqlj"
+
+
+
+ while [ $# -gt 0 ] ; do
+  case "$1" in
+    --desktop) mode="desktop"; shift 1 ;;
+    --menu)    mode="menu"; shift 1 ;;
+    --path)    path="$2"; shift 2 ;;
+    --link)    link="$2"; shift 2 ;;
+    --args)    args="$2"; shift 2 ;;
+    --icon)    icon="$2"; shift 2 ;;
+    --descr)   descr="$2"; shift 2 ;;
+    --workdir) workdir="$2"; shift 2 ;;
+    --iso)   iso="$2"; shift 2 ;;
+    --hd)    hd="$2"; gz=y ; shift 2 ;;
+    --bb) bb="$2"; shift 2 ;;
+    --lj) lj="$2"; shift 2 ;;
+    ceshi) shift ;;
+    txgl)  okyh_tx_wine; shift 1 ;;
+    txie)  okyh_ietxaz "$2"; shift $# ;;
+    ie)  okyh_ieaz "$2"; shift $# ;;
+    sc)  okyh_wine ; shift $# ;exit ;;
+    zt)  okyh_ztkb ;exit 0 ;;
+    pzwj)  xx="pzwj" ;  shift 1 ;;
+    yp)  xx="yp"; shift 1 ;;
+    98gp)  xx="gp"; shift 1 ;;
+    csx) xx="csx" ; shift 1 ;;
+    zc)  xx="zc"; shift 1 ;;
+    cs)    xx="cs"; shift 1 ;;
+    zcb)  xx="zcb" ; shift 1 ;;
+    cjcd) xx="cjcd";rjm="$3"; rjwz="$2" ;shift $# ;;
+    cxpz) xx="cxpz"; cxwj="$2"; dllpz="$3"; shift 3 ;;
+    *DCOM98.EXE|*dcom98.exe)
+      	WINEDLLOVERRIDES="ole32=n" wine "$1" ;exit;;
+   *dcom95.exe|*DCOM95.EXE) $0 "pzwj" "--bb" "win95"
+	wineserver -k
+	WINEDLLOVERRIDES="ole32=n" wine "$1" ;exit ;;
+   *ie6setup*|*IE6SETUP*|*ie5setup*|*ie4setup*|*IE5SETUP*)
+      okyh_ietxaz "`dirname "$1"`" ;exit ;;
+    *msinst.exe|*msinstw.exe|*MSINST.EXE|*MSINSTW.EXE)
+       WINEDLLOVERRIDES="ole32=n" wine "$1" ;exit;;
+    *.MSI|*.msi) wine msiexec.exe "$1" ;exit;;
+    *.BAT|*.bat) wine wcmd.exe "$1" ;exit;;
+    *.CHM|*.chm) wine hh.exe "$1" ;exit;;
+    dkzd) shift 1 ;; 
+    *\\*)  lj=`echo "$1" | sed -e 's:\\\:/:g'`
+    cd `dirname "$HOME/.wine/dosdevices/$lj"`
+       $okwine/bin/wine "$1" $2 $3 $4
+       exit ;;
+    *)       szwz=`dirname "$1"`
+       cd "$szwz"
+        $okwine/bin/wine `basename "$1"` $2 $3 $4
+       exit      ;;
+  esac
+done
+
+ if [ "$xx" = "cs" ]; then
+  okyh_wine
+  okyh_syscfg
+ okyh_winepz
+  exit
+elif [ $xx = "csx" ]; then
+	okyh_wine
+	okyh_syscfg
+	okyh_ztkb
+	exit
+elif  [ $xx = "pzwj" ]; then
+ okyh_winepz
+ exit
+fi
+ 
+case $mode in
+  desktop|menu) 
+     if [ -f /usr/bin/xdg-desktop ]; then
+       okwine_xdg
+     else
+       wine_link
+    fi ;;
+esac
+
+
+
+
+if [ $xx = "cxpz" ]; then
+	echo [AppDefaults\\\\"$cxwj"\\\\DllOverrides]>$HOME/.OKYH/"$cxwj".okwc
+	echo [Software\\\\Wine\\\\AppDefaults\\\\"$cxwj"\\\\DllOverrides]>$HOME/.OKYH/"$cxwj".okw2
+	case $dllpz in
+		0) echo >$HOME/.OKYH/"$cxwj".okwc
+		 echo >$HOME/.OKYH/"$cxwj".okw2 ;;
+		1)  okyh_cxpz1 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz1 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		2)  okyh_cxpz2 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz2 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		3)  okyh_cxpz3 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz3 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		4)  okyh_cxpz4 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz4 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		5)  okyh_cxpz5 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz5 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		6)  okyh_cxpz6 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz6 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		7)  okyh_cxpz7 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz7 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		8)  okyh_cxpz2 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz6 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		9)  okyh_cxpz2 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz6 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+		*)  okyh_cxpz1 >>$HOME/.OKYH/"$cxwj".okwc
+		 okyh_cxpz6 >>$HOME/.OKYH/"$cxwj".okw2 ;;
+	esac
+	echo [AppDefaults\\\\"$cxwj"\\\\Version]>>$HOME/.OKYH/"$cxwj".okwc
+	echo "\"windows\" =  \"$bb\"">>$HOME/.OKYH/"$cxwj".okwc
+	echo [Sofftware\\\\Wine\\\\AppDefaults\\\\"$cxwj"]>>$HOME/.OKYH/"$cxwj".okw2
+	echo "\"Version\" = \"$bb\"">>$HOME/.OKYH/"$cxwj".okw2
+	okyh_winepz
+	exit
+fi
+
+
+
+
+
+if [ $xx = "cjcd" ]; then
+   if [ "rj$rjm" = "rj" ] ; then
+     link="WinSoft `basename "$rjwz"`"
+   else
+     link="$rjm"
+   fi
+   if [ -f "/$rjwz" ];then
+     path="$rjwz"
+     icon="$rjwz"
+     mode=menu
+   if [ -f /usr/bin/xdg-desktop ]; then
+       okwine_xdg
+     else
+       wine_link
+    fi
+
+	else
+		echo /$rjwz bu cun zai
+	fi
+	exit
+
+fi
+
+if [ $xx = "yp" ]; then
+	ok_disk
+	for i in $windll ; do
+		for a in /mnt/*/*/*ystem*/$i ; do
+			if [ -f "$a" ] ; then
+			cp "$a" $HOME/.wine/dosdevices/c:/windows/system/
+			echo $i yi dao ru
+			fi
+		done
+	done
+	exit
+fi
+
+
+if [ $xx = "gp" ]; then
+	ok_disk
+	okdll_azlj
+	for i in $windll ; do
+		wine 'extract.exe' /a /l c:\\windows\\system win98_22.cab "$i"
+	done
+	exit
+fi          
+
+
+
+if [ $xx = "zc" ]; then
+	ab=ba
+	for i in $HOME/.wine/dosdevices/c:/windows/system/*.* ;   do
+		if [ -f /usr/bin/regsvr32 ]; then
+			regsvr32 $i
+		fi
+	done
+	exit
+fi
+
+if [ $xx = "xpgp" ]; then
+	ok_disk
+	for xpdll in $windll ; do
+		dll1=`expr length "$xpdll"`
+		dll2=`expr "$dll1" - 1`
+		echo $xpdll>$HOME/.OKW
+		dll3=`cut -c0-$dll2 $HOME/.OKW`
+		if [ -f  /mnt/cdrom/i386/"$dll3"_ ] ;then
+			cp /mnt/cdrom/i386/"$dll3"_ $HOME/.wine/dosdevices/c:/windows/system/$xpdll
+			echo  $xpdll yi dao ru
+		fi
+	done
+	exit
+fi
+
+
+
+
+
+
+if [ $xx = "bz" ]; then
+echo "
+====================
+Oukan OKYH--OKWine
+====================
+$OKYHVER
+
+okwine 'xuan xiang' [--hd hda1...] [--iso ISO ming]
+
+xuan xiang
+yp              dao ru yi an zhuang zai ying pan shang Windows 98 de DLL
+98gp              zhi jie cong Windows 98 CD shang an zhuang DLL
+xpgp            zhi jie cong Windows 2000/XP/2003 CD shang dao ru DLL
+zc              pi liang zhu ce DLL
+cs              shan chu xuan you de Wine pei zhi , bing chong xin pei zhi
+csx	        ba Wine pei zhi cheng mei you pei zhi wen jian de gou jia
+sc              shen chu Wine  pei zhi he Windows ruan jian
+pzwj            geng xin pei zhi wen jian shi , she zhi ban ben hao
+cjcd /*.* 'ming'gei Win ban chuang jian cai dan xiang ,
+                ru 'okwine cjcd /root/qq2004ii/QQ.exe QQ'
+cxpz *.exe x    gei yi ge chuang xu pei zhi yu dine de DLL fang an 1-4
+                ru 'okwine cxpz SS.exe 1' huo 'okwine cxpz SS.exe 1 --bb win98'
+
+chan shu
+--hd hda1       xuan ze Windows suo zai de fen qu , ru hda1/hda2
+--iso ISO       xuan ze Windows 98 CD ISO wen jian , bu yao dai '.iso'
+--bb banben     xuan ze Wiindows ban ben hao
+--lj /*/        Windows 98 an zhuang wen jian de lu jing
+"
+	exit
+fi
+
+
+
+exit
+
+
+
+
+

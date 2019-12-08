@@ -1,0 +1,26 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults]
+
+[HKEY_CURRENT_USER\Software\Wine\AppDefaults\IEXPLORE.EXE\DllOverrides]
+"*advapi32"="builtin"
+"advpack"="native,builtin"
+"crypt32"="native,builtin"
+"ddraw"="builtin"
+"digest"="native"
+"mshtml"="native,builtin"
+"ole32"="native,builtin"
+"oleaut32"="native,builtin"
+"regsvr32.exe"="native,builtin"
+"rpcrt4"="native,builtin"
+"rsaenh"="native,builtin"
+"shdocvw"="native,builtin"
+"shlwapi"="native"
+"urlmon"="native"
+"wininet"="native"
+"wintrust"="native,builtin"
+"mlang"="native,builtin"
+"riched20"="native"
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main]
+"Start Page"="http://www.easywine.org"

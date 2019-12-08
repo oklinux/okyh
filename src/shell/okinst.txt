@@ -1,0 +1,261 @@
+#!/bin/bash
+################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+#          www.oukan,1m.cn
+################################
+
+OKYHVER=VER
+xx=bz
+azlj="/usr"
+szcs=""
+dqwz=`pwd`
+gcc=/usr/bin/gcc
+make=/usr/bin/make
+label="Oukan OKYH" 
+
+
+cwts()
+{
+echo -n "$1"
+if [ "cwsz" = "$okzd" ]; then
+   read zanting
+fi
+exit
+}
+
+
+txwk()
+{
+$xdev --stdout --title "ŷ٩OKYH" --$1 "$2" 19 40 2>$HOME/.OKW
+ok=$?
+}
+
+
+txwk2()
+{
+$xdev --stdout --title "ŷ٩OKYH" --$1 "$2" 19 40
+ok=$?
+}
+
+sfgly()
+{
+if [ "`whoami`" != "root" ]; then
+   cho mei you  ROOT quan xian
+   xxts "��û�й�����Ȩ��"
+fi
+}
+
+xts()
+{
+case $SFTX in
+  Y) $xdev --stdout --title "ŷ٩OKYH" --msgbox "$1" 19 40
+   exec okyh txgl ;;
+  N) exit ;;
+esac
+ok=$?
+}
+
+okyh_zdck()
+{
+GUESS_XTERMS="konsole rxvt xterm dtterm eterm Eterm kvt aterm"
+for a in $GUESS_XTERMS; do
+  if type $a >/dev/null 2>&1; then
+      XTERM=$a
+      break
+ fi
+done
+chmod a+x $1
+if test `echo "$0" | cut -c1` = "/"; then # Spawn a terminal!
+     $XTERM -title "$label" -e "$1" --xwin "$@"
+else
+    $XTERM -title "$label" -e "./$1" --xwin "$@"
+fi
+}
+
+
+okyh_make()
+{
+  cat <<MAKE
+make depend
+make
+make install
+echo "
+
+==============================================
+             an 'Enter' wan cheng
+==============================================
+"
+read by
+MAKE
+}
+
+
+okyh_xzwj()
+{
+case "$ymwj" in
+   http\:*|ftp\*|https\:*)
+  if [ -f /usr/bin/proz ]  ;then
+    proz "$1"
+elif [ -f /usr/bin/wget ]  ;then
+   wget "$1"
+fi
+for xzwj in ./*.* ; do
+ if [ -f "$xzwj"  ]; then
+  ymwj="`pwd`/$xzwj"
+fi;done;;
+esac
+
+}
+
+okyh_jywj()
+{
+
+case "$ymwj" in
+  *.tar) tar xvf "$ymwj" ;;
+  *.tar.gz) tar xzvf "$ymwj" ;;
+  *.tgz)  tar xzvf "$ymwj" ;;
+  *.tar.bz2)  tar xjvf "$ymwj" ;;
+  *.TGZ)  tar xzvf "$ymwj" ;;
+  *.tbz)  tar xjvf "$ymwj" ;;
+  *.tar)  tar xvf "$ymwj" ;;
+  *.zip)  unzip "$ymwj" ;;
+  *setup.exe) okwine txie `dirname "$ymwj"`
+     exit ;;
+  *DCOM95.EXE)
+     okwibe pzwj --bb win95
+     pkill wine
+     okwine "$ymwj"
+     okwine pzwj --bb win98
+     exit ;;
+  *dcom95.exe)
+     okwibe pzwj --bb win95
+     pkill wine
+     okwine "$ymwj"
+     okwine pzwj --bb win98
+     exit ;;
+  *) ok=3 ;;
+esac
+}
+
+
+wbbyaz()
+{
+ymwj="$1"
+rm -rf ~/.okaz
+mkdir -p ~/.okaz
+cd ~/.okaz
+if  [ ! -e $gcc ]; then
+  cwts "mei you GCC"
+elif [ ! -e $make ];then
+  cwts "mei you MAKE"
+fi
+okyh_xzwj  "$1"
+
+if [ -f "$ymwj" ]; then
+  ymwz="$ymwj"
+elif [ -f "$dqwz/$ymwj" ]; then
+  ymwj="$dqwz/$ymwj"
+else
+  tg=1
+  while [ $tg -gt 0 ]; do
+    echo -n "qing shu ru yuan ma bao de wei zi:"
+    read ymwj
+    if [ -f "$ymwj" ]; then
+       tg=0
+    else
+      echo ni shu ru de wei zhi bu dui
+    fi
+  done
+fi
+
+okyh_jywj
+if [ ok3 = ok$ok ]; then
+   cwts "wu fa pan duan ci wen jian de ya suo ge shi" 
+fi
+
+sfgly
+
+ymml=`ls`
+for ymml in ./* ; do
+   if [ -f "$ymml/configure" ]; then
+     cd "$umml"
+     azsz=s
+     break
+   elif [ -f "$ymml/Makefile" ] ; then
+     cd "$ymml"
+     azsz=f
+   elif [ -f "$ymml/src/Makefile" ] ; then
+     cd "$ymml"
+     azsz=f
+   else
+     azsz=my
+   fi   
+done
+
+
+if [ "$azsz" = "my" ]; then
+  cwts "wu fa zhao dao bian yi he an zhuang suo xu de wen jian"
+fi
+
+cd "$ymml"
+
+if [ "$azsz" = "s" ]; then
+  tg=1
+  while [ $tg -gt 0 ]; do
+    echo -n "
+qing zhi dong an zhuang lu jing , ru '/usr/local/$ymml'
+
+lu jing:"
+    read lj
+    case "$lj" in
+     /*) azlj="$lj"  ;;
+     ok) azlj="/usr/local/$ymml" ;;
+     *) azlj="/usr/" ;;
+    esac
+    echo -n "
+nin zhi ding de lu jing shi '$azlj'
+
+qing shu ru 'configure' de qi ta can shu , zhu yi : bu neng bao han '--prefix=$azlj' zhe ge can shu
+shu ru 'b' ke cha kan ci ruan jian de bian yi chan shu.
+
+can shu:"
+    read azcs
+    case "$azcs" in
+      *--prefix*) tg=1 ;;
+      b) ./configure --help
+      tg=1 ;;
+      *) tg=0 ;;
+    esac
+  done
+  ./configure --prefix="$azlj" "$azcs"
+fi
+
+make depend
+make
+make install
+
+cd
+rm -rf  ~/.okaz
+
+cwts "wan xheng"
+exit
+}
+
+if [ ! -f  /bin/gokyh ]; then
+  xdev=d
+elif [ -f /usr/lib/libglib-2.0.so.0  ]; then
+  xdev=/bin/gokyh
+else
+  echo  "meei you GTK2"
+fi
+
+		
+case $1 in
+   dkzd) wbbyaz "$2" ; inst=zdbk ;;
+   txaz) txbyaz "$2" ; inst=tx ;;
+   dkcl) okyh_xz  "$2" ; inst=tx;;
+   ceshi) exit ;;
+   *)  wbbyaz "$1" ; shift 1  ;;
+esac
+

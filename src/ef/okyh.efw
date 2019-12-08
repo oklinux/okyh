@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ef-workspace version="1.0">
+    <information>
+        <name>okyh</name>
+        <version>1.0</version>
+        <author />
+        <description />
+        <active-project>okyh.efp</active-project>
+    </information>
+    <setting />
+    <projects>
+        <project name="okyh" file="okyh.efp" description="" remark="" />
+    </projects>
+</ef-workspace>

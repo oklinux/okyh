@@ -1,0 +1,219 @@
+引入 用户界面, 工具;
+/*################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+#          www.oukan,1m.cn
+################################
+依赖：
+lib-okyh.ef
+*/
+
+类 SZ_ETH<基类型 = 对话框> 
+{
+	初始化(){}
+	//从这行开始是本地有线网卡配置的界面及相关处理，使用了用户界面、工具、配置等三个EF本地库。
+
+	面板 HDMB2;
+	编辑框 TSXX;
+	编辑框 SR_YM;
+	编辑框 SR_IP;
+	编辑框 SR_WG;
+	编辑框 SR_DNS;
+	编辑框 SR_DNS2;
+	列表框 LB_ETH;
+	文本 LJ_ETH="/etc/sysconfig/network-scripts/ifcfg-";
+	文本 PZLJ="/etc/sysconfig/network-scripts/";
+	文本 SR_ETH;
+
+	公开 初始化(容器控件 父窗口<可为空> = 空)
+	{
+		本对象.创建窗口(父窗口);
+	}
+
+	私有 创建窗口(容器控件 父窗口<可为空> = 空)//调用本对话框时必须带参数，例如：“创建 SZ_ADSL(本对象 )”。
+	{
+		整数 风格 = 0;
+		风格 |= 窗口风格.显示关闭按钮;
+		风格 |= 窗口风格.显示标题栏;
+		基类.创建(父窗口, "网卡设置", 50, 50, 320, 260, 风格,"SZ_ADSL");
+		居中(方位.双向);
+		显示(真);
+	}
+
+	私有 逻辑 创建窗口控件()
+	{
+		本对象.宽度 = 本对象.取尺寸().宽度 - 本对象.取客户区尺寸().宽度 + 350;
+		本对象.高度 = 本对象.取尺寸().高度 - 本对象.取客户区尺寸().高度 + 250;
+		HDMB2 = 创建 用户界面.面板();
+		HDMB2.创建(本对象);
+
+
+		标签 SM_ETH = 创建 标签();
+		SM_ETH.创建(HDMB2, -1, "请选择本地网卡设备：", 3, 3, 120, 22, 0, "");
+		文本[] XR_ETH = 系统.文本类.分割(WLSB_ETH(),"-",真);
+		LB_ETH = 创建 列表框();
+		LB_ETH.创建(HDMB2, -1,  3, 30, 120, 120, XR_ETH, 32, 空, "LB_ETH");
+		标签 SM_IP = 创建 标签();
+   		SM_IP.创建(HDMB2, -1, "IP地址：", 130, 15, 70, 12, 0, "");
+		SR_IP = 创建 编辑框();
+		SR_IP.创建(HDMB2, -1, "", 200, 10, 120, 22, 0, 空, "SR_MING");
+		标签 SM_WG = 创建 标签();
+		SM_WG.创建(HDMB2, -1, "网关地址：", 130, 45, 70, 12, 0, "");
+		SR_WG = 创建 编辑框();
+		SR_WG.创建(HDMB2, -1, "", 200, 40, 120, 22, 0, 空, "");
+		标签 SM_DNS = 创建 标签();
+		SM_DNS.创建(HDMB2, -1, "主DNS：", 130, 75, 70, 12, 0, "");
+		SR_DNS = 创建 编辑框();
+		SR_DNS.创建(HDMB2, -1, "", 200, 70, 120, 22, 0, 空, "");
+		标签 SM_DNS2 = 创建 标签();
+		SM_DNS2.创建(HDMB2, -1, "备用DNS：", 130, 105, 70, 12, 0, "");
+		SR_DNS2 = 创建 编辑框();
+		SR_DNS2.创建(HDMB2, -1, "", 200, 100, 120, 22, 0, 空, "");
+		标签 SM_YM = 创建 标签();
+		SM_YM.创建(HDMB2, -1, "掩码：", 130, 135, 70, 12, 0, "");
+		SR_YM = 创建 编辑框();
+		SR_YM.创建(HDMB2, -1, "", 200, 130, 120, 22, 0, 空, "");
+		按钮 BCAN = 创建 用户界面.按钮();
+		BCAN.创建(HDMB2, -1, "保存(&B)", 30, 185, 70, 32, 0, "BCAN");
+		按钮 BZAN = 创建 用户界面.按钮();
+		BZAN.创建(HDMB2, -1, "帮助(&Z)", 125, 185, 70, 32, 0, "BZAN");
+		按钮 GBAN = 创建 用户界面.按钮();
+		GBAN.创建(HDMB2, -1, "关闭(&G)", 220, 185, 70, 32, 0, "GBAN");
+
+		返回 真;
+	}
+
+	public 文本 WLSB_ETH()
+	{
+		文本 文件名=用户界面.辅助类.取第一个文件(PZLJ,1);
+		文本[]  SBWJ = 系统.文本类.分割(文件名,"-",真);
+		文本 SB_ETH=SBWJ[SBWJ.长度()-1];
+		如果(SB_ETH == "");
+		{
+			SB_ETH="eth0";
+		}
+		文件名=用户界面.辅助类.取下一个文件();
+		循环 (文件名 !="")
+		{
+			文本[]  SBWJ = 系统.文本类.分割(文件名,"-",真);
+			文本 LS_ETH=SBWJ[SBWJ.长度()-1];
+			if(系统.文本类.左边(LS_ETH,3) == "eth")
+			{
+				if(SB_ETH.长度() == 4)
+					SB_ETH=SB_ETH+"-"+LS_ETH;
+			}
+			文件名=用户界面.辅助类.取下一个文件();			 
+		}
+		返回 SB_ETH;
+	}
+	public static bool CL_XR_ETH(string ETH,string IP,string WG,string YM, string DNS1,string DNS2,string LJ)
+	{
+		文本 WJ_DNS="/etc/resolv.conf";
+		string PZWB;
+		string SJ_DNS;
+		if(ETH == "")
+			ETH="eth0";
+		if(IP == "")
+		{
+			PZWB="DEVIVE="+ETH+"\n";
+			PZWB+="BOOTPROTO=dhcp\n";
+			PZWB+="ONBOOT=no\n";
+			OKBasicLib.XWB(LJ+ETH,PZWB);
+		}
+		else
+		{
+			PZWB="DEVIVE="+ETH+"\n";
+			PZWB+="BOOTPROTO=static\n";
+			PZWB+="ONBOOT=yes\n";
+			PZWB+="IPADDR="+IP+"\n";
+			PZWB+="GATEWAY="+WG+"\n";
+			PZWB+="NETMASK="+YM+"\n";
+			PZWB+="DNS1="+DNS1+"\n\n";
+			OKBasicLib.XWB(LJ+ETH,PZWB);
+			SH_NETWORK.ADSL("gxkh");
+
+		}
+ 		if (DNS1 != "server" )
+		{
+			文本 DNS3="202.101.6.2\n";
+			if ( "DNS1" != "" )
+				if (用户界面 .辅助类.文件是否存在(WJ_DNS)  == 假)
+				SJ_DNS="# MADE-BY-RP-PPPOE";
+			if (用户界面 .辅助类.文件是否存在(WJ_DNS)  == 真)
+			{
+				if( 运行环境.启动进程("grep -s \"MADE-BY-RP-PPPOE\"","/bin") == 真)
+				{
+					用户界面.辅助类.拷贝文件(WJ_DNS,WJ_DNS+".bak",真);
+					SJ_DNS=OKBasicLib.DWB(WJ_DNS);
+				}
+			}
+			SJ_DNS+="nameserver "+DNS1;
+			if ("DNS2"  != "")
+			{
+				SJ_DNS+="\nnameserver "+DNS2;
+				SJ_DNS+="\nnameserver "+DNS3;
+			}
+		}
+		OKBasicLib.XWB(WJ_DNS,SJ_DNS);
+
+		return (true);
+
+	}
+	公开 事件处理 逻辑 删除_按钮被单击(按钮被单击 事件)
+	{		
+		如果(界面程序.信息框("是否确认删除该设备","警告",10,)!=16)
+		{
+			文本 文件名称=LB_ETH.取项目文本(LB_ETH.取选择项目());
+			文本 路径="/etc/sysconfig/network-scripts/ifcfg-";
+			文本 文件路径=路径+文件名称;
+			用户界面.辅助类.删除文件(文件路径);
+			界面程序.信息框("删除文件成功","提示",);
+		}
+		返回(真);
+	}
+
+	公开 事件处理 逻辑 创建完毕(创建完毕事件 事件)
+	{
+		创建窗口控件();
+
+		返回(真);
+	}
+	公开 事件处理 逻辑 LB_ETH_鼠标左键被双击(鼠标左键被双击  事件)
+	{
+		文本 SR_ETH=LB_ETH.取项目文本(LB_ETH.取选择项目());
+		文本 LJ_PPP="/etc/sysconfig/network-scripts/ifcfg-";
+		LB_ETH.设置焦点();
+		SR_IP.文本(OKBasicLib.DPZ(LJ_PPP+SR_ETH,"IPADDR","192.168.1.20"));
+		SR_WG.文本(OKBasicLib.DPZ(LJ_PPP+SR_ETH,"GATEWAY","192.168.1.1"));
+		SR_DNS.文本(OKBasicLib.DPZ(LJ_PPP+SR_ETH,"DNS","192.168.1.1"));
+		SR_DNS2.文本(OKBasicLib.DPZ(LJ_PPP+SR_ETH,"DNS2","202.96.209.5"));
+		SR_YM.文本(OKBasicLib.DPZ(LJ_PPP+SR_ETH,"NETMASK","255.255.255.0"));
+
+
+		返回(真);
+	}
+
+	公开 事件处理 逻辑 BCAN_按钮被单击(按钮被单击 事件)
+	{
+		CL_XR_ETH(SR_ETH,SR_IP.文本,SR_WG.文本,SR_YM.文本,SR_DNS.文本,SR_DNS2.文本,LJ_ETH);
+		界面程序.信息框("已保存",,);
+
+		返回(真);
+	}
+	公开 事件处理 逻辑 GBAN_按钮被单击(按钮被单击 事件)
+	{
+		本对象.关闭(真);
+		返回(真);
+	}
+	公开 事件处理 逻辑 BZAN_按钮被单击(按钮被单击 事件)
+	{
+		界面程序.信息框("部分DNS地址列表：\n上海\n202.101.6.2\n202.96.209.133\n61.152.82.18\n202.96.209.5\n网通\n202.106.0.20\n");
+		返回(真);
+	}
+
+	公开 事件处理 逻辑 窗口被关闭(关闭事件 事件)
+	{
+		返回(真);
+	}
+}
+

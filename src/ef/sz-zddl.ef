@@ -1,0 +1,154 @@
+﻿引入 用户界面, 工具;
+/*################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+#          www.oukan,1m.cn
+################################
+依赖：
+lib-okyh.ef
+*/
+
+类 KDEZDDL<基类型 = 对话框>
+{
+	初始化(){}
+	用户界面.面板 ZDDLMB;
+	编辑框 SR_KDEYONGHU;
+	编辑框 SR_KDEMIMA;
+
+	公开 初始化(容器控件 父窗口<可为空> = 空)
+	{
+		本对象.创建窗口(父窗口);
+	}
+
+	私有 创建窗口(容器控件 父窗口<可为空> = 空)
+	{
+		整数 风格 = 0;
+		风格 |= 窗口风格.显示关闭按钮;
+		风格 |= 窗口风格.显示标题栏;
+		风格 |= 窗口风格.显示系统菜单;
+		基类.创建(父窗口, "舌战", 50, 50, 380, 250, 风格," 主窗口");
+		居中(方位.双向);
+		显示(真);
+	}
+
+	私有 逻辑 创建窗口控件()
+	{
+		本对象.宽度 = 本对象.取尺寸().宽度 - 本对象.取客户区尺寸().宽度 + 350;
+		本对象.高度 = 本对象.取尺寸().高度 - 本对象.取客户区尺寸().高度 + 250;
+		ZDDLMB = 创建 用户界面.面板();
+		ZDDLMB.创建(本对象);
+
+		ZDDLMB.创建(本对象, 0, 90, 本对象.宽度(), 本对象.高度()-140, 0, "");
+		标签 SM_KDEYONGHU = 创建 用户界面.标签();
+		SM_KDEYONGHU.创建(ZDDLMB, -1, "用户名：", 30, 65, 70, 25, 0, "");
+		SR_KDEYONGHU = 创建 编辑框();
+		SR_KDEYONGHU.创建(ZDDLMB, 111, "", 170, 60, 200, 35, 0, 空, "SR_KDEYONGHU");
+		SR_KDEYONGHU.设置焦点();
+		标签 SM_KDEMIMA = 创建 用户界面.标签();
+		SM_KDEMIMA.创建(ZDDLMB, -1, "密码：", 30, 125, 70, 25, 0, "");
+		SR_KDEMIMA = 创建 编辑框();
+		SR_KDEMIMA.创建(ZDDLMB, 112, "", 170, 120, 200, 35, 2048, 空, "SR_KDEMIMA");
+		按钮 BCAN = 创建 用户界面.按钮();
+		BCAN.创建(ZDDLMB, 102, "保存(&B)", 30, 185, 100, 32, 0, "BCAN");
+		按钮 GBAN= 创建 用户界面.按钮();
+		GBAN.创建(ZDDLMB, -101, "关闭(&G)", 220, 185, 100, 32, 0, "GBAN");
+
+ 		返回 真;
+	}
+
+	public static XR_ZDDL(string YHM,string  MM)
+	{
+		string SHELL=SH_OKYH.BL();
+
+		文本 kkd="/etc/X11/xdm/kdmrc";
+		
+		SHELL+="  if [ \"`whoami`\" = \"root\" ]; then\n";
+		if(OKBasicLib.WJYZ("/etc/X11/xdm/kdmrc","General")==真)
+		{
+			SHELL+="     kkd=/etc/X11/xdm/kdmrc\n";
+			SHELL+="     kkd2=/usr/share/config/kdm/kdmrc\n";
+		}
+		又如(OKBasicLib.WJYZ("/usr/share/config/kdm/kdmrc","General")==真)
+		{
+			kkd="/etc/X11/xdm/kdmrc";
+			SHELL+="     kkd=/etc/X11/xdm/kdmrc\n";
+			SHELL+="        kkd2=/etc/X11/xdm/kdmrc\n";
+		}
+		否则
+			SHELL+="        exit 1\n";
+
+		SHELL+="    if [ ! -f $kkd.okb ]; then\n";
+		SHELL+="       cp $kkd $kkd.okb\n";
+		SHELL+="    elif [ USER = \"USER"+YHM+"\" ]; then\n";
+		SHELL+="	sed -e 's/AutoLoginEnable=true/AutoLoginEnable=false/g' $kkd.okb>$kkd\n";
+		SHELL+="	cp -rf $kkd.okb $kkd2 2>/dev/null\n";
+		SHELL+="	exit 0\n";
+		SHELL+="     fi\n";
+
+		SHELL+="    sed -e '/AutoLogin/d' $kkd.okb>/dev/shm/okyh-temp\n";
+		SHELL+="    sed -n -e '1,/0-Core/p' /dev/shm/okyh-temp>$kkd\n";
+		
+		if (MM == "")
+			SHELL+="pass=\""+MM+"\"\n";
+		else
+			SHELL+="pass=\"|\"\n";
+
+
+		SHELL+="echo \"";
+		SHELL+="AutoLoginEnable=true\n";
+		SHELL+="AutoLoginPass=$pass\n";
+		SHELL+="AutoLoginUser="+YHM+"\">>$kkd\n";
+		
+		SHELL+="    sed -e '1,/0-Core/d' /dev/shm/okyh-temp>>$kkd\n";
+		
+		SHELL+="     if [ ! -e $kkd ];then\n";
+		SHELL+="         cp -rf $kkd.okd $kkd\n";
+		SHELL+="     else\n";
+		SHELL+="       if [ -f $kkd2 ]; then\n";
+		SHELL+="          cp -rf $kkd $kkd2 2>/dev/unll\n";
+		SHELL+="       fi\n";
+		SHELL+="     fi \n";
+		SHELL+="  fi\n";
+
+		OKBasicLib.SHELL(SHELL);
+
+	}
+
+
+	公开 事件处理 逻辑 创建完毕(创建完毕事件 事件)
+	{
+		创建窗口控件();
+		返回 真;
+	}
+
+	公开 事件处理 逻辑 BCAN_按钮被单击(按钮被单击 事件)
+	{
+		XR_ZDDL(SR_KDEYONGHU.文本,SR_KDEMIMA.文本);
+		本对象.关闭(真);
+		返回(真);
+	}
+
+	公开 事件处理 逻辑 SR_KDEYONGHU_编辑框回车键按下(编辑框回车键按下 事件)
+	{
+		SR_KDEMIMA.设置焦点();
+		返回(真);
+	}
+	公开 事件处理 逻辑 SR_KDEMIMA_编辑框回车键按下(编辑框回车键按下 事件)
+	{
+		XR_ZDDL(SR_KDEYONGHU.文本,SR_KDEMIMA.文本);
+		返回(真);
+	}
+
+
+	公开 事件处理 逻辑 GBAN_按钮被单击(按钮被单击 事件)
+	{
+		本对象.关闭(真);
+		返回(真);
+	}
+	公开 事件处理 逻辑 窗口被关闭(关闭事件 事件)
+	{
+		返回(真);
+	}
+
+
+}

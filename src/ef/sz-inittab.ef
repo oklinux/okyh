@@ -1,0 +1,46 @@
+﻿引入 用户界面,工具;
+/*################################
+#    Oukan OKYH Systm Set Tools
+#       sjchnkan @ 2004-2008
+#          www.oukan,1m.cn
+################################
+依赖：
+lib-okyh.ef
+*/
+
+
+class SZ_KZT<基类型 = 对话框> 
+{
+	公开 初始化(){}
+	编辑框 WBINIT;
+	public 初始化(int KZTS)
+	{
+		int HS=0;
+		int SL=1;
+		string XS = FileData("/etc/inittab","文本");
+
+		循环(真)
+		{
+			int CZ=系统.文本类.查找(XS,"respawn",HS);
+			整数 CZ0=系统.文本类.查找(XS,"\n",CZ);
+			文本 CZ1=系统.文本类.中间(XS,CZ-7,CZ0 - CZ);
+			文本 CZ2=系统.文本类.中间(XS,CZ-8,CZ0 - CZ);
+			if(CZ2 == "#"+CZ1)
+			{
+				if(SL < KZTS)
+					XS=系统.文本类.替换(XS,CZ2,CZ1);
+			}
+			else
+			{
+				if(SL > KZTS)
+					XS=系统.文本类.替换(XS,CZ1,"#"+CZ1);
+			}
+			if(CZ == -1)
+				跳出;
+			HS=CZ0;
+			SL++;
+		}
+		OKBasicLib.XWB("/etc/inittab",XS);
+
+	}
+}

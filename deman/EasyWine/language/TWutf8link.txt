@@ -1,0 +1,15 @@
+我的電腦
+程序管理
+控制面版
+反安裝程序
+WINE配置面版
+任務管理器
+記事本
+注冊表編輯器
+掃雷
+我的電腦.desktop
+騰訊TM.desktop
+QQ遊戲.desktop
+騰訊QQ.desktop
+騰訊TT.desktop
+QQ音樂.desktop
